@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Domain.Entities
 {
-    public class Client
+    public class Client : User
     {
         public DateTime MembershipDate { get; set; }
         public DateTime TotalBooks { get; set; }

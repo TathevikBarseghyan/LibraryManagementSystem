@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KF3yQsCCx73L4JJw5zq6g2ViTGZFESwookqpdrdF+rMay0cCgfvUAxs8x1L9VoWm6/PToB5PmgBlBxEEyii8cg==",
+  "dgSpecHash": "OZ+byPfvN4gtqlhKqe+O+VRXmHi1rJ/ouD4BN9lkGoADf6K1L/I/EFi9qbELvUSXxf6ym4gYK5A49D3eRqsGWA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\LibraryManagementSystem.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\LibraryManagementSystem.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

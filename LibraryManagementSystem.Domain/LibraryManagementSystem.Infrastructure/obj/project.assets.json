@@ -1169,6 +1169,19 @@
         "runtime": {
           "bin/placeholder/LibraryManagementSystem.Domain.dll": {}
         }
+      },
+      "LybraryManagementSystem.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LibraryManagementSystem.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LybraryManagementSystem.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LybraryManagementSystem.Application.dll": {}
+        }
       }
     }
   },
@@ -3519,11 +3532,17 @@
       "type": "project",
       "path": "../LibraryManagementSystem.Domain/LibraryManagementSystem.Domain.csproj",
       "msbuildProject": "../LibraryManagementSystem.Domain/LibraryManagementSystem.Domain.csproj"
+    },
+    "LybraryManagementSystem.Application/1.0.0": {
+      "type": "project",
+      "path": "../LybraryManagementSystem.Application/LybraryManagementSystem.Application.csproj",
+      "msbuildProject": "../LybraryManagementSystem.Application/LybraryManagementSystem.Application.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "LibraryManagementSystem.Domain >= 1.0.0",
+      "LybraryManagementSystem.Application >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.0",
@@ -3536,9 +3555,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\LibraryManagementSystem.Infrastructure.csproj",
-      "projectName": "LibraryManagementSystem.Infrastructure",
-      "projectPath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\LibraryManagementSystem.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\LibraryManagementSystem.Repository.csproj",
+      "projectName": "LibraryManagementSystem.Repository",
+      "projectPath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\LibraryManagementSystem.Repository.csproj",
       "packagesPath": "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
@@ -3559,6 +3578,9 @@
           "projectReferences": {
             "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Domain.csproj": {
               "projectPath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Domain.csproj"
+            },
+            "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LybraryManagementSystem.Application\\LybraryManagementSystem.Application.csproj": {
+              "projectPath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LybraryManagementSystem.Application\\LybraryManagementSystem.Application.csproj"
             }
           }
         }

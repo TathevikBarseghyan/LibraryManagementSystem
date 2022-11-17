@@ -14,6 +14,7 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<BookItem> builder)
         {
+            builder.HasKey(x => x.Id);
             builder.Property(p => p.Status).IsRequired().HasDefaultValue(BookStatus.Available);
             builder.Property(p => p.Id).IsRequired();
             builder.Property(p => p.Title).IsRequired();

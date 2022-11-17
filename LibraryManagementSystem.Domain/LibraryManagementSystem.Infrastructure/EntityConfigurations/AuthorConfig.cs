@@ -13,8 +13,10 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Author> builder)
         {
+            builder.HasKey(x => x.Id);
             builder.Property(p => p.Name).IsRequired();
             builder.Property(p => p.Id).IsRequired();
+            builder.Property(p => p.Description).HasMaxLength(255);
 
         }
     }
