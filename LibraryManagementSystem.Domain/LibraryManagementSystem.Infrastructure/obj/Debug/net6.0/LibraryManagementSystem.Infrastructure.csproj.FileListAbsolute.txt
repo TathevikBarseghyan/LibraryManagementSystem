@@ -1,0 +1,17 @@
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.AssemblyInfo.cs
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\bin\Debug\net6.0\LibraryManagementSystem.Infrastructure.deps.json
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\bin\Debug\net6.0\LibraryManagementSystem.Infrastructure.runtimeconfig.json
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\bin\Debug\net6.0\LibraryManagementSystem.Infrastructure.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\bin\Debug\net6.0\LibraryManagementSystem.Infrastructure.pdb
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\bin\Debug\net6.0\LibraryManagementSystem.Domain.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\bin\Debug\net6.0\LibraryManagementSystem.Domain.pdb
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.csproj.CopyComplete
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\refint\LibraryManagementSystem.Infrastructure.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.pdb
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\LibraryManagementSystem.Infrastructure.genruntimeconfig.cache
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Infrastructure\obj\Debug\net6.0\ref\LibraryManagementSystem.Infrastructure.dll
