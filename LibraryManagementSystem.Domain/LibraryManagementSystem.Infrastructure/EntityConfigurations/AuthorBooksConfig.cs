@@ -11,7 +11,6 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
 {
     public class AuthorBooksConfig : IEntityTypeConfiguration<AuthorBook>
     {
-        
         public void Configure(EntityTypeBuilder<AuthorBook> builder)
         {
             builder.HasKey(x => new { x.AuthorId, x.BookId });
@@ -24,5 +23,4 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
                 .HasForeignKey(x => x.BookId);
         }
     }
-
 }

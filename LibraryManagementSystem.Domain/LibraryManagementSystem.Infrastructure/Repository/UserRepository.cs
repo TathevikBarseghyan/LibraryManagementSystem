@@ -15,27 +15,33 @@ namespace LibraryManagementSystem.Domain
 
         public void Add(User user)
         {
-            _context.Users.Add(user);
+             _context.Users.Add(user);
         }
 
         public User Delete(int userId)
         {
-            throw new NotImplementedException();
+            var user = GetById(userId);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+            }
+
+            return user;
         }
 
-        public User Get(int userId)
+        public User GetById(int userId)
         {
-            throw new NotImplementedException();
+            return _context.Users.Find(userId)!;
         }
 
         public List<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Users.ToList();
         }
 
         public User GetByUserName(string username)
         {
-            throw new NotImplementedException();
+            return _context.Users.Find(username)!;
         }
 
         public User Update(User username)

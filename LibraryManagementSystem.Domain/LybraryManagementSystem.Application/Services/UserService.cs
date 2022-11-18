@@ -18,18 +18,31 @@ namespace LybraryManagementSystem.Application.Services
 
         public void Add(UserModel userModel)
         {
-            var user = Mappings.UserMappings.MappToEntity(userModel);
-            _userRepository.Add(user);
+            var user = Mappings.UserMappings.MapToEntity(userModel);
+             _userRepository.Add(user);
         }
 
         public UserModel Delete(int userId)
         {
-            throw new NotImplementedException();
+            UserModel userModel = new UserModel();
+
+            var user = GetById(userId);
+            if (user != null)
+            {
+                _userRepository.Delete(user.Id);
+            }
+
+            return user;
         }
 
-        public UserModel Get(int userId)
+        public UserModel GetById(int userId)
         {
-            throw new NotImplementedException();
+            UserModel userModel = new UserModel();
+            var user = _userRepository.GetById(userId);
+
+            userModel = user;
+
+            return userModel;
         }
 
         public List<UserModel> GetAll()
@@ -46,5 +59,7 @@ namespace LybraryManagementSystem.Application.Services
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }

@@ -11,7 +11,7 @@ namespace LybraryManagementSystem.Application.Interface.Repository
     {
         void Add(User user);
         List<User> GetAll();
-        User Get(int userId);
+        User GetById(int userId);
         User GetByUserName(string username);
         User Delete(int userId);
         User Update(User username);

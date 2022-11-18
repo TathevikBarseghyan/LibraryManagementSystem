@@ -9,7 +9,7 @@ namespace LybraryManagementSystem.Application.Mappings
 {
     public static class UserMappings
     {
-        public static User MappToEntity(UserModel userModel)
+        public static User MapToEntity(UserModel userModel)
         {
             return new User
             {
@@ -17,5 +17,6 @@ namespace LybraryManagementSystem.Application.Mappings
                 Password = userModel.Password,
             };
         }
+       
     }
 }

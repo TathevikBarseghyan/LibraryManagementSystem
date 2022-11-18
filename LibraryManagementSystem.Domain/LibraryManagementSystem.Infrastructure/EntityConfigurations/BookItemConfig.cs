@@ -19,8 +19,6 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
             builder.Property(p => p.Id).IsRequired();
             builder.Property(p => p.Title).IsRequired();
             builder.Property(p => p.BorowedDate).IsRequired();
-
-
         }
     }
 }

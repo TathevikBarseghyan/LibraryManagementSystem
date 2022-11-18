@@ -13,14 +13,11 @@ namespace LibraryManagementSystem.Infrastructure
     {
         LibraryDbContext IDesignTimeDbContextFactory<LibraryDbContext>.CreateDbContext(string[] args)
         {
-           
             var optionsBuilder = new DbContextOptionsBuilder();
 
             optionsBuilder.UseSqlServer("Server=.\\SQLExpress; Database=LibraryManagementSystem;Trusted_Connection=True;TrustServerCertificate=True");
 
             return new LibraryDbContext(optionsBuilder.Options);
-           
         }
     }
-
 }

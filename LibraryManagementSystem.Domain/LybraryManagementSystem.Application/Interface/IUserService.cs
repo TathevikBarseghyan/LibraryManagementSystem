@@ -11,7 +11,7 @@ namespace LybraryManagementSystem.Application.Interface
     {
         void Add(UserModel user);
         List<UserModel> GetAll();
-        UserModel Get(int userId);
+        UserModel GetById(int userId);
         UserModel GetByUserName(string username);
         UserModel Delete(int userId);
         UserModel Update(UserModel user);

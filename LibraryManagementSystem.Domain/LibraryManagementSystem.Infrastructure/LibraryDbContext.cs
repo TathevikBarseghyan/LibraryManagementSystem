@@ -18,7 +18,6 @@ namespace LibraryManagementSystem.Infrastructure
             var optionsBuilder = new DbContextOptionsBuilder<LibraryDbContext>();
             optionsBuilder.UseSqlServer("Server=.\\SQLExpress; Database=LibraryManagementSystem;Trusted_Connection=True;TrustServerCertificate=True");
 
-
             return optionsBuilder.Options;
         }
 
@@ -27,13 +26,11 @@ namespace LibraryManagementSystem.Infrastructure
             modelBuilder.ApplyConfiguration(new BookItemConfig());
             modelBuilder.ApplyConfiguration(new AuthorConfig());
             modelBuilder.ApplyConfiguration(new AuthorBooksConfig());
-
         }
+
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<AuthorBook> AuthorBooks { get; set; }
-
         public DbSet<User> Users { get; set; }
-
     }
 }
