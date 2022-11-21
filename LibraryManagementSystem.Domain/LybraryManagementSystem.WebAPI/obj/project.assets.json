@@ -3972,8 +3972,8 @@
     },
     "LibraryManagementSystem.Repository/1.0.0": {
       "type": "project",
-      "path": "../LibraryManagementSystem.Infrastructure/LibraryManagementSystem.Repository.csproj",
-      "msbuildProject": "../LibraryManagementSystem.Infrastructure/LibraryManagementSystem.Repository.csproj"
+      "path": "../LibraryManagementSystem.Repository/LibraryManagementSystem.Repository.csproj",
+      "msbuildProject": "../LibraryManagementSystem.Repository/LibraryManagementSystem.Repository.csproj"
     },
     "LybraryManagementSystem.Application/1.0.0": {
       "type": "project",
@@ -4017,8 +4017,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\LibraryManagementSystem.Repository.csproj": {
-              "projectPath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Infrastructure\\LibraryManagementSystem.Repository.csproj"
+            "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Repository\\LibraryManagementSystem.Repository.csproj": {
+              "projectPath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Repository\\LibraryManagementSystem.Repository.csproj"
             },
             "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LybraryManagementSystem.Application\\LybraryManagementSystem.Application.csproj": {
               "projectPath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LybraryManagementSystem.Application\\LybraryManagementSystem.Application.csproj"
