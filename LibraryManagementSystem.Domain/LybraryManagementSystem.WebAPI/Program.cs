@@ -1,3 +1,6 @@
+using LibraryManagementSystem.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
 namespace LybraryManagementSystem.WebAPI
 {
     public class Program
@@ -13,6 +16,10 @@ namespace LybraryManagementSystem.WebAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            var connectionString = builder.Configuration.GetConnectionString("LibraryManagementSystem");
+            builder.Services.AddDbContext<LibraryDbContext>(x => x.UseSqlServer(connectionString));
+            
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

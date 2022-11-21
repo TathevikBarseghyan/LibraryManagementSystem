@@ -1,9 +1,4 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LybraryManagementSystem.Application.Mappings
 {
@@ -17,6 +12,17 @@ namespace LybraryManagementSystem.Application.Mappings
                 Password = userModel.Password,
             };
         }
-       
+
+        //inverse mapper
+        public static UserModel MapToModel(User user)
+        {
+            return new UserModel
+            {
+               Id= user.Id,
+               Name = user.Name,
+               Password= user.Password,
+            };
+        }
+
     }
 }

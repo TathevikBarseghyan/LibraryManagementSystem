@@ -1,8 +1,11 @@
 ﻿using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,8 +27,6 @@ namespace LybraryManagementSystem.Application.Services
 
         public UserModel Delete(int userId)
         {
-            UserModel userModel = new UserModel();
-
             var user = GetById(userId);
             if (user != null)
             {
@@ -37,12 +38,9 @@ namespace LybraryManagementSystem.Application.Services
 
         public UserModel GetById(int userId)
         {
-            UserModel userModel = new UserModel();
             var user = _userRepository.GetById(userId);
 
-            userModel = user;
-
-            return userModel;
+            return Mappings.UserMappings.MapToModel(user);
         }
 
         public List<UserModel> GetAll()
@@ -52,7 +50,9 @@ namespace LybraryManagementSystem.Application.Services
 
         public UserModel GetByUserName(string username)
         {
-            throw new NotImplementedException();
+            var user = _userRepository.GetByUserName(username);
+
+            return Mappings.UserMappings.MapToModel(user);
         }
 
         public UserModel Update(UserModel user)
@@ -60,6 +60,29 @@ namespace LybraryManagementSystem.Application.Services
             throw new NotImplementedException();
         }
 
-      
+        private bool Validation(string username, string password)
+        {
+            //if (user != null)
+            //{
+            //    return user.password.equals(password);
+            //}
+
+            return false;
+        }
+
+        public static string GetHash(byte[] bytesToHash, byte[] salt)
+        {
+            var byteResult = new Rfc2898DeriveBytes(bytesToHash, salt, 10000);
+
+            return Convert.ToBase64String(byteResult.GetBytes(24));
+        }
+
+        public static string GetSalt()
+        {
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+
+            return Convert.ToBase64String(salt);
+        }
     }
 }
