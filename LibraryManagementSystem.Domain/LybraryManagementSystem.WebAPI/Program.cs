@@ -1,4 +1,4 @@
-using LibraryManagementSystem.Infrastructure;
+using LibraryManagementSystem.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace LybraryManagementSystem.WebAPI

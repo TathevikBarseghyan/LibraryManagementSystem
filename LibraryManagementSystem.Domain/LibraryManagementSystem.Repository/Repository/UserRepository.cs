@@ -1,5 +1,5 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
-using LibraryManagementSystem.Infrastructure;
+using LibraryManagementSystem.Repository;
 using LybraryManagementSystem.Application.Interface.Repository;
 
 namespace LibraryManagementSystem.Domain

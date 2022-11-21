@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagementSystem.Infrastructure
+namespace LibraryManagementSystem.Repository
 {
     public class LibraryDbContext : DbContext
     {
