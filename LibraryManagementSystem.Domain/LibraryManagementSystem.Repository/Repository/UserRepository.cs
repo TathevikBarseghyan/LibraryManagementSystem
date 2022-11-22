@@ -2,9 +2,9 @@
 using LibraryManagementSystem.Repository;
 using LybraryManagementSystem.Application.Interface.Repository;
 
-namespace LibraryManagementSystem.Domain
+namespace LibraryManagementSystem.Repository
 {
-    internal class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly LibraryDbContext _context;
 
@@ -41,7 +41,7 @@ namespace LibraryManagementSystem.Domain
 
         public User GetByUserName(string username)
         {
-            return _context.Users.Find(username)!;
+            return _context.Users.FirstOrDefault(f=> f.UserName == username);
         }
 
         public User Update(User username)

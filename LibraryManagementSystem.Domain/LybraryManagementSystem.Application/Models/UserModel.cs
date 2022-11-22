@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace LybraryManagementSystem.Application;
+﻿namespace LybraryManagementSystem.Application;
 
 public class UserModel
 {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
+﻿
 namespace LibraryManagementSystem.Domain.Entities
 {
     public class User 

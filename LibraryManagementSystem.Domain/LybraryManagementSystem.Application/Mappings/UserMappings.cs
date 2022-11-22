@@ -1,4 +1,5 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Models;
 
 namespace LybraryManagementSystem.Application.Mappings
 {
@@ -12,17 +13,36 @@ namespace LybraryManagementSystem.Application.Mappings
                 Password = userModel.Password,
             };
         }
-
+        public static User LogInMapToEntity(LogInModel logInModel)
+        {
+            return new User
+            {
+                Name = logInModel.UserName,
+                Password = logInModel.Password,
+            };
+        }
         //inverse mapper
         public static UserModel MapToModel(User user)
         {
+            if (user == null)
+            {
+
+            }
             return new UserModel
             {
-               Id= user.Id,
-               Name = user.Name,
-               Password= user.Password,
+                Name = user.Name,
+                Password = user.Password,
             };
         }
-
+        
+        
+        public static LogInModel LogInMapToModel(User user)
+        {
+            return new LogInModel
+            {
+                UserName = user.Name,
+                Password = user.Password,
+            };
+        }
     }
 }

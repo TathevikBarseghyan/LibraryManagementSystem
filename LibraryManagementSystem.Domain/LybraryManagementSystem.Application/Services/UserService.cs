@@ -1,13 +1,7 @@
 ﻿using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using LybraryManagementSystem.Application.Mappings;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LybraryManagementSystem.Application.Services
 {
@@ -21,7 +15,7 @@ namespace LybraryManagementSystem.Application.Services
 
         public void Add(UserModel userModel)
         {
-            var user = Mappings.UserMappings.MapToEntity(userModel);
+            var user = UserMappings.MapToEntity(userModel);
              _userRepository.Add(user);
         }
 
@@ -40,7 +34,7 @@ namespace LybraryManagementSystem.Application.Services
         {
             var user = _userRepository.GetById(userId);
 
-            return Mappings.UserMappings.MapToModel(user);
+            return UserMappings.MapToModel(user);
         }
 
         public List<UserModel> GetAll()
@@ -52,7 +46,7 @@ namespace LybraryManagementSystem.Application.Services
         {
             var user = _userRepository.GetByUserName(username);
 
-            return Mappings.UserMappings.MapToModel(user);
+            return UserMappings.MapToModel(user);
         }
 
         public UserModel Update(UserModel user)
