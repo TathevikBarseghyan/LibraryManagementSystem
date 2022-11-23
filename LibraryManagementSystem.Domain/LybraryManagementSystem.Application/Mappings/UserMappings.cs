@@ -1,5 +1,9 @@
-﻿using LibraryManagementSystem.Domain.Entities;
+﻿using AutoMapper;
+using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Helper;
 using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Services;
+using System.Text;
 
 namespace LybraryManagementSystem.Application.Mappings
 {
@@ -9,39 +13,63 @@ namespace LybraryManagementSystem.Application.Mappings
         {
             return new User
             {
-                Name = userModel.Name,
-                Password = userModel.Password,
+                FirstName = userModel.Name,
             };
         }
+
+        public static User MapToEntity(AddModel addModel)
+        {
+            if(addModel is null)
+            {
+                return null;
+            }
+
+            var salt = IdentityHelper.GetSalt();
+            var hash = IdentityHelper.GetHash(addModel.Password, salt);
+
+            return new User
+            {
+                UserName = addModel.UserName,
+                Email = addModel.Email,
+                Hash = hash,
+                Salt = Convert.ToBase64String(salt),
+                FirstName = "Gago",
+                LastName = "Gago",
+            };
+        }
+
         public static User LogInMapToEntity(LogInModel logInModel)
         {
             return new User
             {
-                Name = logInModel.UserName,
-                Password = logInModel.Password,
+                FirstName = logInModel.UserName,
             };
         }
         //inverse mapper
         public static UserModel MapToModel(User user)
         {
-            if (user == null)
-            {
+            //if (user != null)
+            //{
+            //    return new UserModel
+            //    {
+            //        Name = user.Name,
+            //        Password = user.Password,
+            //    };
+            //}
 
-            }
-            return new UserModel
-            {
-                Name = user.Name,
-                Password = user.Password,
-            };
+            var config = new MapperConfiguration(c =>
+                c.CreateMap<User, UserModel>());
+            var mapper = new Mapper(config);
+            var mappedUser = mapper.Map<UserModel>(user);
+
+            return mappedUser;
         }
-        
-        
+
         public static LogInModel LogInMapToModel(User user)
         {
             return new LogInModel
             {
-                UserName = user.Name,
-                Password = user.Password,
+                UserName = user.FirstName,
             };
         }
     }

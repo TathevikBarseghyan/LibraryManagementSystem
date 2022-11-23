@@ -1,7 +1,10 @@
-﻿using LybraryManagementSystem.Application.Interface;
+﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
+using LybraryManagementSystem.Application.Models;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace LybraryManagementSystem.Application.Services
 {
@@ -13,7 +16,7 @@ namespace LybraryManagementSystem.Application.Services
             _userRepository = userRepository;
         }
 
-        public void Add(UserModel userModel)
+        public void Add(AddModel userModel)
         {
             var user = UserMappings.MapToEntity(userModel);
              _userRepository.Add(user);
@@ -64,19 +67,6 @@ namespace LybraryManagementSystem.Application.Services
             return false;
         }
 
-        public static string GetHash(byte[] bytesToHash, byte[] salt)
-        {
-            var byteResult = new Rfc2898DeriveBytes(bytesToHash, salt, 10000);
-
-            return Convert.ToBase64String(byteResult.GetBytes(24));
-        }
-
-        public static string GetSalt()
-        {
-            byte[] salt;
-            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
-
-            return Convert.ToBase64String(salt);
-        }
+       
     }
 }

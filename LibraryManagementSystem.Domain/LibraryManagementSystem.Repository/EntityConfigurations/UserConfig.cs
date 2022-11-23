@@ -16,8 +16,7 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(p => p.Password).IsRequired();
-            builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.FirstName).IsRequired();
             builder.Property(p => p.Email).HasColumnName("Email");
         }
     }

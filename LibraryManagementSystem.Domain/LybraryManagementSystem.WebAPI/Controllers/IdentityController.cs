@@ -1,4 +1,5 @@
-﻿using LybraryManagementSystem.Application;
+﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Mappings;
 using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Models;
 using LybraryManagementSystem.Application.Services;
@@ -9,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using LybraryManagementSystem.Application.Helper;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
@@ -53,30 +55,22 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Add(UserModel userModel)
+        public IActionResult Add(AddModel addModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var exists = _userService.GetByUserName(userModel.UserName);
+            var exists = _userService.GetByUserName(addModel.UserName);
             if (exists != null) 
             {
                 return Conflict("Username already exists");
             }
 
-            var user = new UserModel()
-            {
-                Id = userModel.Id,
-                Name = userModel.Name,
-                Email = userModel.Email,
-                Password = UserService.GetHash(Encoding.UTF8.GetBytes(userModel.Password), Encoding.UTF8.GetBytes(UserService.GetSalt()))
-            };
+            _userService.Add(addModel);
 
-            _userService.Add(user);
-
-            return Ok(userModel);
+            return Ok(addModel);
         }
 
         private string GenerateToken(LogInModel logInModel)
@@ -112,7 +106,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
             string salt = user.Salt;
             string hashedPass = user.Hash;
-            string checkingPass = UserService.GetHash(Encoding.UTF8.GetBytes(logInModel.Password), Encoding.UTF8.GetBytes(salt));
+            string checkingPass = IdentityHelper.GetHash(logInModel.Password, Convert.FromBase64String(salt));
 
             if (!hashedPass.Equals(checkingPass))
             {

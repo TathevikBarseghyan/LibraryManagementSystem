@@ -1,4 +1,5 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace LybraryManagementSystem.Application.Interface
 {
     public interface IUserService 
     {
-        void Add(UserModel user);
+        void Add(AddModel user);
         List<UserModel> GetAll();
         UserModel GetById(int userId);
         UserModel GetByUserName(string username);

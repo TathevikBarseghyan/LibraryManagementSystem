@@ -91,3 +91,7 @@ C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryM
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\obj\Debug\net6.0\LybraryManagementSystem.WebAPI.pdb
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\obj\Debug\net6.0\LybraryManagementSystem.WebAPI.genruntimeconfig.cache
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\obj\Debug\net6.0\ref\LybraryManagementSystem.WebAPI.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\obj\Debug\net6.0\LybraryManagementSystem.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll

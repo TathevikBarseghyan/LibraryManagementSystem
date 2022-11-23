@@ -16,6 +16,7 @@ namespace LibraryManagementSystem.Repository
         public void Add(User user)
         {
              _context.Users.Add(user);
+             _context.SaveChanges();
         }
 
         public User Delete(int userId)
