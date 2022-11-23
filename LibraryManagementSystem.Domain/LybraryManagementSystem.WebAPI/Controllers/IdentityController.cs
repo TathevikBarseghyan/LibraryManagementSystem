@@ -1,16 +1,8 @@
-﻿using LibraryManagementSystem.Domain.Entities;
-using LybraryManagementSystem.Application.Mappings;
-using LybraryManagementSystem.Application.Interface;
+﻿using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Models;
-using LybraryManagementSystem.Application.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using LybraryManagementSystem.Application.Helper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
@@ -19,13 +11,11 @@ namespace LybraryManagementSystem.WebAPI.Controllers
     public class IdentityController : ControllerBase
     {
         //private readonly UserManager<IdentityUser> _userManager;
-        private readonly IConfiguration _configuration;
 
         private readonly IUserService _userService;
-        public IdentityController(IConfiguration configuration, IUserService userService)
+        public IdentityController(IUserService userService)
         {
             //_userManager = userManager;
-            _configuration = configuration;
             _userService = userService;
         }
 
@@ -69,25 +59,9 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             }
 
             _userService.Add(addModel);
+            _userService.SaveChanges();
 
             return Ok(addModel);
-        }
-
-        private string GenerateToken(LogInModel logInModel)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var claims = new[]
-            {
-                    new Claim("UserName", logInModel.UserName)
-            };
-
-            var token = new JwtSecurityToken(
-                 claims : claims,
-                 expires: DateTime.Now.AddMinutes(15),
-                 signingCredentials: credentials); ;
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         [HttpPost("login")]
@@ -104,21 +78,12 @@ namespace LybraryManagementSystem.WebAPI.Controllers
                 return Conflict();
             }
 
-            string salt = user.Salt;
-            string hashedPass = user.Hash;
-            string checkingPass = IdentityHelper.GetHash(logInModel.Password, Convert.FromBase64String(salt));
-
-            if (!hashedPass.Equals(checkingPass))
+            if (!_userService.ValidateUser(user, logInModel))
             {
-                return Forbid("Invalid Password");
+                return Forbid("Invalid password");
             }
 
-            if (hashedPass != checkingPass)
-            {
-                return Forbid("Invalid Password");
-            }
-
-            var token = GenerateToken(logInModel);
+            var token = _userService.GenerateToken(logInModel);
 
             return Ok(token);
         }

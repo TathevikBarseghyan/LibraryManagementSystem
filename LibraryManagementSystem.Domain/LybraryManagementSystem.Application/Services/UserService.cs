@@ -1,8 +1,13 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Helper;
 using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
 using LybraryManagementSystem.Application.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -11,9 +16,12 @@ namespace LybraryManagementSystem.Application.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        private readonly IConfiguration _configuration;
+
+        public UserService(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
+            _configuration = configuration;
         }
 
         public void Add(AddModel userModel)
@@ -57,16 +65,44 @@ namespace LybraryManagementSystem.Application.Services
             throw new NotImplementedException();
         }
 
-        private bool Validation(string username, string password)
+        public bool ValidateUser(UserModel userModel, LogInModel logInModel)
         {
-            //if (user != null)
-            //{
-            //    return user.password.equals(password);
-            //}
+            string salt = userModel.Salt;
+            string hashedPass = userModel.Hash;
+            string checkingPass = IdentityHelper.GetHash(logInModel.Password, Convert.FromBase64String(salt));
 
-            return false;
+            if (!hashedPass.Equals(checkingPass))
+            {
+                return false;
+            }
+
+            if (hashedPass != checkingPass)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        public string GenerateToken(LogInModel logInModel)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[]
+            {
+                    new Claim("UserName", logInModel.UserName)
+            };
+
+            var token = new JwtSecurityToken(
+                 claims: claims,
+                 expires: DateTime.Now.AddMinutes(15),
+                 signingCredentials: credentials); ;
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-       
+        public void SaveChanges()
+        {
+            _userRepository.SaveChanges();
+        }
     }
 }

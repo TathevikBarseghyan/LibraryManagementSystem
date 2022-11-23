@@ -16,5 +16,8 @@ namespace LybraryManagementSystem.Application.Interface
         UserModel GetByUserName(string username);
         UserModel Delete(int userId);
         UserModel Update(UserModel user);
+        void SaveChanges();
+        bool ValidateUser(UserModel user, LogInModel logInModel);
+        string GenerateToken(LogInModel logInModel);
     }
 }

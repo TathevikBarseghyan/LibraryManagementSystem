@@ -16,7 +16,6 @@ namespace LibraryManagementSystem.Repository
         public void Add(User user)
         {
              _context.Users.Add(user);
-             _context.SaveChanges();
         }
 
         public User Delete(int userId)
@@ -48,6 +47,11 @@ namespace LibraryManagementSystem.Repository
         public User Update(User username)
         {
             throw new NotImplementedException();
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }

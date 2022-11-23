@@ -15,5 +15,6 @@ namespace LybraryManagementSystem.Application.Interface.Repository
         User GetByUserName(string username);
         User Delete(int userId);
         User Update(User username);
+        void SaveChanges();
     }
 }
