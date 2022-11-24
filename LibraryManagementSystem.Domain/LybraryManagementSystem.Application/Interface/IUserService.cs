@@ -10,13 +10,13 @@ namespace LybraryManagementSystem.Application.Interface
 {
     public interface IUserService 
     {
-        void Add(AddModel user);
+        Task AddAsync(AddModel user);
         List<UserModel> GetAll();
         UserModel GetById(int userId);
-        UserModel GetByUserName(string username);
+        Task<UserModel> GetByUserName(string username);
         UserModel Delete(int userId);
         UserModel Update(UserModel user);
-        void SaveChanges();
+        Task SaveChangesAsync();
         bool ValidateUser(UserModel user, LogInModel logInModel);
         string GenerateToken(LogInModel logInModel);
     }

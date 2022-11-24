@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace LibraryManagementSystem.Domain.Entities
 {
     public class User 

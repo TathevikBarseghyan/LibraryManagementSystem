@@ -24,10 +24,10 @@ namespace LybraryManagementSystem.Application.Services
             _configuration = configuration;
         }
 
-        public void Add(AddModel userModel)
+        public async Task AddAsync(AddModel userModel)
         {
             var user = UserMappings.MapToEntity(userModel);
-             _userRepository.Add(user);
+            await _userRepository.AddAsync(user);
         }
 
         public UserModel Delete(int userId)
@@ -53,11 +53,11 @@ namespace LybraryManagementSystem.Application.Services
             throw new NotImplementedException();
         }
 
-        public UserModel GetByUserName(string username)
+        public async Task<UserModel> GetByUserName(string username)
         {
-            var user = _userRepository.GetByUserName(username);
+            var user = await _userRepository.GetByUserName(username);
 
-            return UserMappings.MapToModel(user);
+            return  UserMappings.MapToModel(user);
         }
 
         public UserModel Update(UserModel user)
@@ -100,9 +100,9 @@ namespace LybraryManagementSystem.Application.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public void SaveChanges()
+        public async Task SaveChangesAsync()
         {
-            _userRepository.SaveChanges();
+            await _userRepository.SaveChangesAsync();
         }
     }
 }

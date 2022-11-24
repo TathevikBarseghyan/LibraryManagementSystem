@@ -12,7 +12,7 @@ namespace LybraryManagementSystem.Application.Interface
         void Add(LogInModel user);
         List<LogInModel> GetAll();
         LogInModel GetById(int userId);
-        LogInModel GetByUserName(string username);
+        Task<LogInModel> GetByUserName(string username);
         LogInModel Delete(int userId);
         LogInModel Update(LogInModel user);
     }

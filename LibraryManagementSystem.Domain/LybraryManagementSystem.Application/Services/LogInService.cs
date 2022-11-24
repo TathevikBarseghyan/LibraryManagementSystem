@@ -23,7 +23,7 @@ namespace LybraryManagementSystem.Application.Services
         {
 
             var user = UserMappings.LogInMapToEntity(logInModel);
-            _userRepository.Add(user);
+            _userRepository.AddAsync(user);
         }
 
         public LogInModel Delete(int userId)
@@ -49,9 +49,9 @@ namespace LybraryManagementSystem.Application.Services
             return UserMappings.LogInMapToModel(user);
         }
 
-        public LogInModel GetByUserName(string username)
+        public async Task<LogInModel> GetByUserName(string username)
         {
-            var user = _userRepository.GetByUserName(username);
+            var user = await _userRepository.GetByUserName(username);
 
             return UserMappings.LogInMapToModel(user);
         }

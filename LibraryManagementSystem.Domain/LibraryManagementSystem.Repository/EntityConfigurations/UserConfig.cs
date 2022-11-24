@@ -17,6 +17,7 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(p => p.FirstName).IsRequired();
+            builder.Property(p => p.LastName).IsRequired();
             builder.Property(p => p.Email).HasColumnName("Email");
         }
     }

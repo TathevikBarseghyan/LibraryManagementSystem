@@ -45,34 +45,34 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Add(AddModel addModel)
+        public async Task<IActionResult> Add(AddModel addModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var exists = _userService.GetByUserName(addModel.UserName);
+            var exists = await _userService.GetByUserName(addModel.UserName);
             if (exists != null) 
             {
                 return Conflict("Username already exists");
             }
-
-            _userService.Add(addModel);
-            _userService.SaveChanges();
+            
+            await _userService.AddAsync(addModel);
+            await _userService.SaveChangesAsync();
 
             return Ok(addModel);
         }
 
         [HttpPost("login")]
-        public IActionResult LogIn(LogInModel logInModel)
+        public async Task<IActionResult> LogIn(LogInModel logInModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = _userService.GetByUserName(logInModel.UserName);
+            var user = await _userService.GetByUserName(logInModel.UserName);
             if (user == null)
             {
                 return Conflict();

@@ -33,8 +33,8 @@ namespace LybraryManagementSystem.Application.Mappings
                 Email = addModel.Email,
                 Hash = hash,
                 Salt = Convert.ToBase64String(salt),
-                FirstName = "Gago",
-                LastName = "Gago",
+                FirstName = addModel.FirstName,
+                LastName = addModel.LastName,
             };
         }
 

@@ -9,12 +9,12 @@ namespace LybraryManagementSystem.Application.Interface.Repository
 {
     public interface IUserRepository
     {
-        void Add(User user);
+        Task AddAsync(User user);
         List<User> GetAll();
         User GetById(int userId);
-        User GetByUserName(string username);
+        Task<User> GetByUserName(string username);
         User Delete(int userId);
         User Update(User username);
-        void SaveChanges();
+        Task SaveChangesAsync();
     }
 }

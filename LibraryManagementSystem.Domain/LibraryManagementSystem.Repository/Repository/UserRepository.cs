@@ -1,6 +1,7 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LibraryManagementSystem.Repository;
 using LybraryManagementSystem.Application.Interface.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagementSystem.Repository
 {
@@ -13,9 +14,9 @@ namespace LibraryManagementSystem.Repository
             _context = context;
         }
 
-        public void Add(User user)
+        public async Task AddAsync(User user)
         {
-             _context.Users.Add(user);
+            await _context.Set<User>().AddAsync(user);
         }
 
         public User Delete(int userId)
@@ -39,9 +40,9 @@ namespace LibraryManagementSystem.Repository
             return _context.Users.ToList();
         }
 
-        public User GetByUserName(string username)
+        public async Task<User> GetByUserName(string username)
         {
-            return _context.Users.FirstOrDefault(f=> f.UserName == username);
+            return await _context.Users.FirstOrDefaultAsync(f=> f.UserName == username);
         }
 
         public User Update(User username)
@@ -49,9 +50,9 @@ namespace LibraryManagementSystem.Repository
             throw new NotImplementedException();
         }
 
-        public void SaveChanges()
+        public async Task SaveChangesAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
