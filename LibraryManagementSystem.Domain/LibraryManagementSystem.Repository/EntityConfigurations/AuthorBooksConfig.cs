@@ -14,6 +14,7 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<AuthorBook> builder)
         {
             builder.HasKey(x => new { x.AuthorId, x.BookId });
+
             builder.HasOne(x => x.Author)
                 .WithMany(x => x.AuthorBooks)
                 .HasForeignKey(x => x.AuthorId);

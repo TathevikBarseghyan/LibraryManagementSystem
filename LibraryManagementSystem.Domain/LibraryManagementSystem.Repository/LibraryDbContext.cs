@@ -16,9 +16,10 @@ namespace LibraryManagementSystem.Repository
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new BookItemConfig());
+            modelBuilder.ApplyConfiguration(new BookItemConfig());
             modelBuilder.ApplyConfiguration(new AuthorConfig());
             modelBuilder.ApplyConfiguration(new AuthorBooksConfig());
+            modelBuilder.ApplyConfiguration(new UserConfig());
         }
 
         public DbSet<Book> Books { get; set; }

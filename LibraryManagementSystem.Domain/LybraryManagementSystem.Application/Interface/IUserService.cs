@@ -13,9 +13,9 @@ namespace LybraryManagementSystem.Application.Interface
         Task AddAsync(AddModel user);
         List<UserModel> GetAll();
         UserModel GetById(int userId);
-        Task<UserModel> GetByUserName(string username);
+        Task<UserModel> GetByUserNameOrEmail(string username, string email);
         UserModel Delete(int userId);
-        UserModel Update(UserModel user);
+        void Update(UserModel user);
         Task SaveChangesAsync();
         bool ValidateUser(UserModel user, LogInModel logInModel);
         string GenerateToken(LogInModel logInModel);

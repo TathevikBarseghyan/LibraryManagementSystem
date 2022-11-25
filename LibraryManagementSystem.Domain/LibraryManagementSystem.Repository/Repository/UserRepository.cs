@@ -1,5 +1,4 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
-using LibraryManagementSystem.Repository;
 using LybraryManagementSystem.Application.Interface.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,14 +39,14 @@ namespace LibraryManagementSystem.Repository
             return _context.Users.ToList();
         }
 
-        public async Task<User> GetByUserName(string username)
+        public async Task<User> GetByUserNameOrEmail(string username, string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(f=> f.UserName == username);
+            return await _context.Users.FirstOrDefaultAsync(f => f.UserName == username || f.Email == email);
         }
-
-        public User Update(User username)
+        
+        public void Update(User user)
         {
-            throw new NotImplementedException();
+             _context.Users.Update(user);
         }
 
         public async Task SaveChangesAsync()

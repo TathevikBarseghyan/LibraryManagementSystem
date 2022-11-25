@@ -12,5 +12,7 @@ namespace LibraryManagementSystem.Domain.Entities
         public string Email { get; set; }
         public string Hash { get; set; }
         public string Salt { get; set; }
+        //public bool IsActive { get; set; }
+        //public bool IsLocked { get; set; }
     }
 }

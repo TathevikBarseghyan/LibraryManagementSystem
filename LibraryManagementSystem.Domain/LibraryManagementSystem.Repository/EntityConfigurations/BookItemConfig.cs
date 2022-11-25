@@ -14,11 +14,22 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<BookItem> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(p => p.Status).IsRequired().HasDefaultValue(BookStatus.Available);
-            builder.Property(p => p.Id).IsRequired();
-            builder.Property(p => p.Title).IsRequired();
-            builder.Property(p => p.BorowedDate).IsRequired();
+            builder.Property(p => p.Status)
+                .IsRequired()
+                .HasDefaultValue(BookStatus.Available);
+
+            builder.Property(p => p.Id)
+                .IsRequired();
+
+            builder.Property(p => p.Title)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder.Property(p => p.BorowedDate)
+                .IsRequired();
+
+            builder.Property(p => p.Publisher)
+                .HasMaxLength(100);
         }
     }
 }

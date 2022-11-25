@@ -19,50 +19,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             _userService = userService;
         }
 
-        //[HttpPost("register")]
-        //public async Task<ActionResult> Register(UserModel userModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var user = new IdentityUser {UserName = userModel.Name, Email = userModel.Email };
-        //    var result = await _userManager.CreateAsync(user, userModel.Password);
-
-        //    //var user = new User()
-        //    //{
-        //    //    Id = userModel.Id,
-        //    //    Name = userModel.Name,
-        //    //    Password = userModel.Password
-        //    //};
-
-        //    return Ok(userModel);
-        //}
-
-        //[Inject]
-        //IUserService _userService { get; set; }
-
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> Add(AddModel addModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var exists = await _userService.GetByUserName(addModel.UserName);
-            if (exists != null) 
-            {
-                return Conflict("Username already exists");
-            }
-            
-            await _userService.AddAsync(addModel);
-            await _userService.SaveChangesAsync();
-
-            return Ok(addModel);
-        }
+        
 
         [HttpPost("login")]
         public async Task<IActionResult> LogIn(LogInModel logInModel)
@@ -72,10 +29,10 @@ namespace LybraryManagementSystem.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _userService.GetByUserName(logInModel.UserName);
+            var user = await _userService.GetByUserNameOrEmail(logInModel.UserName, null);
             if (user == null)
             {
-                return Conflict();
+                return Conflict("The account wasn't found");
             }
 
             if (!_userService.ValidateUser(user, logInModel))

@@ -50,17 +50,18 @@ namespace LybraryManagementSystem.Application.Services
 
         public List<UserModel> GetAll()
         {
-            throw new NotImplementedException();
+            var users = _userRepository.GetAll();
+            return UserMappings.MapToModelList(users);
         }
 
-        public async Task<UserModel> GetByUserName(string username)
+        public async Task<UserModel> GetByUserNameOrEmail(string username,string email)
         {
-            var user = await _userRepository.GetByUserName(username);
+            var user = await _userRepository.GetByUserNameOrEmail(username, email);
 
             return  UserMappings.MapToModel(user);
         }
-
-        public UserModel Update(UserModel user)
+               
+        public void Update(UserModel user)
         {
             throw new NotImplementedException();
         }

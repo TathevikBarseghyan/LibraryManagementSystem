@@ -15,6 +15,17 @@ namespace LybraryManagementSystem.Application.Attributes
         {
             var stringValue = value as string;
 
+            try
+            {
+                var mailAddress = new MailAddress(stringValue);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
             string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
 
             Regex regex = new Regex(strRegex, RegexOptions.IgnoreCase);

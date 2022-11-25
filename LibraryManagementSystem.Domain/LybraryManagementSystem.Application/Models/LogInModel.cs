@@ -10,7 +10,8 @@ namespace LybraryManagementSystem.Application.Models
     public class LogInModel
     {
         public string UserName { get; set; }
-        public string Password { get; set; }
 
+        [RegularExpression("^[A-Za-z0-9_*]*$", ErrorMessage = "Password  can only have letters, numbers, underscore and asterisk")]
+        public string Password { get; set; }
     }
 }

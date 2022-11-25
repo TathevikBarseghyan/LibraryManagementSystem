@@ -12,9 +12,9 @@ namespace LybraryManagementSystem.Application.Interface.Repository
         Task AddAsync(User user);
         List<User> GetAll();
         User GetById(int userId);
-        Task<User> GetByUserName(string username);
+        Task<User> GetByUserNameOrEmail(string username, string email);
         User Delete(int userId);
-        User Update(User username);
+        void Update(User user);
         Task SaveChangesAsync();
     }
 }

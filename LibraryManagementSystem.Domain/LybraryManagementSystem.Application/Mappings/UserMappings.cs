@@ -13,7 +13,7 @@ namespace LybraryManagementSystem.Application.Mappings
         {
             return new User
             {
-                FirstName = userModel.Name,
+                FirstName = userModel.FirstName,
             };
         }
 
@@ -65,12 +65,32 @@ namespace LybraryManagementSystem.Application.Mappings
             return mappedUser;
         }
 
-        public static LogInModel LogInMapToModel(User user)
+        public static List<UserModel> MapToModelList(List<User> users)
         {
-            return new LogInModel
+            if (users != null)
             {
-                UserName = user.FirstName,
-            };
+                List<ReadModel> readModels = new List<ReadModel>();
+
+                foreach (User item in users)
+                {
+                    readModels.Add(new ReadModel()
+                    {
+                        UserName = item.UserName,
+                        FirstName = item.FirstName,
+                        LastName= item.LastName,
+                        Email= item.Email,
+                    });
+                }
+                
+            }
+            return null;
         }
+
+            //var config = new MapperConfiguration(c =>
+            //    c.CreateMap<List<User>, List<UserModel>>());
+            //var mapper = new Mapper(config);
+            //var mappedUser = mapper.Map<List<UserModel>>(users);
+
+            //return mappedUser;
     }
 }
