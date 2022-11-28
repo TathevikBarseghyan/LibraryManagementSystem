@@ -8,15 +8,20 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Domain.Entities
 {
-    public class BookItem : Book
+    public class BookState 
     {
+        public int Id { get; set; }
         [DataType(DataType.Date)]
-        public DateTime BorowedDate { get; set; }
+        public DateTime CreationDate { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
 
+        public DateTime ReturnDate { get; set; }
+
         public BookStatus Status { get; set; }
+
+        public Book Book { get; set; }
 
     }
 }

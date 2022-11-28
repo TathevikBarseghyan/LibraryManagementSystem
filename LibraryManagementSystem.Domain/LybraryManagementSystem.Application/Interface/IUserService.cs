@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Models.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,13 @@ namespace LybraryManagementSystem.Application.Interface
 {
     public interface IUserService 
     {
+        Task<OperationResultModel> LogInAsync(LogInModel userModel);
         Task AddAsync(AddModel user);
-        List<UserModel> GetAll();
-        UserModel GetById(int userId);
-        Task<UserModel> GetByUserNameOrEmail(string username, string email);
-        UserModel Delete(int userId);
-        void Update(UserModel user);
+        Task<List<UserModel>> GetAllAsync();
+        Task<UserModel> GetByIdAsync(int userId);
+        Task<UserModel> GetByUserName(string username);
+        Task DeleteAsync(int userId);
+        Task UpdateAsync(UserModel userModel);
         Task SaveChangesAsync();
-        bool ValidateUser(UserModel user, LogInModel logInModel);
-        string GenerateToken(LogInModel logInModel);
     }
 }

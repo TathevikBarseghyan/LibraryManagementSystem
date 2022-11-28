@@ -18,35 +18,46 @@ namespace LibraryManagementSystem.Repository
             await _context.Set<User>().AddAsync(user);
         }
 
-        public User Delete(int userId)
+        public async Task DeleteAsync(int userId)
         {
-            var user = GetById(userId);
+            var user = await GetByIdAsync(userId);
             if (user != null)
             {
                 _context.Users.Remove(user);
+                await _context.SaveChangesAsync();  
             }
-
-            return user;
         }
 
-        public User GetById(int userId)
+        public async Task<User> GetByIdAsync(int userId)
         {
-            return _context.Users.Find(userId)!;
+            return await _context.Users.FindAsync(userId);
         }
 
-        public List<User> GetAll()
+        public async Task<List<User>> GetAllAsync()
         {
-            return _context.Users.ToList();
+            return await _context.Users.ToListAsync();
         }
 
-        public async Task<User> GetByUserNameOrEmail(string username, string email)
+        public async Task<User> GetByUserName(string username)
         {
-            return await _context.Users.FirstOrDefaultAsync(f => f.UserName == username || f.Email == email);
+            return await _context.Users.FirstOrDefaultAsync(f => f.UserName == username);
         }
         
-        public void Update(User user)
+        public async Task UpdateAsync(User user)
         {
-             _context.Users.Update(user);
+            var dbUser = _context.Users.First(f => f.Id == user.Id);
+            if (dbUser == null)
+            {
+                return;
+            }
+
+            dbUser.UserName = user.UserName;
+            dbUser.FirstName= user.FirstName;
+            dbUser.LastName= user.LastName;
+            dbUser.Email= user.Email;
+
+            _context.Users.Update(dbUser);
+            await _context.SaveChangesAsync();
         }
 
         public async Task SaveChangesAsync()

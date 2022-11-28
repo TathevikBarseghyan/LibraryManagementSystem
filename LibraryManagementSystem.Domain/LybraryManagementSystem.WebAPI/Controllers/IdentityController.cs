@@ -19,8 +19,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             _userService = userService;
         }
 
-        
-
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> LogIn(LogInModel logInModel)
         {
@@ -29,20 +28,22 @@ namespace LybraryManagementSystem.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _userService.GetByUserNameOrEmail(logInModel.UserName, null);
-            if (user == null)
+            var operation = await _userService.LogInAsync(logInModel);
+            
+            if (!operation.Success)
             {
-                return Conflict("The account wasn't found");
+                return BadRequest(operation.Error);
             }
 
-            if (!_userService.ValidateUser(user, logInModel))
-            {
-                return Forbid("Invalid password");
-            }
+            // TO DO
+            //if (Invalid passs)
+            //{
+            //    return Forbid("Invalid password");
+            //}
 
-            var token = _userService.GenerateToken(logInModel);
+            //var token = _userService.GenerateToken(logInModel);
 
-            return Ok(token);
+            return Ok(operation.Result);
         }
 
         [Authorize]

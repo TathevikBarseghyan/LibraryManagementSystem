@@ -1,8 +1,10 @@
-﻿using LybraryManagementSystem.Application;
+﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application;
 using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using LybraryManagementSystem.Application.Mappings;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
@@ -23,7 +25,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var userNameExists = await _userService.GetByUserNameOrEmail(addModel.UserName, addModel.Email);
+            var userNameExists = await _userService.GetByUserName(addModel.UserName);
 
             if (userNameExists != null) { return Conflict("User with UserName and email addres already exists"); }
 
@@ -33,13 +35,44 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(addModel);
         }
 
-        [AllowAnonymous]
-        [HttpGet("Read")]
+        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            var books = _userService.GetAll();
+            var users = await _userService.GetAllAsync();
+            return Ok(users);
+        }
 
-            return Ok(books);
+        //[Authorize]
+        [HttpPut("Edit")]
+        public async Task<IActionResult> Edit(UserModel userModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _userService.UpdateAsync(userModel);
+
+            var users = await _userService.GetAllAsync();
+            return Ok(users);
+        }
+
+        [Authorize]
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(string userName, string email)
+        {
+            var user = await _userService.GetByUserName(userName);
+
+            if (user != null)
+            {
+                await _userService.DeleteAsync(user.Id);
+                await _userService.SaveChangesAsync();
+
+                return Ok();
+            }
+
+            return NotFound();
         }
     }
 }

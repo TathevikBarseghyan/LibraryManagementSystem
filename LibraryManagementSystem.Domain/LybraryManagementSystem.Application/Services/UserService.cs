@@ -4,6 +4,7 @@ using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
 using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Models.ResponseModel;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -24,49 +25,83 @@ namespace LybraryManagementSystem.Application.Services
             _configuration = configuration;
         }
 
+        public async Task<OperationResultModel> LogInAsync(LogInModel logInModel)
+        {
+            var user = await _userRepository.GetByUserName(logInModel.UserName);
+            
+            if (user == null)
+            {
+                return new OperationResultModel()
+                {
+                    Success = false,
+                    Result = null,
+                    Error = "The account wasn't found",
+                };
+            }
+
+            if (!ValidateUser(user, logInModel))
+            {
+                return new OperationResultModel()
+                {
+                    Success = false,
+                    Result = null,
+                    Error = "Invalid password",
+                };
+            }
+
+            var token = GenerateToken(logInModel);
+
+            return new OperationResultModel()
+            {
+                Success = true,
+                Result = token,
+                Error = null,
+            };
+        }
+
         public async Task AddAsync(AddModel userModel)
         {
             var user = UserMappings.MapToEntity(userModel);
             await _userRepository.AddAsync(user);
         }
 
-        public UserModel Delete(int userId)
+        public async Task DeleteAsync(int userId)
         {
-            var user = GetById(userId);
+            var user = await _userRepository.GetByIdAsync(userId);
             if (user != null)
             {
-                _userRepository.Delete(user.Id);
+               await _userRepository.DeleteAsync(user.Id);
             }
-
-            return user;
         }
 
-        public UserModel GetById(int userId)
+        public async Task<UserModel> GetByIdAsync(int userId)
         {
-            var user = _userRepository.GetById(userId);
+            var user = await _userRepository.GetByIdAsync(userId);
 
             return UserMappings.MapToModel(user);
         }
 
-        public List<UserModel> GetAll()
+        public async Task<List<UserModel>> GetAllAsync()
         {
-            var users = _userRepository.GetAll();
+            var users = await _userRepository.GetAllAsync();
             return UserMappings.MapToModelList(users);
         }
 
-        public async Task<UserModel> GetByUserNameOrEmail(string username,string email)
+        public async Task<UserModel> GetByUserName(string username)
         {
-            var user = await _userRepository.GetByUserNameOrEmail(username, email);
+            var user = await _userRepository.GetByUserName(username);
 
             return  UserMappings.MapToModel(user);
         }
                
-        public void Update(UserModel user)
+        public async Task UpdateAsync(UserModel userModel)
         {
-            throw new NotImplementedException();
+            var user = UserMappings.MapToEntity(userModel);
+            await _userRepository.UpdateAsync(user);
         }
 
-        public bool ValidateUser(UserModel userModel, LogInModel logInModel)
+        // Privat methods
+        private bool ValidateUser(User userModel, LogInModel logInModel)
         {
             string salt = userModel.Salt;
             string hashedPass = userModel.Hash;
@@ -84,7 +119,7 @@ namespace LybraryManagementSystem.Application.Services
 
             return true;
         }
-        public string GenerateToken(LogInModel logInModel)
+        private string GenerateToken(LogInModel logInModel)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

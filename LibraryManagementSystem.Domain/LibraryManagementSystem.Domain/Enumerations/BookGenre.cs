@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Domain.Enumerations
 {
-    public enum BookStatus
+    public enum  BookGenre
     {
-        Available,
-        Reserved,
-        Loaned,
-        Lost,
-        Sold
+        Fantasy, 
+        Historical,
+        Romence,
+        Adventure,
+        Horror,
+        Sience,
+        Crime,
     }
 }

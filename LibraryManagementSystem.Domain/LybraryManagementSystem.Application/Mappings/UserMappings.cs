@@ -13,7 +13,12 @@ namespace LybraryManagementSystem.Application.Mappings
         {
             return new User
             {
+                Id = userModel.Id,
                 FirstName = userModel.FirstName,
+                LastName = userModel.LastName,
+                Email = userModel.Email,
+                UserName = userModel.UserName
+
             };
         }
 
@@ -38,25 +43,9 @@ namespace LybraryManagementSystem.Application.Mappings
             };
         }
 
-        public static User LogInMapToEntity(LogInModel logInModel)
-        {
-            return new User
-            {
-                FirstName = logInModel.UserName,
-            };
-        }
         //inverse mapper
         public static UserModel MapToModel(User user)
         {
-            //if (user != null)
-            //{
-            //    return new UserModel
-            //    {
-            //        Name = user.Name,
-            //        Password = user.Password,
-            //    };
-            //}
-
             var config = new MapperConfiguration(c =>
                 c.CreateMap<User, UserModel>());
             var mapper = new Mapper(config);
@@ -69,28 +58,32 @@ namespace LybraryManagementSystem.Application.Mappings
         {
             if (users != null)
             {
-                List<ReadModel> readModels = new List<ReadModel>();
-
-                foreach (User item in users)
-                {
-                    readModels.Add(new ReadModel()
-                    {
-                        UserName = item.UserName,
-                        FirstName = item.FirstName,
-                        LastName= item.LastName,
-                        Email= item.Email,
-                    });
-                }
-                
+                return users.Select(MapToModel).ToList();
             }
+
             return null;
         }
 
-            //var config = new MapperConfiguration(c =>
-            //    c.CreateMap<List<User>, List<UserModel>>());
-            //var mapper = new Mapper(config);
-            //var mappedUser = mapper.Map<List<UserModel>>(users);
+        public static List<User> MapToEntityList(List<UserModel> readModels)
+        {
+            if (readModels != null)
+            {
+                List<User> users = new List<User>();
 
-            //return mappedUser;
+                foreach (UserModel item in readModels)
+                {
+                    users.Add(new User()
+                    {
+                        UserName = item.UserName,
+                        FirstName = item.FirstName,
+                        LastName = item.LastName,
+                        Email = item.Email,
+                    });
+                }
+
+                return users.ToList();
+            }
+            return null;
+        }
     }
 }

@@ -10,23 +10,26 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
 {
-    public class BookItemConfig : IEntityTypeConfiguration<BookItem>
+    public class BookConfig : IEntityTypeConfiguration<Book>
     {
-        public void Configure(EntityTypeBuilder<BookItem> builder)
+        public void Configure(EntityTypeBuilder<Book> builder)
         {
-            builder.Property(p => p.Status)
-                .IsRequired()
-                .HasDefaultValue(BookStatus.Available);
+            builder.HasMany(b => b.BookStates)
+                .WithOne(b => b.Book);
 
+            builder.Property(p => p.FixedPrice).HasMaxLength(20);
+            builder.Property(p => p.DailyPrice).HasMaxLength(20);
+            builder.Property(p => p.MonthlyPrice).HasMaxLength(20);
+            builder.Property(p => p.WeeklyPrice).HasMaxLength(20);
+
+            builder.Property(p => p.BookGenre).HasMaxLength(20).IsRequired();
+               
             builder.Property(p => p.Id)
                 .IsRequired();
 
             builder.Property(p => p.Title)
                 .IsRequired()
                 .HasMaxLength(50);
-
-            builder.Property(p => p.BorowedDate)
-                .IsRequired();
 
             builder.Property(p => p.Publisher)
                 .HasMaxLength(100);
