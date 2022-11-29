@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LybraryManagementSystem.Application.Models
 {
-    public class AddModel
+    public class AddUserModel
     {
         [StringLength(50, MinimumLength = 1, ErrorMessage = "First Name can have 1-50 characters")]
         [RegularExpression("^[A-Za-z]+$", ErrorMessage ="Fisrt Name can only have letters")]

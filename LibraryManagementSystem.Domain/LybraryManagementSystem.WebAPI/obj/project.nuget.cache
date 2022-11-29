@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "efRmh0XqpUUAESLrQUbwP2D8611WZs/nMRDgJV27MxgzdymdKo+OZdbDBZ9jUmg/Mrzrk71g8kb2bvhIL0zR3g==",
+  "dgSpecHash": "cIAbwFE7sMq/s5TmXxV6kB9OE6xvA161VX2LvL0oLbAEPiPfWlGfh6Y65/DpzA4B0yqZFPDKBpl+xh6yPIZiGw==",
   "success": true,
   "projectFilePath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LybraryManagementSystem.WebAPI\\LybraryManagementSystem.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -47,6 +47,7 @@
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

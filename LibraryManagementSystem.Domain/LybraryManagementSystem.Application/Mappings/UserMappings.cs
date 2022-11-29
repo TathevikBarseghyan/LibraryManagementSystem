@@ -22,7 +22,7 @@ namespace LybraryManagementSystem.Application.Mappings
             };
         }
 
-        public static User MapToEntity(AddModel addModel)
+        public static User MapToEntity(AddUserModel addModel)
         {
             if(addModel is null)
             {
@@ -64,25 +64,13 @@ namespace LybraryManagementSystem.Application.Mappings
             return null;
         }
 
-        public static List<User> MapToEntityList(List<UserModel> readModels)
+        public static List<User> MapToEntityList(List<UserModel> userModel)
         {
-            if (readModels != null)
+            if (userModel != null)
             {
-                List<User> users = new List<User>();
-
-                foreach (UserModel item in readModels)
-                {
-                    users.Add(new User()
-                    {
-                        UserName = item.UserName,
-                        FirstName = item.FirstName,
-                        LastName = item.LastName,
-                        Email = item.Email,
-                    });
-                }
-
-                return users.ToList();
+                return userModel.Select(MapToEntity).ToList();
             }
+
             return null;
         }
     }

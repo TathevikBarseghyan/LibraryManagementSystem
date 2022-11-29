@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SJjXIRWRs9RDSsb/sN8QjcWctTMmj8Sn9XYkp6UjmribXU04/IdfgPxss6wojaOfS4L0P3swLLIGAGeIlRAShA==",
+  "dgSpecHash": "+xNTUrXOS5OKA44o6Fqo7+9iccn4KicdZRMxBXWtbTV8QOndsmzNNpOF6398goTvN1OqEhLsrC4dSwIE5fXyqw==",
   "success": true,
   "projectFilePath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Repository\\LibraryManagementSystem.Repository.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",

@@ -1,4 +1,5 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace LybraryManagementSystem.Application.Interface.Repository
         Task AddAsync(Book book);
         Task<List<Book>> GetAllAsync();
         Task<Book> GetByIdAsync(int bookId);
-        Task<Book> GetByTitle(string bookTitle);
+        Task<Book> GetByBookTitle(string bookTitle);
+        Task<Author> GetByAuthorName(string authorName);
         Task DeleteAsync(int bookId);
         Task UpdateAsync(Book book);
         Task SaveChangesAsync();

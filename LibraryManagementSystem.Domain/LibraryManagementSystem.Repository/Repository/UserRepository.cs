@@ -38,7 +38,7 @@ namespace LibraryManagementSystem.Repository
             return await _context.Users.ToListAsync();
         }
 
-        public async Task<User> GetByUserName(string username)
+        public async Task<User> GetByBookTitle(string username)
         {
             return await _context.Users.FirstOrDefaultAsync(f => f.UserName == username);
         }

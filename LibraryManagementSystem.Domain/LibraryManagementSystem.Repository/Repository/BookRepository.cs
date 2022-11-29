@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Interface.Repository;
+using LybraryManagementSystem.Application.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -40,9 +41,13 @@ namespace LibraryManagementSystem.Repository.Repository
             return await _context.Books.FindAsync(bookId);
         }
 
-        public Task<Book> GetByTitle(string bookTitle)
+        public async Task<Book> GetByBookTitle(string bookTitle)
         {
-            return _context.Books.FirstOrDefaultAsync(f => f.Title == bookTitle);
+            return await _context.Books.FirstOrDefaultAsync(f => f.Title == bookTitle);
+        }
+        public async Task<Author> GetByAuthorName(string authorName)
+        {
+            return await _context.Authors.FirstOrDefaultAsync(f => f.FullName == authorName);
         }
 
         public async Task SaveChangesAsync()
@@ -62,8 +67,15 @@ namespace LibraryManagementSystem.Repository.Repository
             dbBook.Title = book.Title;
             dbBook.Publisher = book.Publisher;
             dbBook.FixedPrice = book.FixedPrice;
-
-
+            dbBook.DailyPrice= book.DailyPrice;
+            dbBook.MonthlyPrice = book.MonthlyPrice;
+            dbBook.WeeklyPrice = book.WeeklyPrice;
+            dbBook.BookGenre = book.BookGenre;
+            
+            _context.Update(dbBook);
+            await _context.SaveChangesAsync();
         }
+
+       
     }
 }

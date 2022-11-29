@@ -18,6 +18,6 @@ namespace LibraryManagementSystem.Domain.Entities
         public Decimal WeeklyPrice { get; set; }
         public Decimal MonthlyPrice { get; set; }
         public List<AuthorBook> AuthorBooks { get; set; }
-        public List<BookState> BookStates { get; set; }
+        public List<BookInstance> BookStates { get; set; }
     }
 }

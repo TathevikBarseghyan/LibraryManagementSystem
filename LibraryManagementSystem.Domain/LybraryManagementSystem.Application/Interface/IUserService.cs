@@ -12,7 +12,7 @@ namespace LybraryManagementSystem.Application.Interface
     public interface IUserService 
     {
         Task<OperationResultModel> LogInAsync(LogInModel userModel);
-        Task AddAsync(AddModel user);
+        Task AddAsync(AddUserModel user);
         Task<List<UserModel>> GetAllAsync();
         Task<UserModel> GetByIdAsync(int userId);
         Task<UserModel> GetByUserName(string username);

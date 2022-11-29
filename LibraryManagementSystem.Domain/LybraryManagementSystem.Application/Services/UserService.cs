@@ -27,8 +27,8 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task<OperationResultModel> LogInAsync(LogInModel logInModel)
         {
-            var user = await _userRepository.GetByUserName(logInModel.UserName);
-            
+            var user = await _userRepository.GetByBookTitle(logInModel.UserName);
+
             if (user == null)
             {
                 return new OperationResultModel()
@@ -59,7 +59,7 @@ namespace LybraryManagementSystem.Application.Services
             };
         }
 
-        public async Task AddAsync(AddModel userModel)
+        public async Task AddAsync(AddUserModel userModel)
         {
             var user = UserMappings.MapToEntity(userModel);
             await _userRepository.AddAsync(user);
@@ -70,7 +70,7 @@ namespace LybraryManagementSystem.Application.Services
             var user = await _userRepository.GetByIdAsync(userId);
             if (user != null)
             {
-               await _userRepository.DeleteAsync(user.Id);
+                await _userRepository.DeleteAsync(user.Id);
             }
         }
 
@@ -89,15 +89,19 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task<UserModel> GetByUserName(string username)
         {
-            var user = await _userRepository.GetByUserName(username);
+            var user = await _userRepository.GetByBookTitle(username);
 
-            return  UserMappings.MapToModel(user);
+            return UserMappings.MapToModel(user);
         }
-               
+
         public async Task UpdateAsync(UserModel userModel)
         {
             var user = UserMappings.MapToEntity(userModel);
             await _userRepository.UpdateAsync(user);
+        }
+        public async Task SaveChangesAsync()
+        {
+            await _userRepository.SaveChangesAsync();
         }
 
         // Privat methods
@@ -134,11 +138,6 @@ namespace LybraryManagementSystem.Application.Services
                  signingCredentials: credentials); ;
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        public async Task SaveChangesAsync()
-        {
-            await _userRepository.SaveChangesAsync();
         }
     }
 }

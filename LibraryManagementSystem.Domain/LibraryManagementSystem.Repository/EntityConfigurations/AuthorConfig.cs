@@ -15,15 +15,24 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(p => p.Name)
+            builder.Property(p => p.FirstName)
                 .IsRequired()
                 .HasMaxLength(50);
+            builder.Property(p => p.LastName)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder.Property(p => p.FullName)
+                .IsRequired()
+                .HasComputedColumnSql(" [FirstName] + ' ' + [LastName] ")
+                .HasMaxLength(100);
 
             builder.Property(p => p.Id)
                 .IsRequired();
 
             builder.Property(p => p.Description)
-                .HasMaxLength(255);
+                .HasMaxLength(255)
+                .HasDefaultValue("Author");
 
         }
     }
