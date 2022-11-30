@@ -1,5 +1,6 @@
 ﻿using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Models.Book;
 using LybraryManagementSystem.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
 
             await _bookService.AddAsync(bookModel);
-            await _bookService.BookSaveChangesAsync();
+            await _bookService.SaveChangesAsync();
             //await _bookService.AuthorSaveChangesAsync();
 
 
@@ -62,7 +63,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             if(book != null)
             {
                 await _bookService.DeleteAsync(book.Id);
-                await _bookService.BookSaveChangesAsync();
+                await _bookService.SaveChangesAsync();
 
                 return Ok();
             }

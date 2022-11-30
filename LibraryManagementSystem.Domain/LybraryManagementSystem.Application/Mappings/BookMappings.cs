@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Models.Book;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace LybraryManagementSystem.Application.Mappings
 {
     public class BookMappings
     {
-        public static Book BookMapToEntity(BookModel bookModel) 
+        public static Book MapToEntity(BookModel bookModel) 
         {
             return new Book()
             {
@@ -26,7 +27,7 @@ namespace LybraryManagementSystem.Application.Mappings
             };
         }
 
-        public static Book BookMapToEntity(AddBookModel addBookModel)
+        public static Book MapToEntity(AddBookModel addBookModel)
         {
             var book = new Book()
             {
@@ -39,8 +40,9 @@ namespace LybraryManagementSystem.Application.Mappings
                 WeeklyPrice = addBookModel.WeeklyPrice,
             };
 
-            var author = AuthorMapToEntity(addBookModel);
-            
+            var authorNameModel = MapToNameModel(addBookModel);
+            var author = AuthorMapToEntity(authorNameModel);
+
             book.AuthorBooks = new List<AuthorBook>
             {
                 new AuthorBook
@@ -52,21 +54,26 @@ namespace LybraryManagementSystem.Application.Mappings
 
             return book;
         }
-        public static Author AuthorMapToEntity(AddBookModel addBookModel)
+
+        public static Author AuthorMapToEntity(AuthorNameModel authorNameModel)
         {
             return new Author()
             {
-                FirstName = addBookModel.AuthorFirstName,
-                LastName = addBookModel.AuthorLastName,
+                FirstName = authorNameModel.AuthorFirstName,
+                LastName = authorNameModel.AuthorLastName,
             };
+        }
+
+        public static List<Author> AuthorMapToEntityList(List<AuthorNameModel> authorNameModel)
+        {
+            return authorNameModel.Select(AuthorMapToEntity).ToList();
         }
 
         public static AddBookModel AuthorMapToModel(Author author)
         {
             return new AddBookModel()
             {
-              AuthorFirstName= author.FirstName,
-              AuthorLastName= author.LastName,
+                
             };
         }
 
@@ -86,7 +93,7 @@ namespace LybraryManagementSystem.Application.Mappings
             };
         }
 
-        internal static List<BookModel> MapToModelList(List<Book> books)
+        public static List<BookModel> MapToModelList(List<Book> books)
         {
             if (books != null)
             {

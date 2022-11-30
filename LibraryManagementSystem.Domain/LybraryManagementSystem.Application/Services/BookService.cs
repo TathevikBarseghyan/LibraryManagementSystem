@@ -3,6 +3,7 @@ using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
 using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Models.Book;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,16 +25,19 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task AddAsync(AddBookModel bookModel)
         {
-            var author = GetByAuthorName(bookModel.AuthorFirstName, bookModel.AuthorLastName);
-            if (author == null)
+
+            var authors = BookMappings.AuthorMapToEntityList(bookModel.AuthorNames);
+            var isBookExists = await _bookRepository.Exists(authors, bookModel.Title);
+            if (isBookExists)
             {
-                var book = BookMappings.BookMapToEntity(bookModel);
-                await _bookRepository.AddAsync(book);
+               
             }
-            
-           
-            
-            //await _authorRepository.AddAsync(author);
+
+            var book = BookMappings.MapToEntity(bookModel);
+            await _bookRepository.AddAsync(book);
+
+
+
         }
 
         public async Task DeleteAsync(int bookId)
@@ -57,6 +61,11 @@ namespace LybraryManagementSystem.Application.Services
             return BookMappings.MapToModel(book);
         }
 
+        public async Task<bool> Exists(List<Author> authorNames, string title)
+        {
+            return await _bookRepository.Exists(authorNames, title);
+        }
+
         public async Task<AddBookModel> GetByAuthorName(string fisrtName,string lastName)
         {
             var author = await _authorRepository.GetByAuthorName(fisrtName, lastName);
@@ -69,7 +78,7 @@ namespace LybraryManagementSystem.Application.Services
             return BookMappings.MapToModel(book);
 
         }
-        public async Task BookSaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
             await _bookRepository.SaveChangesAsync();
         }
@@ -80,7 +89,7 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task UpdateAsync(BookModel bookModel)
         {
-            var book = BookMappings.BookMapToEntity(bookModel);
+            var book = BookMappings.MapToEntity(bookModel);
             await _bookRepository.UpdateAsync(book);
         }
     }

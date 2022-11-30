@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Helper;
-using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Models.User;
 using LybraryManagementSystem.Application.Services;
 using System.Text;
 

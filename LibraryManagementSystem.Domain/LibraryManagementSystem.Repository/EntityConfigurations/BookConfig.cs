@@ -14,7 +14,7 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {
-            builder.HasMany(b => b.BookStates)
+            builder.HasMany(b => b.BookInstances)
                 .WithOne(b => b.Book);
 
             builder.Property(p => p.FixedPrice).HasMaxLength(20);

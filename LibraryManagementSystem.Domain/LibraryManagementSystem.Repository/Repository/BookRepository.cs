@@ -1,6 +1,7 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Models.Book;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,14 @@ namespace LibraryManagementSystem.Repository.Repository
         {
             return await _context.Books.FirstOrDefaultAsync(f => f.Title == bookTitle);
         }
+
+        public async Task<bool> Exists(List<Author> author, string title)
+        {
+            return await _context.Books
+                .AnyAsync(w => w.Title == title
+                && w.AuthorBooks.Any(x => author.All(w => w.FullName == x.Author.FullName)));
+        }
+
         public async Task<Author> GetByAuthorName(string authorName)
         {
             return await _context.Authors.FirstOrDefaultAsync(f => f.FullName == authorName);

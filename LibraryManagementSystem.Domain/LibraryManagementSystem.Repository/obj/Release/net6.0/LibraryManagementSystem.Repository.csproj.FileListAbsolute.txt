@@ -1,0 +1,5 @@
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Repository\obj\Release\net6.0\LibraryManagementSystem.Repository.csproj.AssemblyReference.cache
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Repository\obj\Release\net6.0\LibraryManagementSystem.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Repository\obj\Release\net6.0\LibraryManagementSystem.Repository.AssemblyInfoInputs.cache
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Repository\obj\Release\net6.0\LibraryManagementSystem.Repository.AssemblyInfo.cs
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LibraryManagementSystem.Repository\obj\Release\net6.0\LibraryManagementSystem.Repository.csproj.CoreCompileInputs.cache

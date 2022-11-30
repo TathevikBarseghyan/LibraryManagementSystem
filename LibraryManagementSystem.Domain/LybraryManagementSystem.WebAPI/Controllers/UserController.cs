@@ -1,10 +1,9 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
-using LybraryManagementSystem.Application;
 using LybraryManagementSystem.Application.Interface;
-using LybraryManagementSystem.Application.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using LybraryManagementSystem.Application.Mappings;
+using LybraryManagementSystem.Application.Models.User;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
