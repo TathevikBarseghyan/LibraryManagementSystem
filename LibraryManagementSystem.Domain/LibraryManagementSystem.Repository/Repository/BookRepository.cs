@@ -21,6 +21,7 @@ namespace LibraryManagementSystem.Repository.Repository
         public async Task AddAsync(Book book)
         {
             await _context.Books.AddAsync(book);
+            //await _context.AuthotBooks.AddAsync(book);
         }
 
         public async Task DeleteAsync(int bookId)

@@ -21,7 +21,13 @@ namespace LybraryManagementSystem.WebAPI
 
             builder.Services.AddScoped<IBookRepository, BookRepository>();
             builder.Services.AddScoped<IBookService, BookService>();
+
+            builder.Services.AddScoped<IBookInstanceRepository, BookInstanceRepository>();
+            builder.Services.AddScoped<IBookInstanceService, BookInstanceService>();
+
             builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+            builder.Services.AddScoped<IAuthorService, AuthorService>();
+
 
             // Add services to the container.
 

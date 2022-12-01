@@ -23,6 +23,7 @@ namespace LibraryManagementSystem.Repository
         }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<BookInstance> BookInstances { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<AuthorBook> AuthorBooks { get; set; }
         public DbSet<User> Users { get; set; }

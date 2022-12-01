@@ -24,14 +24,19 @@ namespace LybraryManagementSystem.Application.Mappings
 
         public static AuthorModel MapToModel(Author author)
         {
-            return new AuthorModel()
+            if (author != null)
             {
-                FirstName = author.FirstName,
-                LastName = author.LastName,
-                AuthorBooks = author.AuthorBooks,
-                Description = author.Description,
-                FullName = author.FullName,
-            };
+                return new AuthorModel()
+                {
+                    FirstName = author.FirstName,
+                    LastName = author.LastName,
+                    AuthorBooks = author.AuthorBooks,
+                    Description = author.Description,
+                    FullName = author.FullName,
+                };
+            }
+
+            return null;
         }
 
         public static List<AuthorModel> MapToModelList(List<Author> authors)

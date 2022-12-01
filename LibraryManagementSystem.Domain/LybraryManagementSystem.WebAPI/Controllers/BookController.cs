@@ -11,10 +11,12 @@ namespace LybraryManagementSystem.WebAPI.Controllers
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
+        private readonly IAuthorService _authorService;
 
-        public BookController(IBookService bookService)
+        public BookController(IBookService bookService, IAuthorService authorService)
         {
             _bookService = bookService;
+            _authorService = authorService;
         }
 
         [HttpPost("Add")]
@@ -24,16 +26,12 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-
+            
             await _bookService.AddAsync(bookModel);
             await _bookService.SaveChangesAsync();
-            //await _bookService.AuthorSaveChangesAsync();
-
 
             return Ok(bookModel);
         }
-
 
         [HttpGet("Get")]
         public async Task<IActionResult> GetAllBooks()
