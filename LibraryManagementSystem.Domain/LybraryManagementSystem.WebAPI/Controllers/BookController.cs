@@ -20,7 +20,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> Add(AddBookModel bookModel)
+        public async Task<IActionResult> Add(BookModel bookModel)
         {
             if(!ModelState.IsValid)
             {

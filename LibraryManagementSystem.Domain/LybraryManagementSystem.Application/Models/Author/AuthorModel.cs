@@ -14,6 +14,5 @@ namespace LybraryManagementSystem.Application.Models.Author
         public string LastName { get; set; }
         public string FullName { get; set; }
         public string Description { get; set; }
-        public List<AuthorBook> AuthorBooks { get; set; }
     }
 }

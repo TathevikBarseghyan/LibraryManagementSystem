@@ -2,6 +2,7 @@
 using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
+using LybraryManagementSystem.Application.Models.Book;
 using LybraryManagementSystem.Application.Models.BookInstance;
 using System;
 using System.Collections.Generic;
@@ -25,19 +26,25 @@ namespace LybraryManagementSystem.Application.Services
             await _bookInstanceRepository.AddAsync(bookInstance);
         }
 
-        public Task DeleteAsync(int bookInstanceModelId)
+        public async Task DeleteAsync(int bookInstanceModelId)
         {
-            throw new NotImplementedException();
+            var bookInstance = await GetByIdAsync(bookInstanceModelId);
+            if (bookInstance != null) 
+            {
+                _bookInstanceRepository.DeleteAsync(bookInstanceModelId);
+            }
         }
 
-        public Task<List<BookInstanceModel>> GetAllAsync()
+        public async Task<List<BookInstanceModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var bookInstance = await _bookInstanceRepository.GetAllAsync();
+            return BookInstanceMappings.MapToModelList(bookInstance);
         }
 
-        public Task<BookInstanceModel> GetByIdAsync(int bookInstanceModelId)
+        public async Task<BookInstanceModel> GetByIdAsync(int bookInstanceModelId)
         {
-            throw new NotImplementedException();
+            var bookInstance =  await _bookInstanceRepository.GetByIdAsync(bookInstanceModelId);
+            return BookInstanceMappings.MapToModel(bookInstance);
         }
 
         public async Task SaveChangesAsync()
@@ -45,9 +52,10 @@ namespace LybraryManagementSystem.Application.Services
             await _bookInstanceRepository.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(BookInstanceModel bookInstanceModel)
+        public async Task UpdateAsync(BookInstanceModel bookInstanceModel)
         {
-            throw new NotImplementedException();
+            var book = BookInstanceMappings.MapToEntity(bookInstanceModel);
+            await _bookInstanceRepository.UpdateAsync(book);
         }
     }
 }

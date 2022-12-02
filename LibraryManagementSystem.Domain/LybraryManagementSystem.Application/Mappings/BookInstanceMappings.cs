@@ -12,7 +12,7 @@ namespace LybraryManagementSystem.Application.Mappings
     {
         internal static BookInstance MapToEntity(BookInstanceModel bookInstanceModel)
         {
-            return new BookInstance
+            return  new BookInstance
             {
                 Id = bookInstanceModel.Id,
                 Status = bookInstanceModel.Status,
@@ -21,6 +21,23 @@ namespace LybraryManagementSystem.Application.Mappings
                 DueDate = bookInstanceModel.DueDate,
                 ReturnDate = bookInstanceModel.ReturnDate,
             };
+        }
+
+        public static BookInstanceModel MapToModel(BookInstance bookInstance)
+        {
+            return new BookInstanceModel
+            { 
+                Id = bookInstance.Id,
+                BorrowedDate = bookInstance.BorrowedDate,
+                CreationDate = bookInstance.CreationDate,
+                DueDate = bookInstance.DueDate,
+                ReturnDate = bookInstance.ReturnDate,
+            };
+        }
+
+        public static List<BookInstanceModel> MapToModelList(List<BookInstance> bookInstance)
+        {
+            return bookInstance.Select(MapToModel).ToList();
         }
     }
 }

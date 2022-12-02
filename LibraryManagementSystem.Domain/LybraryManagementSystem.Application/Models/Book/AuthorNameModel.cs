@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LybraryManagementSystem.Application.Models.Book
+﻿namespace LybraryManagementSystem.Application.Models.Book
 {
     public class AuthorNameModel
     {

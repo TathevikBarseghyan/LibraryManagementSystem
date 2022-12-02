@@ -16,7 +16,6 @@ namespace LybraryManagementSystem.Application.Mappings
             {
                 FirstName = authorModel.FirstName,
                 LastName = authorModel.LastName,
-                AuthorBooks = authorModel.AuthorBooks,
                 Description = authorModel.Description,
                 FullName = authorModel.FullName,
             };
@@ -30,7 +29,6 @@ namespace LybraryManagementSystem.Application.Mappings
                 {
                     FirstName = author.FirstName,
                     LastName = author.LastName,
-                    AuthorBooks = author.AuthorBooks,
                     Description = author.Description,
                     FullName = author.FullName,
                 };

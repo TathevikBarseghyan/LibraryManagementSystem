@@ -48,9 +48,22 @@ namespace LibraryManagementSystem.Repository.Repository
             await _context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(BookInstance bookInstance)
+        public async Task UpdateAsync(BookInstance bookInstance)
         {
-            throw new NotImplementedException();
+            var dbBook = _context.BookInstances.First(f => f.Id == bookInstance.Id);
+            if (dbBook == null)
+            {
+                return;
+            }
+
+            dbBook.ReturnDate = bookInstance.ReturnDate;
+            dbBook.CreationDate = bookInstance.CreationDate;
+            dbBook.BorrowedDate = bookInstance.BorrowedDate;
+            dbBook.Status = bookInstance.Status;
+            dbBook.Id = bookInstance.Id;    
+
+            _context.Update(dbBook);
+            await _context.SaveChangesAsync();
         }
     }
 }

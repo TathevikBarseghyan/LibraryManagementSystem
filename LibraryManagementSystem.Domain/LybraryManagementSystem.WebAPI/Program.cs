@@ -28,6 +28,9 @@ namespace LybraryManagementSystem.WebAPI
             builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
             builder.Services.AddScoped<IAuthorService, AuthorService>();
 
+            builder.Services.AddScoped<IAuthorBookRepository, AuthorBookRepository>();
+            builder.Services.AddScoped<IAuthorBookService, AuthorBookService>();
+
 
             // Add services to the container.
 
