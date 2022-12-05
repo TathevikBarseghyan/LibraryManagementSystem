@@ -1,11 +1,7 @@
-﻿using LibraryManagementSystem.Domain.Entities;
-using LybraryManagementSystem.Application.Interface;
+﻿using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
-using LybraryManagementSystem.Application.Models;
 using LybraryManagementSystem.Application.Models.Author;
-using LybraryManagementSystem.Application.Models.Book;
-using System.Security.AccessControl;
 
 namespace LybraryManagementSystem.Application.Services
 {
@@ -22,6 +18,12 @@ namespace LybraryManagementSystem.Application.Services
         {
             var author = AuthorMappings.MapToEntity(authorModel);
             await _authorRepository.AddAsync(author);
+        }
+
+        public async Task AddAsyncList(List<AuthorModel> authorModelList)
+        {
+            var authors = AuthorMappings.MapToEntityList(authorModelList);
+            await _authorRepository.AddAsyncList(authors);
         }
 
         public async Task DeleteAsync(int authorId)

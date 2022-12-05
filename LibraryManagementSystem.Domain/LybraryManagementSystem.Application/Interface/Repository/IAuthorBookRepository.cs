@@ -10,6 +10,7 @@ namespace LybraryManagementSystem.Application.Interface.Repository
     public interface IAuthorBookRepository
     {
         Task AddAsync(AuthorBook authorBook);
+        Task AddAsyncList(List<AuthorBook> authorBooks);
         Task<List<AuthorBook>> GetAllAsync();
         Task<AuthorBook> GetByIdAsync(int authorBookId);
         Task DeleteAsync(int authorBookId);

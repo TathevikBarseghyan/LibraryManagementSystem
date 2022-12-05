@@ -2,13 +2,7 @@
 using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
-using LybraryManagementSystem.Application.Models;
 using LybraryManagementSystem.Application.Models.Book;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LybraryManagementSystem.Application.Services
 {
@@ -33,32 +27,32 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task AddAsync(BookModel bookModel)
         {
-            //var authors = BookMappings.AuthorMapToEntityList(bookModel.AuthorNames);
+           // var authors = BookMappings.AuthorMapToEntityList(bookModel.AuthorNames);
 
-            //var isBookExists = await _bookRepository.Exists(authors, bookModel.Title);
-            //if (isBookExists)
-            //{
-            //   //we only add in BookInstance
-            //}
+            var book = BookMappings.MapToEntity(bookModel);
 
-            var IsAuthorNameExists = await _authorService.GetByAuthorName(
-                bookModel.AuthorNames.Select(s => s.AuthorFirstName).ToString()
-                , bookModel.AuthorNames.Select(s => s.AuthorLastName).ToString());
+            var authors = BookMappings.AuthorMapToEntityList(bookModel);
+            var authorModel = AuthorMappings.MapToModelList(authors);
 
-            var IsBookTitleExists = await _bookRepository.GetByBookTitle(bookModel.Title);
-
-            if (IsAuthorNameExists == null && IsBookTitleExists == null)
-            { 
-                var book = BookMappings.MapToEntity(bookModel);
-                var author = BookMappings.AuthorMapToEntityList(bookModel);
-                var authorModel = BookMappings.AuthorMapToAuthorModelList(bookModel.AuthorNames);
-
-                var authorBook = BookMappings.AuthorBookToEntityList(book.Id, author);
-
-                await _bookRepository.AddAsync(book);
-                await _authorService.AddAsync(authorModel);
+            var isBookExists = await _bookRepository.BookExists(bookModel.AuthorIds, bookModel.Title);
+            if (isBookExists)
+            {
+                //we only add in BookInstance
             }
-            else if(IsAuthorNameExists != null && IsBookTitleExists == null)
+            var authorBook = BookMappings.AuthorBookToEntityList(book.Id, authors);
+            var authorBookModel = AuthorBookMappings.MapToModelList(authorBook);
+           
+            
+            var IsBookTitleExists = await _bookRepository.GetByBookTitle(bookModel.Title);
+            var IsAuthorNameExists = await _bookRepository.AuthorExists(bookModel.AuthorIds);
+
+            if (IsAuthorNameExists  && IsBookTitleExists == null)
+            { 
+                await _bookRepository.AddAsync(book);
+                await _authorService.AddAsyncList(authorModel);
+                await _authorBookService.AddAsyncList(authorBookModel);
+            }
+            else if(!IsAuthorNameExists  && IsBookTitleExists == null)
             {
 
             }
@@ -85,9 +79,9 @@ namespace LybraryManagementSystem.Application.Services
             return BookMappings.MapToModel(book);
         }
 
-        public async Task<bool> Exists(List<Author> authorNames, string title)
+        public async Task<bool> BookExists(List<int> authorNames, string title)
         {
-            return await _bookRepository.Exists(authorNames, title);
+            return await _bookRepository.BookExists(authorNames, title);
         }
 
         public async Task<BookModel> GetByAuthorName(string fisrtName,string lastName)

@@ -25,6 +25,12 @@ namespace LybraryManagementSystem.Application.Services
             await _authorBookRepository.AddAsync(authorBook);
         }
 
+        public async Task AddAsyncList(List<AuthorBookModel> authorBookModel)
+        {
+            var authorBookList = AuthorBookMappings.MapToEntityList(authorBookModel);
+            await _authorBookRepository.AddAsyncList(authorBookList);
+        }
+
         public async Task DeleteAsync(int authorBookModelId)
         {
             var authorBook = await GetByIdAsync(authorBookModelId);

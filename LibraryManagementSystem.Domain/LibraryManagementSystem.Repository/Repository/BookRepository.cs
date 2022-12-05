@@ -48,13 +48,39 @@ namespace LibraryManagementSystem.Repository.Repository
             return await _context.Books.FirstOrDefaultAsync(f => f.Title == bookTitle);
         }
 
-        public async Task<bool> Exists(List<Author> author, string title)
+        public async Task<bool> BookExists(List<int> author, string title)
         {
-            return await _context.Books
-                .AnyAsync(w => w.Title == title
-                && w.AuthorBooks.Any(x => author.All(w => w.FullName == x.Author.FullName)));
+            var aa = _context.Books
+                .Where(w => w.Title == title
+
+                && w.AuthorBooks.All(w => author.Contains(w.AuthorId))
+                //&& w.AuthorBooks.Any(x => author.All(w => w.FirstName == x.Author.FirstName))
+                );
+
+
+            //var asdasd = (from book in _context.Books
+            //              from aaaa in _context.AuthorBooks
+            //              where book.Title == title
+            //              && aaaa.BookId == book.Id
+
+
+
+            //              && author.Any(a => a.FullName == aaaa.Author.FullName)
+            //              select book);
+
+
+            var result = aa.ToList();
+
+            return true;
         }
 
+
+        public async Task<bool> AuthorExists(List<int> author)
+        {
+            var result = _context.Books.Where(w => w.AuthorBooks.All(w => author.Contains(w.AuthorId))).ToList();
+            return true;
+         
+        }
         public async Task<Author> GetByAuthorName(string authorName)
         {
             return await _context.Authors.FirstOrDefaultAsync(f => f.FullName == authorName);
@@ -77,15 +103,13 @@ namespace LibraryManagementSystem.Repository.Repository
             dbBook.Title = book.Title;
             dbBook.Publisher = book.Publisher;
             dbBook.FixedPrice = book.FixedPrice;
-            dbBook.DailyPrice= book.DailyPrice;
+            dbBook.DailyPrice = book.DailyPrice;
             dbBook.MonthlyPrice = book.MonthlyPrice;
             dbBook.WeeklyPrice = book.WeeklyPrice;
             dbBook.BookGenre = book.BookGenre;
-            
+
             _context.Update(dbBook);
             await _context.SaveChangesAsync();
         }
-
-       
     }
 }

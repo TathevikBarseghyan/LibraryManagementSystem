@@ -5,7 +5,7 @@ namespace LybraryManagementSystem.Application.Models
 {
     public class AddBookModel 
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Publisher { get; set; }
         public BookGenre BookGenre { get; set; }

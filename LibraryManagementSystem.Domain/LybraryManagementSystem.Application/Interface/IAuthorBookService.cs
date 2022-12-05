@@ -17,5 +17,6 @@ namespace LybraryManagementSystem.Application.Interface
 
         //Task UpdateAsync(AuthorBook authorBook);
         Task SaveChangesAsync();
+        Task AddAsyncList(List<AuthorBookModel> authorBookModel);
     }
 }

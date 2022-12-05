@@ -8,6 +8,7 @@ namespace LybraryManagementSystem.Application.Interface
     public interface IAuthorService
     {
         Task AddAsync(AuthorModel authorModel);
+        Task AddAsyncList(List<AuthorModel> authorModelList);
         Task<List<AuthorModel>> GetAllAsync();
         Task<AuthorModel> GetByIdAsync(int authorId);
         Task<AuthorModel> GetByAuthorName(string fistName, string lastName);

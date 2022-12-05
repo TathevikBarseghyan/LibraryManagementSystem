@@ -1,5 +1,15 @@
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\bin\Debug\net6.0\LybraryManagementSystem.Application.deps.json
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\bin\Debug\net6.0\LybraryManagementSystem.Application.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\bin\Debug\net6.0\LybraryManagementSystem.Application.pdb
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\bin\Debug\net6.0\LibraryManagementSystem.Domain.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\bin\Debug\net6.0\LibraryManagementSystem.Domain.pdb
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\LybraryManagementSystem.Application.csproj.AssemblyReference.cache
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\LybraryManagementSystem.Application.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\LybraryManagementSystem.Application.AssemblyInfoInputs.cache
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\LybraryManagementSystem.Application.AssemblyInfo.cs
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\LybraryManagementSystem.Application.csproj.CoreCompileInputs.cache
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\LybraryManagementSystem.Application.csproj.CopyComplete
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\LybraryManagementSystem.Application.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\refint\LybraryManagementSystem.Application.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\LybraryManagementSystem.Application.pdb
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.Application\obj\Debug\net6.0\ref\LybraryManagementSystem.Application.dll

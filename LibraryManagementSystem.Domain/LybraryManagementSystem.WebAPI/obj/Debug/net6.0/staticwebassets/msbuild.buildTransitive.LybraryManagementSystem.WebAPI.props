@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\LybraryManagementSystem.WebAPI.props" />
+</Project>

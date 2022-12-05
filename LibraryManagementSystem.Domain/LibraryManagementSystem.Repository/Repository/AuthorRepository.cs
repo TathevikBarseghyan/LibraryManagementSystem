@@ -22,6 +22,11 @@ namespace LibraryManagementSystem.Repository.Repository
             await _context.AddAsync(author);
         }
 
+        public async Task AddAsyncList(List<Author> authorList)
+        {
+            await _context.AddRangeAsync(authorList);
+        }
+
         public async Task DeleteAsync(int authorId)
         {
             var author = await GetByIdAsync(authorId);

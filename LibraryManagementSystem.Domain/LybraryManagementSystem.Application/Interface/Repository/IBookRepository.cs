@@ -14,7 +14,8 @@ namespace LybraryManagementSystem.Application.Interface.Repository
         Task<List<Book>> GetAllAsync();
         Task<Book> GetByIdAsync(int bookId);
         Task<Book> GetByBookTitle(string bookTitle);
-        Task<bool> Exists(List<Author> authorNames, string bookTitle);
+        Task<bool> BookExists(List<int> authorNames, string bookTitle);
+        Task<bool> AuthorExists(List<int> authorNames);
         Task<Author> GetByAuthorName(string authorName);
         Task DeleteAsync(int bookId);
         Task UpdateAsync(Book book);

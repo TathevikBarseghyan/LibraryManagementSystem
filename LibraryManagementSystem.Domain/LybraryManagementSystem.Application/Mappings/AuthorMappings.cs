@@ -41,5 +41,10 @@ namespace LybraryManagementSystem.Application.Mappings
         {
             return authors.Select(MapToModel).ToList();
         }
+
+        internal static List<Author> MapToEntityList(List<AuthorModel> authorModelList)
+        {
+           return authorModelList.Select(MapToEntity).ToList();
+        }
     }
 }

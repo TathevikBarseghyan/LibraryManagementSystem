@@ -1,4 +1,5 @@
-﻿using LybraryManagementSystem.Application.Models;
+﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Models;
 using LybraryManagementSystem.Application.Models.Book;
 
 namespace LybraryManagementSystem.Application.Interface
@@ -9,6 +10,7 @@ namespace LybraryManagementSystem.Application.Interface
         Task<List<BookModel>> GetAllAsync();
         Task<BookModel> GetByIdAsync(int bookId);
         Task<BookModel> GetByBookTitle(string bookTitle);
+        Task<bool> BookExists(List<int> authorNames, string title);
         Task DeleteAsync(int bookId);
         Task UpdateAsync(BookModel book);
         Task SaveChangesAsync();
