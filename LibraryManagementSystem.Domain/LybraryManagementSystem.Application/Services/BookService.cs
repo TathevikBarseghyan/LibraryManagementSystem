@@ -54,7 +54,6 @@ namespace LybraryManagementSystem.Application.Services
             }
             else if(!IsAuthorNameExists  && IsBookTitleExists == null)
             {
-
             }
         }
 
@@ -84,12 +83,7 @@ namespace LybraryManagementSystem.Application.Services
             return await _bookRepository.BookExists(authorNames, title);
         }
 
-        public async Task<BookModel> GetByAuthorName(string fisrtName,string lastName)
-        {
-            var authorModel = await _authorService.GetByAuthorName(fisrtName, lastName);
-            var authorEntity = AuthorMappings.MapToEntity(authorModel);
-            return BookMappings.AuthorMapToModel(authorEntity);
-        }
+        
 
         public async Task<BookModel> GetByIdAsync(int bookId)
         {

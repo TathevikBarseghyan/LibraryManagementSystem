@@ -62,41 +62,17 @@ namespace LybraryManagementSystem.Application.Mappings
             return authors.Select(s => AuthorBookToEntity(bookId, s)).ToList();
         }
 
-        public static Author AuthorMapToEntity(AuthorNameModel authorName)
+        public static Author AuthorMapToEntity(BookModel bookModel)
         {
             return new Author()
-            {
-                FirstName = authorName.AuthorFirstName,
-                LastName = authorName.AuthorLastName,
+            { 
+                Id = bookModel.Id
             };
         }
 
-        public static List<Author> AuthorMapToEntityList(BookModel BookModel)
+        public static List<Author> AuthorMapToEntityList(BookModel bookModel)
         {
-            var authors = BookModel.AuthorNames.Select(s => new Author 
-            {
-                FirstName = s.AuthorFirstName,
-                LastName= s.AuthorLastName,
-            }).ToList();
-
-            return authors;
-        }
-
-        public static BookModel AuthorMapToModel(Author author)
-        {
-            var names = new List<AuthorNameModel>
-            {
-                new AuthorNameModel()
-                {
-                    AuthorFirstName = author.FirstName,
-                    AuthorLastName = author.LastName,
-                }
-            };
-
-            return new BookModel()
-            {
-                AuthorNames = names,
-            };
+            return bookModel.AuthorIds.Select(s => AuthorMapToEntity(bookModel)).ToList();
         }
 
         public static List<BookModel> MapToModelList(List<Book> books)

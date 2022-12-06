@@ -56,7 +56,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.AuthorBook", b =>
@@ -71,7 +71,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("AuthorBooks");
+                    b.ToTable("AuthorBooks", (string)null);
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.Book", b =>
@@ -114,7 +114,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.BookInstance", b =>
@@ -147,7 +147,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BookInstance");
+                    b.ToTable("BookInstance", (string)null);
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.User", b =>
@@ -191,7 +191,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.AuthorBook", b =>

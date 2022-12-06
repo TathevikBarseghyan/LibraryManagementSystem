@@ -10,7 +10,6 @@ namespace LybraryManagementSystem.Application.Models.Book
         public string Title { get; set; }
         public string Publisher { get; set; }
         public BookGenre BookGenre { get; set; }
-        public List<AuthorNameModel> AuthorNames { get; set; }
         public List<int> AuthorIds { get; set; }
         public decimal FixedPrice { get; set; }
         public decimal DailyPrice { get; set; }

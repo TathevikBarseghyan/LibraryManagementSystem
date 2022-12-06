@@ -18,6 +18,7 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
             builder.Property(p => p.FirstName)
                 .IsRequired()
                 .HasMaxLength(50);
+
             builder.Property(p => p.LastName)
                 .IsRequired()
                 .HasMaxLength(50);
@@ -33,7 +34,6 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
             builder.Property(p => p.Description)
                 .HasMaxLength(255)
                 .HasDefaultValue("Author");
-
         }
     }
 }
