@@ -1,6 +1,7 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Models.Author;
 using LybraryManagementSystem.Application.Models.Book;
+using LybraryManagementSystem.Application.Models.BookInstance;
 
 namespace LybraryManagementSystem.Application.Mappings
 {
@@ -48,16 +49,16 @@ namespace LybraryManagementSystem.Application.Mappings
             return authors.Select(AuthorMapToAuthorModel).ToList();
         }
 
-        public static AuthorBook AuthorBookToEntity(int bookId, Author author)
+        public static AuthorBook AuthorBookToEntity(int bookId, int authorId)
         {
             return new AuthorBook
             {
                 BookId = bookId,
-                AuthorId = author.Id
+                AuthorId = authorId
             };
         }
 
-        public static List<AuthorBook> AuthorBookToEntityList(int bookId, List<Author> authors)
+        public static List<AuthorBook> AuthorBookToEntityList(int bookId, List<int> authors)
         {
             return authors.Select(s => AuthorBookToEntity(bookId, s)).ToList();
         }
@@ -83,6 +84,14 @@ namespace LybraryManagementSystem.Application.Mappings
             }
 
             return null;
+        }
+
+        public static BookInstanceModel BookInstanceMapToModel(Book book)
+        {
+            return new BookInstanceModel()
+            {
+                BookId = book.Id,
+            };
         }
     }
 }

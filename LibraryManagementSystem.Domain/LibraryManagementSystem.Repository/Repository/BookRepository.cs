@@ -20,7 +20,9 @@ namespace LibraryManagementSystem.Repository.Repository
         }
         public async Task AddAsync(Book book)
         {
+
             await _context.Books.AddAsync(book);
+            await SaveChangesAsync();
             //await _context.AuthotBooks.AddAsync(book);
         }
 
@@ -50,12 +52,9 @@ namespace LibraryManagementSystem.Repository.Repository
 
         public async Task<bool> BookExists(List<int> author, string title)
         {
-            var aa = _context.Books
+            var books = _context.Books
                 .Where(w => w.Title == title
-
-                && w.AuthorBooks.All(w => author.Contains(w.AuthorId))
-                //&& w.AuthorBooks.Any(x => author.All(w => w.FirstName == x.Author.FirstName))
-                );
+                && w.AuthorBooks.All(w => author.Contains(w.AuthorId)));
 
 
             //var asdasd = (from book in _context.Books
@@ -68,19 +67,21 @@ namespace LibraryManagementSystem.Repository.Repository
             //              && author.Any(a => a.FullName == aaaa.Author.FullName)
             //              select book);
 
-
-            var result = aa.ToList();
+            if (books == null)
+            {
+                return false;
+            }
 
             return true;
         }
 
 
-        public async Task<bool> AuthorExists(List<int> author)
-        {
-            var result = _context.Books.Where(w => w.AuthorBooks.All(w => author.Contains(w.AuthorId))).ToList();
-            return true;
+        //public async Task<bool> AuthorExists(List<int> author)
+        //{
+        //    var result = _context.Books.Where(w => w.AuthorBooks.All(w => author.Contains(w.AuthorId))).ToList();
+        //    return true;
          
-        }
+        //}
         public async Task<Author> GetByAuthorName(string authorName)
         {
             return await _context.Authors.FirstOrDefaultAsync(f => f.FullName == authorName);

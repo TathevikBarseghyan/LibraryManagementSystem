@@ -11,7 +11,7 @@ namespace LibraryManagementSystem.Domain.Entities
     public class BookInstance 
     {
         public int Id { get; set; }
-        public Book Book { get; set; }
+        public int BookId { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime CreationDate { get; set; }
@@ -26,5 +26,6 @@ namespace LibraryManagementSystem.Domain.Entities
         public DateTime ReturnDate { get; set; }
 
         public BookStatus Status { get; set; }
+        public Book Book { get; set; }
     }
 }

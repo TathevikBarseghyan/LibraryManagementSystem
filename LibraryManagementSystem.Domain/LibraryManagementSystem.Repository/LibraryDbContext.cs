@@ -11,6 +11,10 @@ namespace LibraryManagementSystem.Repository
 {
     public class LibraryDbContext : DbContext
     {
+        public LibraryDbContext() : base()
+        {
+        }
+
         public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
         {
         }

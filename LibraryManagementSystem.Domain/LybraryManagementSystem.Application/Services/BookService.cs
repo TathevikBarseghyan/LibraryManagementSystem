@@ -30,30 +30,26 @@ namespace LybraryManagementSystem.Application.Services
            // var authors = BookMappings.AuthorMapToEntityList(bookModel.AuthorNames);
 
             var book = BookMappings.MapToEntity(bookModel);
-
-            var authors = BookMappings.AuthorMapToEntityList(bookModel);
-            var authorModel = AuthorMappings.MapToModelList(authors);
+            //var bookInstance = BookInstanceMappings.MapToModel();
 
             var isBookExists = await _bookRepository.BookExists(bookModel.AuthorIds, bookModel.Title);
+
             if (isBookExists)
             {
-                //we only add in BookInstance
-            }
-            var authorBook = BookMappings.AuthorBookToEntityList(book.Id, authors);
-            var authorBookModel = AuthorBookMappings.MapToModelList(authorBook);
-           
-            
-            var IsBookTitleExists = await _bookRepository.GetByBookTitle(bookModel.Title);
-            var IsAuthorNameExists = await _bookRepository.AuthorExists(bookModel.AuthorIds);
+                var bookInstanceModel = BookMappings.BookInstanceMapToModel(book);
 
-            if (IsAuthorNameExists  && IsBookTitleExists == null)
-            { 
-                await _bookRepository.AddAsync(book);
-                await _authorService.AddAsyncList(authorModel);
-                await _authorBookService.AddAsyncList(authorBookModel);
+                await _bookInstanceService.AddAsync(bookInstanceModel);
             }
-            else if(!IsAuthorNameExists  && IsBookTitleExists == null)
+            else
             {
+                await _bookRepository.AddAsync(book);
+
+                var authorBook = BookMappings.AuthorBookToEntityList(book.Id, bookModel.AuthorIds);
+                var authorBookModel = AuthorBookMappings.MapToModelList(authorBook);
+                var bookInstanceModel = BookMappings.BookInstanceMapToModel(book);
+
+                await _bookInstanceService.AddAsync(bookInstanceModel);
+                await _authorBookService.AddAsyncList(authorBookModel);
             }
         }
 
