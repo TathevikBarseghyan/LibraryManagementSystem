@@ -1,13 +1,6 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Interface.Repository;
-using LybraryManagementSystem.Application.Models;
-using LybraryManagementSystem.Application.Models.Book;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Repository.Repository
 {
@@ -18,9 +11,9 @@ namespace LibraryManagementSystem.Repository.Repository
         {
             _context = context;
         }
+
         public async Task AddAsync(Book book)
         {
-
             await _context.Books.AddAsync(book);
             await SaveChangesAsync();
             //await _context.AuthotBooks.AddAsync(book);
@@ -50,31 +43,27 @@ namespace LibraryManagementSystem.Repository.Repository
             return await _context.Books.FirstOrDefaultAsync(f => f.Title == bookTitle);
         }
 
-        public async Task<bool> BookExists(List<int> author, string title)
+        public async Task<Book> BookExists(List<int> author, string title)
         {
-            var books = _context.Books
+             var books = _context.Books
                 .Where(w => w.Title == title
                 && w.AuthorBooks.All(w => author.Contains(w.AuthorId)));
-
 
             //var asdasd = (from book in _context.Books
             //              from aaaa in _context.AuthorBooks
             //              where book.Title == title
             //              && aaaa.BookId == book.Id
-
-
-
             //              && author.Any(a => a.FullName == aaaa.Author.FullName)
             //              select book);
 
-            if (books == null)
+            if (books.Any())
             {
-                return false;
+                Book book = books.First();
+                return book;
             }
 
-            return true;
+            return null; ;
         }
-
 
         //public async Task<bool> AuthorExists(List<int> author)
         //{

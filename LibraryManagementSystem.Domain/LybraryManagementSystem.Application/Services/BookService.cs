@@ -32,11 +32,11 @@ namespace LybraryManagementSystem.Application.Services
             var book = BookMappings.MapToEntity(bookModel);
             //var bookInstance = BookInstanceMappings.MapToModel();
 
-            var isBookExists = await _bookRepository.BookExists(bookModel.AuthorIds, bookModel.Title);
+            var existedBook = await _bookRepository.BookExists(bookModel.AuthorIds, bookModel.Title);
 
-            if (isBookExists)
+            if (existedBook != null)
             {
-                var bookInstanceModel = BookMappings.BookInstanceMapToModel(book);
+                var bookInstanceModel = BookMappings.BookInstanceMapToModel(existedBook);
 
                 await _bookInstanceService.AddAsync(bookInstanceModel);
             }
@@ -47,7 +47,7 @@ namespace LybraryManagementSystem.Application.Services
                 var authorBook = BookMappings.AuthorBookToEntityList(book.Id, bookModel.AuthorIds);
                 var authorBookModel = AuthorBookMappings.MapToModelList(authorBook);
                 var bookInstanceModel = BookMappings.BookInstanceMapToModel(book);
-
+                
                 await _bookInstanceService.AddAsync(bookInstanceModel);
                 await _authorBookService.AddAsyncList(authorBookModel);
             }
@@ -74,12 +74,10 @@ namespace LybraryManagementSystem.Application.Services
             return BookMappings.MapToModel(book);
         }
 
-        public async Task<bool> BookExists(List<int> authorNames, string title)
+        public async Task<Book> BookExists(List<int> authorNames, string title)
         {
             return await _bookRepository.BookExists(authorNames, title);
         }
-
-        
 
         public async Task<BookModel> GetByIdAsync(int bookId)
         {
