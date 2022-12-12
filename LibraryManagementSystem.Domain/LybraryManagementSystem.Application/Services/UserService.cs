@@ -5,6 +5,8 @@ using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
 using LybraryManagementSystem.Application.Models.ResponseModel;
 using LybraryManagementSystem.Application.Models.User;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,16 +20,20 @@ namespace LybraryManagementSystem.Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
+        private readonly IMemoryCache _cache;
+        private readonly ICacheService _cacheService;
 
-        public UserService(IUserRepository userRepository, IConfiguration configuration)
+        public UserService(IUserRepository userRepository, IConfiguration configuration, IMemoryCache cache, ICacheService cacheService)
         {
             _userRepository = userRepository;
             _configuration = configuration;
+            _cache = cache;
+            _cacheService = cacheService;
         }
 
         public async Task<OperationResultModel> LogInAsync(LogInModel logInModel)
         {
-            var user = await _userRepository.GetByBookTitle(logInModel.UserName);
+            var user = await _userRepository.GetByUserName(logInModel.UserName);
 
             if (user == null)
             {
@@ -50,6 +56,9 @@ namespace LybraryManagementSystem.Application.Services
             }
 
             var token = GenerateToken(logInModel);
+
+            var dbUser = await _userRepository.GetByUserName(user.UserName);
+             _cacheService.SetData<LogInModel>(dbUser.UserName, logInModel);
 
             return new OperationResultModel()
             {
@@ -76,9 +85,17 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task<UserModel> GetByIdAsync(int userId)
         {
-            var user = await _userRepository.GetByIdAsync(userId);
+            var key = $"userId_{userId}";
+            var user = _cacheService.GetData<UserModel>(key);
 
-            return UserMappings.MapToModel(user);
+            if (user == null)
+            {
+                var dbUser = await _userRepository.GetByIdAsync(userId);
+                user = UserMappings.MapToModel(dbUser);
+                user = _cacheService.SetData<UserModel>(key, user);
+            }
+
+            return user;
         }
 
         public async Task<List<UserModel>> GetAllAsync()
@@ -89,9 +106,16 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task<UserModel> GetByUserName(string username)
         {
-            var user = await _userRepository.GetByBookTitle(username);
+            var key = $"userName_{username}";
+            var user = _cacheService.GetData<UserModel>(key);
+            if (user == null)
+            {
+                var dbUser = await _userRepository.GetByUserName(username);
+                user = UserMappings.MapToModel(dbUser);
+                user = _cacheService.SetData<UserModel>(key, user);
+            }
 
-            return UserMappings.MapToModel(user);
+            return user;
         }
 
         public async Task UpdateAsync(UserModel userModel)
@@ -99,12 +123,13 @@ namespace LybraryManagementSystem.Application.Services
             var user = UserMappings.MapToEntity(userModel);
             await _userRepository.UpdateAsync(user);
         }
+
         public async Task SaveChangesAsync()
         {
             await _userRepository.SaveChangesAsync();
         }
 
-        // Privat methods
+        // Private methods
         private bool ValidateUser(User userModel, LogInModel logInModel)
         {
             string salt = userModel.Salt;

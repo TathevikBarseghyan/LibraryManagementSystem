@@ -19,6 +19,12 @@ namespace LybraryManagementSystem.Application.Mappings
                 DailyPrice = bookModel.DailyPrice,
                 MonthlyPrice = bookModel.MonthlyPrice,
                 WeeklyPrice = bookModel.WeeklyPrice,
+                AuthorBooks = AuthorBookMappings.MapToEntityList(bookModel.AuthorIds.Select(s => new Models.AuthorBook.AuthorBookModel 
+                { 
+                    BookId = bookModel.Id, 
+                    AuthorId = s 
+                }).ToList()),
+                BookInstances = BookInstanceMappings.MapToEntity(bookModel.BookInstance, bookModel.Count)
             };
         }
 

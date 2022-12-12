@@ -35,14 +35,6 @@ namespace LybraryManagementSystem.WebAPI.Controllers
                 return BadRequest(operation.Error);
             }
 
-            // TO DO
-            //if (Invalid passs)
-            //{
-            //    return Forbid("Invalid password");
-            //}
-
-            //var token = _userService.GenerateToken(logInModel);
-
             return Ok(operation.Result);
         }
 

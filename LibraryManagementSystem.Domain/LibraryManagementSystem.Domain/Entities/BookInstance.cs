@@ -17,13 +17,13 @@ namespace LibraryManagementSystem.Domain.Entities
         public DateTime CreationDate { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime BorrowedDate { get; set; }
+        public DateTime? BorrowedDate { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         public BookStatus Status { get; set; }
         public Book Book { get; set; }

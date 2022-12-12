@@ -1,4 +1,5 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Models.Book;
 using LybraryManagementSystem.Application.Models.BookInstance;
 using System;
 using System.Collections.Generic;
@@ -24,16 +25,50 @@ namespace LybraryManagementSystem.Application.Mappings
             };
         }
 
+        internal static List<BookInstance> MapToEntity(BookInstanceModel bookInstanceModel, int count)
+        {
+            var bookinstances = new List<BookInstance>();
+            if (count > 1)
+            {
+                var bookinstance = new BookInstance();
+                for (int i = 0; i < count; i++)
+                {
+                    bookinstance = new BookInstance()
+                    {
+                        Status = bookInstanceModel.Status,
+                        BorrowedDate = null,
+                        ReturnDate = null,
+                        DueDate = null,
+                        CreationDate = DateTime.Now,
+                    };
+                    bookinstances.Add(bookinstance);
+                }
+            }
+            else
+            {
+                bookinstances.Add(new BookInstance()
+                {
+                    Status = bookInstanceModel.Status,
+                    BorrowedDate = null,
+                    ReturnDate = null,
+                    DueDate = null,
+                    CreationDate = DateTime.Now,
+                });
+            }
+
+            return bookinstances;
+        }
+
         public static BookInstanceModel MapToModel(BookInstance bookInstance)
         {
             return new BookInstanceModel
             {
                 Id = bookInstance.Id,
                 BookId = bookInstance.BookId,
-                BorrowedDate = bookInstance.BorrowedDate,
+                BorrowedDate = bookInstance.BorrowedDate.Value,
+                DueDate = bookInstance.DueDate.Value,
+                ReturnDate = bookInstance.ReturnDate.Value,
                 CreationDate = bookInstance.CreationDate,
-                DueDate = bookInstance.DueDate,
-                ReturnDate = bookInstance.ReturnDate,
             };
         }
 

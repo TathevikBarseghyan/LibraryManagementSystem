@@ -29,7 +29,7 @@ namespace LybraryManagementSystem.Application.Services
         {
            // var authors = BookMappings.AuthorMapToEntityList(bookModel.AuthorNames);
 
-            var book = BookMappings.MapToEntity(bookModel);
+            
             //var bookInstance = BookInstanceMappings.MapToModel();
 
             var existedBook = await _bookRepository.BookExists(bookModel.AuthorIds, bookModel.Title);
@@ -42,7 +42,14 @@ namespace LybraryManagementSystem.Application.Services
             }
             else
             {
+                var book = BookMappings.MapToEntity(bookModel);
+                
+                
+
+                
+
                 await _bookRepository.AddAsync(book);
+
 
                 var authorBook = BookMappings.AuthorBookToEntityList(book.Id, bookModel.AuthorIds);
                 var authorBookModel = AuthorBookMappings.MapToModelList(authorBook);

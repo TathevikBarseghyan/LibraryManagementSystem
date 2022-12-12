@@ -24,7 +24,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             _bookInstanceService = bookInstanceService;
         }
 
-        [HttpPost("Add")]
+        [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] BookModel bookModel)
         {
             if(!ModelState.IsValid)
@@ -52,7 +52,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(books);
         }
 
-        [HttpPut("EditBook")]
+        [HttpPut("editBook")]
         public async Task<IActionResult> Edit(BookModel bookModel)
         {
             if(!ModelState.IsValid)
@@ -65,7 +65,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(bookModel);
         }
 
-        [HttpDelete("DeleteBook")]
+        [HttpDelete("deleteBook")]
         public async Task<IActionResult> DeleteBook(int id)
         {
             var book = _bookService.GetByIdAsync(id);
