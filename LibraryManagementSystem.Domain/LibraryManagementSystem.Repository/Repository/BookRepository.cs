@@ -14,17 +14,31 @@ namespace LibraryManagementSystem.Repository.Repository
 
         public async Task AddAsync(Book book)
         {
-            var aa = _context.Database.BeginTransaction();
+            using (LibraryDbContext context = new LibraryDbContext())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        await context.Books.AddAsync(book);
 
-            await _context.Books.AddAsync(book);
+                        await context.AddRangeAsync(book.AuthorBooks);
 
-            await _context.AddRangeAsync(book.AuthorBooks);
+                        await context.BookInstances.AddRangeAsync(book.BookInstances);
 
+                        await SaveChangesAsync();
 
-            await _context.BookInstances.AddRangeAsync(book.BookInstances);
-            await SaveChangesAsync();
+                        transaction.Commit();
 
-            //await _context.AuthotBooks.AddAsync(book);
+                        //await _context.AuthotBooks.AddAsync(book);
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
         }
 
         public async Task DeleteAsync(int bookId)

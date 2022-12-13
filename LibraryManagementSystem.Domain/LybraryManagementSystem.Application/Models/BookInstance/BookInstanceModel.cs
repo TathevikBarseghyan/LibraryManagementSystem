@@ -23,5 +23,7 @@ namespace LybraryManagementSystem.Application.Models.BookInstance
         public DateTime ReturnDate { get; set; }
 
         public BookStatus Status { get; set; }
+
+        public int Count { get; set; }
     }
 }

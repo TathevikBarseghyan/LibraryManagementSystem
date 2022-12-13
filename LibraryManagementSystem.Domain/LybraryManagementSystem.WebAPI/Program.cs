@@ -37,6 +37,7 @@ namespace LybraryManagementSystem.WebAPI
             builder.Services.AddScoped<ICacheService, CacheService>();
 
 
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -77,7 +78,7 @@ namespace LybraryManagementSystem.WebAPI
                     }
                 });
             });
-
+            
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters

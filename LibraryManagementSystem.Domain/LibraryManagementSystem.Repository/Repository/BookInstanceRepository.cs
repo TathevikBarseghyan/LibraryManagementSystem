@@ -13,9 +13,9 @@ namespace LibraryManagementSystem.Repository.Repository
             _context = context;
         }
 
-        public async Task AddAsync(BookInstance bookInstance)
+        public async Task AddAsync(List<BookInstance> bookInstance)
         {
-            await _context.AddAsync(bookInstance);
+            await _context.AddRangeAsync(bookInstance);
             await _context.SaveChangesAsync();
         }
 

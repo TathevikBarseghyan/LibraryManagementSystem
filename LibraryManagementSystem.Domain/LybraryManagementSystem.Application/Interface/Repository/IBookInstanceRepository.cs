@@ -9,7 +9,7 @@ namespace LybraryManagementSystem.Application.Interface.Repository
 {
     public interface IBookInstanceRepository
     {
-        Task AddAsync(BookInstance bookInstance);
+        Task AddAsync(List<BookInstance> bookInstances);
         Task<List<BookInstance>> GetAllAsync();
         Task<BookInstance> GetByIdAsync(int bookInstanceId);
         Task DeleteAsync(int bookId);

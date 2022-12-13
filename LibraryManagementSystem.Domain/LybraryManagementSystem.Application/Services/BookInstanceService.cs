@@ -22,7 +22,7 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task AddAsync(BookInstanceModel bookInstanceModel)
         {
-            var bookInstance = BookInstanceMappings.MapToEntity(bookInstanceModel);
+            var bookInstance = BookInstanceMappings.MapToEntity(bookInstanceModel, bookInstanceModel.Count);
             await _bookInstanceRepository.AddAsync(bookInstance);
         }
 

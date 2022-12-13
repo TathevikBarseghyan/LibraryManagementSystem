@@ -22,7 +22,7 @@ namespace LybraryManagementSystem.Application.Services
             _bookRepository = bookRepository;
             _authorService = authorService;
             _bookInstanceService = bookInstanceService;
-            _authorBookService = authorBookService;
+            _authorBookService = authorBookService; 
         }
 
         public async Task AddAsync(BookModel bookModel)
@@ -36,7 +36,7 @@ namespace LybraryManagementSystem.Application.Services
 
             if (existedBook != null)
             {
-                var bookInstanceModel = BookMappings.BookInstanceMapToModel(existedBook);
+                var bookInstanceModel = BookMappings.MapToBookInstanceModel(existedBook);
 
                 await _bookInstanceService.AddAsync(bookInstanceModel);
             }
@@ -44,19 +44,14 @@ namespace LybraryManagementSystem.Application.Services
             {
                 var book = BookMappings.MapToEntity(bookModel);
                 
-                
-
-                
-
                 await _bookRepository.AddAsync(book);
 
-
-                var authorBook = BookMappings.AuthorBookToEntityList(book.Id, bookModel.AuthorIds);
-                var authorBookModel = AuthorBookMappings.MapToModelList(authorBook);
-                var bookInstanceModel = BookMappings.BookInstanceMapToModel(book);
+                //var authorBook = BookMappings.AuthorBookToEntityList(book.Id, bookModel.AuthorIds);
+                //var authorBookModel = AuthorBookMappings.MapToModelList(authorBook);
+                //var bookInstanceModel = BookMappings.BookInstanceMapToModel(book);
                 
-                await _bookInstanceService.AddAsync(bookInstanceModel);
-                await _authorBookService.AddAsyncList(authorBookModel);
+                //await _bookInstanceService.AddAsync(bookInstanceModel);
+                //await _authorBookService.AddAsyncList(authorBookModel);
             }
         }
 

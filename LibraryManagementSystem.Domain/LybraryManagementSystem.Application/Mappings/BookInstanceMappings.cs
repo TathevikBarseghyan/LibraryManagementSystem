@@ -69,6 +69,8 @@ namespace LybraryManagementSystem.Application.Mappings
                 DueDate = bookInstance.DueDate.Value,
                 ReturnDate = bookInstance.ReturnDate.Value,
                 CreationDate = bookInstance.CreationDate,
+                
+
             };
         }
 

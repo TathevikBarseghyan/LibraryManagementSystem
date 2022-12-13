@@ -56,7 +56,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.AuthorBook", b =>
@@ -71,7 +71,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("AuthorBooks", (string)null);
+                    b.ToTable("AuthorBooks");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.Book", b =>
@@ -114,7 +114,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.BookInstance", b =>
@@ -128,16 +128,16 @@ namespace LibraryManagementSystem.Repository.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("BorrowedDate")
+                    b.Property<DateTime?>("BorrowedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DueDate")
+                    b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ReturnDate")
+                    b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Status")
@@ -147,7 +147,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BookInstance", (string)null);
+                    b.ToTable("BookInstances");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.User", b =>
@@ -191,7 +191,7 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.AuthorBook", b =>
@@ -216,7 +216,7 @@ namespace LibraryManagementSystem.Repository.Migrations
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.BookInstance", b =>
                 {
                     b.HasOne("LibraryManagementSystem.Domain.Entities.Book", "Book")
-                        .WithMany("BookStates")
+                        .WithMany("BookInstances")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -233,7 +233,7 @@ namespace LibraryManagementSystem.Repository.Migrations
                 {
                     b.Navigation("AuthorBooks");
 
-                    b.Navigation("BookStates");
+                    b.Navigation("BookInstances");
                 });
 #pragma warning restore 612, 618
         }

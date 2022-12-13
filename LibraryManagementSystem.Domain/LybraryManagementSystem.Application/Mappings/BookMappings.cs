@@ -92,11 +92,13 @@ namespace LybraryManagementSystem.Application.Mappings
             return null;
         }
 
-        public static BookInstanceModel BookInstanceMapToModel(Book book)
+        public static BookInstanceModel MapToBookInstanceModel(Book book)
         {
             return new BookInstanceModel()
             {
                 BookId = book.Id,
+                //CreationDate = DateTime.Now,
+                //BorrowedDate = book.BookInstances.Select(s => s.BorrowedDate).
             };
         }
     }
