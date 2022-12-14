@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Interface.Repository;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagementSystem.Repository.Repository
@@ -14,29 +15,26 @@ namespace LibraryManagementSystem.Repository.Repository
 
         public async Task AddAsync(Book book)
         {
-            using (LibraryDbContext context = new LibraryDbContext())
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                using (var transaction = context.Database.BeginTransaction())
+                try
                 {
-                    try
-                    {
-                        await context.Books.AddAsync(book);
+                   var dbBook = await _context.Books.AddAsync(book);
 
-                        await context.AddRangeAsync(book.AuthorBooks);
+                    await _context.AddRangeAsync(book.AuthorBooks);
 
-                        await context.BookInstances.AddRangeAsync(book.BookInstances);
+                    await _context.BookInstances.AddRangeAsync(book.BookInstances);
 
-                        await SaveChangesAsync();
+                    await SaveChangesAsync();
 
-                        transaction.Commit();
+                    transaction.Commit();
 
-                        //await _context.AuthotBooks.AddAsync(book);
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
+                    //await _context.AuthotBooks.AddAsync(book);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw;
                 }
             }
         }

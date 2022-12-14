@@ -14,13 +14,13 @@ namespace LybraryManagementSystem.Application.Models.BookInstance
         public int Id { get; set; }
         public int BookId { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
-        public DateTime BorrowedDate { get; set; }
-
-        public DateTime DueDate { get; set; }
-
-        public DateTime ReturnDate { get; set; }
+        public DateTime? BorrowedDate { get; set; }
+                       
+        public DateTime? DueDate { get; set; }
+                       
+        public DateTime? ReturnDate { get; set; }
 
         public BookStatus Status { get; set; }
 

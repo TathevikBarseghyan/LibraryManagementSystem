@@ -6,10 +6,6 @@ namespace LibraryManagementSystem.Repository
 {
     public class LibraryDbContext : DbContext
     {
-        public LibraryDbContext() : base()
-        {
-        }
-
         public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
         {
         }
@@ -27,5 +23,7 @@ namespace LibraryManagementSystem.Repository
         public DbSet<Author> Authors { get; set; }
         public DbSet<AuthorBook> AuthorBooks { get; set; }
         public DbSet<User> Users { get; set; }
+
+
     }
 }

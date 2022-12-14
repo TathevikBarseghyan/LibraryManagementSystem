@@ -9,7 +9,7 @@ namespace LybraryManagementSystem.Application.Mappings
     {
         public static Book MapToEntity(BookModel bookModel) 
         {
-            return new Book()
+            var book = new Book()
             {
                 Id = bookModel.Id,
                 Title = bookModel.Title,
@@ -19,13 +19,16 @@ namespace LybraryManagementSystem.Application.Mappings
                 DailyPrice = bookModel.DailyPrice,
                 MonthlyPrice = bookModel.MonthlyPrice,
                 WeeklyPrice = bookModel.WeeklyPrice,
-                AuthorBooks = AuthorBookMappings.MapToEntityList(bookModel.AuthorIds.Select(s => new Models.AuthorBook.AuthorBookModel 
-                { 
-                    BookId = bookModel.Id, 
-                    AuthorId = s 
-                }).ToList()),
-                BookInstances = BookInstanceMappings.MapToEntity(bookModel.BookInstance, bookModel.Count)
+                BookInstances = BookInstanceMappings.MapToEntity(bookModel.Count, bookModel.BookInstance)
             };
+
+            book.AuthorBooks = bookModel.AuthorIds.Select(s => new AuthorBook
+            {
+                Book = book,
+                AuthorId = s
+            }).ToList();
+
+            return book;
         }
 
         public static BookModel MapToModel(Book book)
@@ -92,14 +95,48 @@ namespace LybraryManagementSystem.Application.Mappings
             return null;
         }
 
-        public static BookInstanceModel MapToBookInstanceModel(Book book)
+        public static List<BookInstanceModel> MapToBookInstanceModel(BookModel bookModel, int count, int bookId)
         {
-            return new BookInstanceModel()
+            var bookinstanceModels = new List<BookInstanceModel>();
+            if (count > 1)
             {
-                BookId = book.Id,
-                //CreationDate = DateTime.Now,
-                //BorrowedDate = book.BookInstances.Select(s => s.BorrowedDate).
-            };
+                var bookInstanceModel = new BookInstanceModel();
+                for (int i = 0; i < count; i++)
+                {
+                    bookInstanceModel = new BookInstanceModel()
+                    {
+                        BookId = bookId,
+                        CreationDate = DateTime.Now,
+                        BorrowedDate = null,
+                        DueDate = null,
+                        ReturnDate = null,
+                    };
+                    bookinstanceModels.Add(bookInstanceModel);
+                }
+            }
+            else
+            {
+                bookinstanceModels.Add(new BookInstanceModel()
+                {
+                    BookId = bookId,
+                    Status = bookModel.Status,
+                    BorrowedDate = null,
+                    ReturnDate = null,
+                    DueDate = null,
+                    CreationDate = DateTime.Now,
+                });
+            }
+
+            return bookinstanceModels;
+
+            //    BookInstanceModel()
+            //{
+            //    BookId = bookModel.Id,
+            //    BorrowedDate = bookModel.BookInstance.BorrowedDate,
+            //    CreationDate = DateTime.Now,
+            //    DueDate = bookModel.BookInstance.DueDate,
+            //    ReturnDate= bookModel.BookInstance.ReturnDate,
+            //};
         }
     }
 }

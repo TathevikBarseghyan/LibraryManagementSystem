@@ -20,10 +20,10 @@ namespace LybraryManagementSystem.Application.Services
             _bookInstanceRepository = bookInstanceRepository;
         }
 
-        public async Task AddAsync(BookInstanceModel bookInstanceModel)
+        public async Task AddRangeAsync(List<BookInstanceModel> bookInstanceModels)
         {
-            var bookInstance = BookInstanceMappings.MapToEntity(bookInstanceModel, bookInstanceModel.Count);
-            await _bookInstanceRepository.AddAsync(bookInstance);
+            var bookInstance = BookInstanceMappings.MapToEntityList(bookInstanceModels.Count, bookInstanceModels);
+            await _bookInstanceRepository.AddRangeAsync(bookInstance);
         }
 
         public async Task DeleteAsync(int bookInstanceModelId)

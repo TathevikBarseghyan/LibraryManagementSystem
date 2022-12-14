@@ -1,11 +1,5 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
-using LybraryManagementSystem.Application.Models.Book;
 using LybraryManagementSystem.Application.Models.BookInstance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LybraryManagementSystem.Application.Mappings
 {
@@ -25,7 +19,7 @@ namespace LybraryManagementSystem.Application.Mappings
             };
         }
 
-        internal static List<BookInstance> MapToEntity(BookInstanceModel bookInstanceModel, int count)
+        public static List<BookInstance> MapToEntity(int count, BookInstanceModel bookInstanceModel)
         {
             var bookinstances = new List<BookInstance>();
             if (count > 1)
@@ -77,6 +71,11 @@ namespace LybraryManagementSystem.Application.Mappings
         public static List<BookInstanceModel> MapToModelList(List<BookInstance> bookInstance)
         {
             return bookInstance.Select(MapToModel).ToList();
+        }
+
+        public static List<BookInstance> MapToEntityList(int count, List<BookInstanceModel> bookInstanceModels)
+        {
+            return bookInstanceModels.Select(MapToEntity).ToList();
         }
     }
 }

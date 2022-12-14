@@ -10,7 +10,7 @@ namespace LybraryManagementSystem.Application.Interface
 {
     public interface IBookInstanceService
     {
-        Task AddAsync(BookInstanceModel bookInstanceModel);
+        Task AddRangeAsync(List<BookInstanceModel> bookInstanceModels);
         Task<List<BookInstanceModel>> GetAllAsync();
         Task<BookInstanceModel> GetByIdAsync(int bookInstanceModelId);
         Task DeleteAsync(int bookInstanceModelId);

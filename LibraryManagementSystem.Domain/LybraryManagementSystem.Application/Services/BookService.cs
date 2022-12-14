@@ -36,22 +36,17 @@ namespace LybraryManagementSystem.Application.Services
 
             if (existedBook != null)
             {
-                var bookInstanceModel = BookMappings.MapToBookInstanceModel(existedBook);
+                //var book = BookMappings.MapToEntity(bookModel);
 
-                await _bookInstanceService.AddAsync(bookInstanceModel);
+                var bookInstanceModel = BookMappings.MapToBookInstanceModel(bookModel, bookModel.Count, existedBook.Id);
+
+                await _bookInstanceService.AddRangeAsync(bookInstanceModel);
             }
             else
             {
                 var book = BookMappings.MapToEntity(bookModel);
                 
                 await _bookRepository.AddAsync(book);
-
-                //var authorBook = BookMappings.AuthorBookToEntityList(book.Id, bookModel.AuthorIds);
-                //var authorBookModel = AuthorBookMappings.MapToModelList(authorBook);
-                //var bookInstanceModel = BookMappings.BookInstanceMapToModel(book);
-                
-                //await _bookInstanceService.AddAsync(bookInstanceModel);
-                //await _authorBookService.AddAsyncList(authorBookModel);
             }
         }
 
