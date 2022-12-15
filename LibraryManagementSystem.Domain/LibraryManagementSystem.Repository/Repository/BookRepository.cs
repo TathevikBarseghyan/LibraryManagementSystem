@@ -58,6 +58,11 @@ namespace LibraryManagementSystem.Repository.Repository
             return await _context.Books.FindAsync(bookId);
         }
 
+        public async Task<bool> BookExists(int bookId)
+        {
+            return await _context.Books.AnyAsync(book => book.Id == bookId);
+        }
+
         public async Task<Book> GetByBookTitle(string bookTitle)
         {
             return await _context.Books.FirstOrDefaultAsync(f => f.Title == bookTitle);
@@ -68,13 +73,6 @@ namespace LibraryManagementSystem.Repository.Repository
              var books = _context.Books
                 .Where(w => w.Title == title
                 && w.AuthorBooks.All(w => author.Contains(w.AuthorId)));
-
-            //var asdasd = (from book in _context.Books
-            //              from aaaa in _context.AuthorBooks
-            //              where book.Title == title
-            //              && aaaa.BookId == book.Id
-            //              && author.Any(a => a.FullName == aaaa.Author.FullName)
-            //              select book);
 
             if (books.Any())
             {
@@ -89,8 +87,8 @@ namespace LibraryManagementSystem.Repository.Repository
         //{
         //    var result = _context.Books.Where(w => w.AuthorBooks.All(w => author.Contains(w.AuthorId))).ToList();
         //    return true;
-         
         //}
+
         public async Task<Author> GetByAuthorName(string authorName)
         {
             return await _context.Authors.FirstOrDefaultAsync(f => f.FullName == authorName);
@@ -103,7 +101,7 @@ namespace LibraryManagementSystem.Repository.Repository
 
         public async Task UpdateAsync(Book book)
         {
-            var dbBook = _context.Books.First(f => f.Id == book.Id);
+            var dbBook = await _context.Books.FirstAsync(f => f.Id == book.Id);
             if (dbBook == null)
             {
                 return;

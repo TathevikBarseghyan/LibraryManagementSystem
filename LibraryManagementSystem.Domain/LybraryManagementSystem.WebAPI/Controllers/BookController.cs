@@ -1,6 +1,7 @@
 ﻿using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Models;
 using LybraryManagementSystem.Application.Models.Book;
+using LybraryManagementSystem.Application.Models.BookInstance;
 using LybraryManagementSystem.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,32 +54,23 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [HttpPut("editBook")]
-        public async Task<IActionResult> Edit(BookModel bookModel)
+        public async Task<IActionResult> Edit([FromBody] BookEditModel bookEditModel)
         {
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }   
 
-            await _bookService.UpdateAsync(bookModel);
+            await _bookService.UpdateAsync(bookEditModel);
 
-            return Ok(bookModel);
+            return Ok(bookEditModel);
         }
 
         [HttpDelete("deleteBook")]
         public async Task<IActionResult> DeleteBook(int id)
         {
-            var book = _bookService.GetByIdAsync(id);
-
-            if(book != null)
-            {
-                await _bookService.DeleteAsync(book.Id);
-                await _bookService.SaveChangesAsync();
-
-                return Ok();
-            }
-
-            return NotFound();
+            await _bookService.DeleteAsync(id);
+            return Ok();
         }
     }
 }

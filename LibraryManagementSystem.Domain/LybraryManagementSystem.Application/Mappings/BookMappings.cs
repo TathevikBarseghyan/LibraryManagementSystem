@@ -1,4 +1,5 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Models;
 using LybraryManagementSystem.Application.Models.Author;
 using LybraryManagementSystem.Application.Models.Book;
 using LybraryManagementSystem.Application.Models.BookInstance;
@@ -23,6 +24,29 @@ namespace LybraryManagementSystem.Application.Mappings
             };
 
             book.AuthorBooks = bookModel.AuthorIds.Select(s => new AuthorBook
+            {
+                Book = book,
+                AuthorId = s
+            }).ToList();
+
+            return book;
+        }
+
+        public static Book EditModelMapToEntity(BookEditModel bookEditModel)
+        {
+            var book = new Book()
+            {
+                Id = bookEditModel.Id,
+                Title = bookEditModel.Title,
+                BookGenre = bookEditModel.BookGenre,
+                Publisher = bookEditModel.Publisher,
+                FixedPrice = bookEditModel.FixedPrice,
+                DailyPrice = bookEditModel.DailyPrice,
+                MonthlyPrice = bookEditModel.MonthlyPrice,
+                WeeklyPrice = bookEditModel.WeeklyPrice,
+            };
+
+            book.AuthorBooks = bookEditModel.AuthorIds.Select(s => new AuthorBook
             {
                 Book = book,
                 AuthorId = s
@@ -119,7 +143,6 @@ namespace LybraryManagementSystem.Application.Mappings
                 bookinstanceModels.Add(new BookInstanceModel()
                 {
                     BookId = bookId,
-                    Status = bookModel.Status,
                     BorrowedDate = null,
                     ReturnDate = null,
                     DueDate = null,
@@ -128,15 +151,6 @@ namespace LybraryManagementSystem.Application.Mappings
             }
 
             return bookinstanceModels;
-
-            //    BookInstanceModel()
-            //{
-            //    BookId = bookModel.Id,
-            //    BorrowedDate = bookModel.BookInstance.BorrowedDate,
-            //    CreationDate = DateTime.Now,
-            //    DueDate = bookModel.BookInstance.DueDate,
-            //    ReturnDate= bookModel.BookInstance.ReturnDate,
-            //};
         }
     }
 }

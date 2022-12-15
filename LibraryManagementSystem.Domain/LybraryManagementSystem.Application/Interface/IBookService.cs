@@ -12,7 +12,7 @@ namespace LybraryManagementSystem.Application.Interface
         Task<BookModel> GetByBookTitle(string bookTitle);
         Task<Book> BookExists(List<int> authorNames, string title);
         Task DeleteAsync(int bookId);
-        Task UpdateAsync(BookModel book);
+        Task UpdateAsync(BookEditModel bookEditModel);
         Task SaveChangesAsync();
     }
 }

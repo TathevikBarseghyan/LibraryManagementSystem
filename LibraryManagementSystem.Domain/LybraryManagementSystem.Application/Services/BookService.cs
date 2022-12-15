@@ -2,6 +2,7 @@
 using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
+using LybraryManagementSystem.Application.Models;
 using LybraryManagementSystem.Application.Models.Book;
 
 namespace LybraryManagementSystem.Application.Services
@@ -52,10 +53,10 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task DeleteAsync(int bookId)
         {
-            var book = await _bookRepository.GetByIdAsync(bookId);
-            if (book != null)
+            var bookExists = await _bookRepository.BookExists(bookId);
+            if (bookExists)
             {
-                await _bookRepository.DeleteAsync(book.Id);
+                await _bookRepository.DeleteAsync(bookId);
             }
         }
 
@@ -91,9 +92,9 @@ namespace LybraryManagementSystem.Application.Services
             await _authorService.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(BookModel bookModel)
+        public async Task UpdateAsync(BookEditModel bookEditModel)
         {
-            var book = BookMappings.MapToEntity(bookModel);
+            var book = BookMappings.EditModelMapToEntity(bookEditModel);
             await _bookRepository.UpdateAsync(book);
         }
     }

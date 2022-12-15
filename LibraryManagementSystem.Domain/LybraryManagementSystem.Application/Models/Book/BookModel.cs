@@ -17,9 +17,7 @@ namespace LybraryManagementSystem.Application.Models.Book
         public decimal DailyPrice { get; set; }
         public decimal WeeklyPrice { get; set; }
         public decimal MonthlyPrice { get; set; }
-        public BookStatus Status { get; set; }
-        public DateTime CreationDate { get; set; }
-        public BookInstanceModel BookInstance { get; set; }
+        public BookInstanceModel? BookInstance { get; set; }
         public int Count { get; set; }
     }
 }
