@@ -107,7 +107,12 @@ namespace LibraryManagementSystem.Repository.Repository
                 return;
             }
 
-            dbBook.AuthorBooks = book.AuthorBooks;
+            dbBook.AuthorBooks = book.AuthorBooks.Select(s => new AuthorBook
+            {
+                Author = s.Author,
+                Book = s.Book
+
+            }).ToList();
             dbBook.Title = book.Title;
             dbBook.Publisher = book.Publisher;
             dbBook.FixedPrice = book.FixedPrice;

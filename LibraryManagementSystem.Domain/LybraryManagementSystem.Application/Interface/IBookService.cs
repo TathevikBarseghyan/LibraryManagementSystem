@@ -10,6 +10,7 @@ namespace LybraryManagementSystem.Application.Interface
         Task<List<BookModel>> GetAllAsync();
         Task<BookModel> GetByIdAsync(int bookId);
         Task<BookModel> GetByBookTitle(string bookTitle);
+        Task<int> GetIdByBookTitle(string bookTitle);
         Task<Book> BookExists(List<int> authorNames, string title);
         Task DeleteAsync(int bookId);
         Task UpdateAsync(BookEditModel bookEditModel);

@@ -7,6 +7,7 @@ using LybraryManagementSystem.Application.Models.BookInstance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,12 @@ namespace LybraryManagementSystem.Application.Services
         {
             var bookInstance = await _bookInstanceRepository.GetAllAsync();
             return BookInstanceMappings.MapToModelList(bookInstance);
+        }
+
+        public async Task<List<BookInstanceModel>> GetByBookIdAsync(int bookId)
+        {
+            var bookInstance = await _bookInstanceRepository.GetByBookIdAsync(bookId);
+            return BookInstanceMappings.MapToModelList(bookInstance); 
         }
 
         public async Task<BookInstanceModel> GetByIdAsync(int bookInstanceModelId)

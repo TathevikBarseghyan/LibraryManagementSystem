@@ -34,6 +34,7 @@ namespace LybraryManagementSystem.Application.Mappings
 
         public static Book EditModelMapToEntity(BookEditModel bookEditModel)
         {
+
             var book = new Book()
             {
                 Id = bookEditModel.Id,

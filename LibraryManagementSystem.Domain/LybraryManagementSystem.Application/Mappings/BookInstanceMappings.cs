@@ -59,9 +59,9 @@ namespace LybraryManagementSystem.Application.Mappings
             {
                 Id = bookInstance.Id,
                 BookId = bookInstance.BookId,
-                BorrowedDate = bookInstance.BorrowedDate.Value,
-                DueDate = bookInstance.DueDate.Value,
-                ReturnDate = bookInstance.ReturnDate.Value,
+                BorrowedDate = bookInstance.BorrowedDate,
+                DueDate = bookInstance.DueDate,
+                ReturnDate = bookInstance.ReturnDate,
                 CreationDate = bookInstance.CreationDate,
             };
         }

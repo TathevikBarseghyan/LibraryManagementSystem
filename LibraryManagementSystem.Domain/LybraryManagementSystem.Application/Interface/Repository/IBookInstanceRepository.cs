@@ -12,6 +12,7 @@ namespace LybraryManagementSystem.Application.Interface.Repository
         Task AddRangeAsync(List<BookInstance> bookInstances);
         Task<List<BookInstance>> GetAllAsync();
         Task<BookInstance> GetByIdAsync(int bookInstanceId);
+        Task<List<BookInstance>> GetByBookIdAsync(int bookId);
         Task DeleteAsync(int bookId);
         Task UpdateAsync(BookInstance bookInstance);
         Task SaveChangesAsync();

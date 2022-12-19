@@ -7,7 +7,7 @@ namespace LybraryManagementSystem.Application.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string? Publisher { get; set; }
+        public string Publisher { get; set; }
         public BookGenre BookGenre { get; set; }
         public List<int>? AuthorIds { get; set; }
         public decimal FixedPrice { get; set; }

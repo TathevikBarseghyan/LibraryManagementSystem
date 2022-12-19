@@ -34,6 +34,12 @@ namespace LibraryManagementSystem.Repository.Repository
             return await _context.BookInstances.ToListAsync();
         }
 
+        public async Task<List<BookInstance>> GetByBookIdAsync(int bookId)
+        {
+            return await _context.BookInstances.Select(s => s).Where(w => w.BookId == bookId).ToListAsync();
+
+        }
+
         public async Task<BookInstance> GetByIdAsync(int bookInstanceId)
         {
             return await _context.BookInstances.FindAsync(bookInstanceId);
@@ -55,6 +61,7 @@ namespace LibraryManagementSystem.Repository.Repository
             dbBook.ReturnDate = bookInstance.ReturnDate;
             dbBook.CreationDate = bookInstance.CreationDate;
             dbBook.BorrowedDate = bookInstance.BorrowedDate;
+            dbBook.DueDate = bookInstance.DueDate;
             dbBook.Status = bookInstance.Status;
             dbBook.Id = bookInstance.Id;    
 
