@@ -29,11 +29,7 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task DeleteAsync(int bookInstanceModelId)
         {
-            var bookInstance = await GetByIdAsync(bookInstanceModelId);
-            if (bookInstance != null) 
-            {
-                _bookInstanceRepository.DeleteAsync(bookInstanceModelId);
-            }
+            _bookInstanceRepository.DeleteAsync(bookInstanceModelId);
         }
 
         public async Task<List<BookInstanceModel>> GetAllAsync()

@@ -101,7 +101,10 @@ namespace LibraryManagementSystem.Repository.Repository
 
         public async Task UpdateAsync(Book book)
         {
-            var dbBook = await _context.Books.FirstAsync(f => f.Id == book.Id);
+            var dbBook = await _context.Books
+                .Include(i => i.AuthorBooks)
+                .FirstOrDefaultAsync(f => f.Id == book.Id);
+
             if (dbBook == null)
             {
                 return;
@@ -109,10 +112,10 @@ namespace LibraryManagementSystem.Repository.Repository
 
             dbBook.AuthorBooks = book.AuthorBooks.Select(s => new AuthorBook
             {
-                Author = s.Author,
-                Book = s.Book
-
+                AuthorId = s.AuthorId,
+                BookId = s.BookId,
             }).ToList();
+
             dbBook.Title = book.Title;
             dbBook.Publisher = book.Publisher;
             dbBook.FixedPrice = book.FixedPrice;

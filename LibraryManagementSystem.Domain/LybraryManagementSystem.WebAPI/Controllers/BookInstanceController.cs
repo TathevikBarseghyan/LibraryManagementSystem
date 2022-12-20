@@ -17,31 +17,30 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet("get-all-Instances")]
+        [HttpGet("get-all-instances")]
         public async Task<IActionResult> GetAllBooks()
         {
             var books = await _bookInctanceService.GetAllAsync();
             return Ok(books);
         }
 
-        [HttpGet("get-Instances")]
-        public async Task<IActionResult> GetSameInstances(string title)
+        [HttpGet("get-instances")]
+        public async Task<IActionResult> GetInstances(string title)
         {
-            int id = await _bookService.GetIdByBookTitle(title); 
-            var books = await _bookInctanceService.GetByBookIdAsync(id);
+            var book = await _bookService.GetByBookTitle(title); 
+            var books = await _bookInctanceService.GetByBookIdAsync(book.Id);
 
             return Ok(books);
         }
 
-        [HttpDelete("delete-Instance")]        
-        
+        [HttpDelete]        
         public async Task<IActionResult> Delete(int id)
         {
             await _bookInctanceService.DeleteAsync(id);
             return Ok();
         }
 
-        [HttpPut("edit-Instance")]
+        [HttpPut("edit-instance")]
         public async Task<IActionResult> Edit([FromBody] BookInstanceModel bookInstanceModel)
         {
             if (!ModelState.IsValid)

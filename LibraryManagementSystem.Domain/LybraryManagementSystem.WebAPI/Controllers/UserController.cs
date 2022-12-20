@@ -34,7 +34,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(addModel);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet("getAll")]
         public async Task<IActionResult> GetAllUsers()
         {

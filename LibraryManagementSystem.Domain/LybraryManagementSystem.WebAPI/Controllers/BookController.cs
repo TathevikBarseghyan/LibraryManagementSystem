@@ -53,7 +53,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(books);
         }
 
-        [HttpPut("editBook")]
+        [HttpPut("edit")]
         public async Task<IActionResult> Edit([FromBody] BookEditModel bookEditModel)
         {
             if(!ModelState.IsValid)
@@ -66,7 +66,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(bookEditModel);
         }
 
-        [HttpDelete("deleteBook")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteBook(int id)
         {
             await _bookService.DeleteAsync(id);

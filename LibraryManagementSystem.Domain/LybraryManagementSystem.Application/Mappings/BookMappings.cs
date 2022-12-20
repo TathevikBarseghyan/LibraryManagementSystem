@@ -49,7 +49,7 @@ namespace LybraryManagementSystem.Application.Mappings
 
             book.AuthorBooks = bookEditModel.AuthorIds.Select(s => new AuthorBook
             {
-                Book = book,
+                BookId = book.Id,
                 AuthorId = s
             }).ToList();
 

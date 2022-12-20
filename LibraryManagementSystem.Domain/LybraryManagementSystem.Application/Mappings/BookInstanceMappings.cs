@@ -13,7 +13,6 @@ namespace LybraryManagementSystem.Application.Mappings
                 BookId= bookInstanceModel.BookId,
                 Status = bookInstanceModel.Status,
                 BorrowedDate = bookInstanceModel.BorrowedDate,
-                CreationDate = DateTime.Now,
                 DueDate = bookInstanceModel.DueDate,
                 ReturnDate = bookInstanceModel.ReturnDate,
             };
@@ -24,18 +23,16 @@ namespace LybraryManagementSystem.Application.Mappings
             var bookinstances = new List<BookInstance>();
             if (count > 1)
             {
-                var bookinstance = new BookInstance();
                 for (int i = 0; i < count; i++)
                 {
-                    bookinstance = new BookInstance()
+                    bookinstances.Add(new BookInstance()
                     {
                         Status = bookInstanceModel.Status,
                         BorrowedDate = null,
                         ReturnDate = null,
                         DueDate = null,
                         CreationDate = DateTime.Now,
-                    };
-                    bookinstances.Add(bookinstance);
+                    });
                 }
             }
             else

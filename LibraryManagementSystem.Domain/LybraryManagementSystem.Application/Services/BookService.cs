@@ -71,12 +71,6 @@ namespace LybraryManagementSystem.Application.Services
             var book = await _bookRepository.GetByBookTitle(bookTitle);
             return BookMappings.MapToModel(book);
         }
-        public async Task<int> GetIdByBookTitle(string bookTitle)
-        {
-            var book = await _bookRepository.GetByBookTitle(bookTitle);
-            return book.Id;
-        }
-
         public async Task<Book> BookExists(List<int> authorNames, string title)
         {
             return await _bookRepository.BookExists(authorNames, title);
@@ -99,8 +93,6 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task UpdateAsync(BookEditModel bookEditModel)
         {
-            var aa = await _bookRepository.GetByIdAsync(bookEditModel.Id);
-
             var book = BookMappings.EditModelMapToEntity(bookEditModel);
             await _bookRepository.UpdateAsync(book);
         }
