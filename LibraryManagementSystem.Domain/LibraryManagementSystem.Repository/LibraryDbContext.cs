@@ -17,13 +17,12 @@ namespace LibraryManagementSystem.Repository
             modelBuilder.ApplyConfiguration(new UserConfig());
         }
 
-
         public DbSet<Book> Books { get; set; }
         public DbSet<BookInstance> BookInstances { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<AuthorBook> AuthorBooks { get; set; }
         public DbSet<User> Users { get; set; }
-
-
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
     }
 }

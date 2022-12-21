@@ -1,5 +1,6 @@
 ﻿using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Models;
+using LybraryManagementSystem.Application.Models.Book;
 using LybraryManagementSystem.Application.Models.BookInstance;
 using LybraryManagementSystem.Application.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,19 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             _bookService = bookService;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] List<BookInstanceModel> bookInstanceModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _bookInctanceService.AddRangeAsync(bookInstanceModel);
+            //await _bookService.SaveChangesAsync();
+
+            return Ok(bookInstanceModel);
+        }
         [HttpGet("get-all-instances")]
         public async Task<IActionResult> GetAllBooks()
         {

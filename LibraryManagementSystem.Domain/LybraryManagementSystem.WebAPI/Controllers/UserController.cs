@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using LybraryManagementSystem.Application.Mappings;
 using LybraryManagementSystem.Application.Models.User;
+using LybraryManagementSystem.Application.Attributes;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
@@ -16,7 +17,8 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             _userService = userService;
         }
 
-        [AllowAnonymous]
+        [RoleValidator()]
+
         [HttpPost("register")]
         public async Task<IActionResult> Add(AddUserModel addModel)
         {
@@ -34,7 +36,6 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(addModel);
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpGet("getAll")]
         public async Task<IActionResult> GetAllUsers()
         {
