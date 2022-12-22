@@ -19,7 +19,7 @@ namespace LibraryManagementSystem.Repository.Repository
             {
                 try
                 {
-                   var dbBook = await _context.Books.AddAsync(book);
+                    var dbBook = await _context.Books.AddAsync(book);
 
                     await _context.AddRangeAsync(book.AuthorBooks);
 

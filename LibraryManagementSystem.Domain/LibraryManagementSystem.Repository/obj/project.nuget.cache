@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5H66E6X9YzlnHj/Z+KgePrG4tAxXF6PXvUDYVjeTzLOTU2MsSBskXAkPVrudT0i51hBaZEGIeIGueHBRZxUDTA==",
+  "dgSpecHash": "Wl0SdbqPhXRHVc+4FLEdwcB9f/vbZtxBRG6jox14g6+foMauBd2tmbYxBB4QMYMp2uGPupnBKyhqtWj65rqS9Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Repository\\LibraryManagementSystem.Repository.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,11 @@
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.1\\microsoft.aspnetcore.authorization.7.0.1.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.0\\microsoft.aspnetcore.cryptography.internal.7.0.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.0\\microsoft.aspnetcore.cryptography.keyderivation.7.0.0.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.1\\microsoft.aspnetcore.metadata.7.0.1.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.mvc.abstractions\\2.2.0\\microsoft.aspnetcore.mvc.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.2.0\\microsoft.aspnetcore.routing.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",
@@ -42,6 +46,7 @@
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.21.0\\microsoft.identitymodel.protocols.6.21.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.21.0\\microsoft.identitymodel.protocols.openidconnect.6.21.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.21.0\\microsoft.identitymodel.tokens.6.21.0.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",

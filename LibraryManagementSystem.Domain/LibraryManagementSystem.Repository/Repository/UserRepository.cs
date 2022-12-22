@@ -15,7 +15,25 @@ namespace LibraryManagementSystem.Repository
 
         public async Task AddAsync(User user)
         {
-            await _context.Set<User>().AddAsync(user);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var dbUser = await _context.Users.AddAsync(user);
+
+                    await _context.AddRangeAsync(user.UserRoles);
+
+                    await SaveChangesAsync();
+
+                    transaction.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
         }
 
         public async Task DeleteAsync(int userId)

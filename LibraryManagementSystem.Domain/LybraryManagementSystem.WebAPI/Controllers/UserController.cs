@@ -17,10 +17,10 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             _userService = userService;
         }
 
-        [RoleValidator()]
+        
 
         [HttpPost("register")]
-        public async Task<IActionResult> Add(AddUserModel addModel)
+        public async Task<IActionResult> Add([FromBody] AddUserModel addModel)
         {
             if (!ModelState.IsValid)
             {

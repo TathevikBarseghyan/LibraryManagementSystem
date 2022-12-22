@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LibraryManagementSystem.Domain.Entities;
+using LibraryManagementSystem.Domain.Enumerations;
 using LybraryManagementSystem.Application.Helper;
 using LybraryManagementSystem.Application.Models.User;
 using LybraryManagementSystem.Application.Services;
@@ -32,7 +33,7 @@ namespace LybraryManagementSystem.Application.Mappings
             var salt = IdentityHelper.GetSalt();
             var hash = IdentityHelper.GetHash(addModel.Password, salt);
 
-            return new User
+            var user = new User
             {
                 UserName = addModel.UserName,
                 Email = addModel.Email,
@@ -40,7 +41,15 @@ namespace LybraryManagementSystem.Application.Mappings
                 Salt = Convert.ToBase64String(salt),
                 FirstName = addModel.FirstName,
                 LastName = addModel.LastName,
+               
             };
+            user.UserRoles = addModel.UserIds.Select(s => new UserRole
+            {
+                User = user,
+                RoleId = (int) RoleType.Client
+            }).ToList();
+          
+            return user;
         }
 
         //inverse mapper

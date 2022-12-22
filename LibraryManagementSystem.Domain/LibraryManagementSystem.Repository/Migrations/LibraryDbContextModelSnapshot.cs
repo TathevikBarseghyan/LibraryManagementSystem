@@ -150,6 +150,35 @@ namespace LibraryManagementSystem.Repository.Migrations
                     b.ToTable("BookInstances");
                 });
 
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Client"
+                        });
+                });
+
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -194,6 +223,21 @@ namespace LibraryManagementSystem.Repository.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.UserRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.AuthorBook", b =>
                 {
                     b.HasOne("LibraryManagementSystem.Domain.Entities.Author", "Author")
@@ -224,6 +268,25 @@ namespace LibraryManagementSystem.Repository.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.UserRole", b =>
+                {
+                    b.HasOne("LibraryManagementSystem.Domain.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LibraryManagementSystem.Domain.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.Author", b =>
                 {
                     b.Navigation("AuthorBooks");
@@ -234,6 +297,16 @@ namespace LibraryManagementSystem.Repository.Migrations
                     b.Navigation("AuthorBooks");
 
                     b.Navigation("BookInstances");
+                });
+
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,6 @@
-﻿using LybraryManagementSystem.Application.Interface;
+﻿using LibraryManagementSystem.Domain.Enumerations;
+using LybraryManagementSystem.Application.Attributes;
+using LybraryManagementSystem.Application.Interface;
 using LybraryManagementSystem.Application.Models;
 using LybraryManagementSystem.Application.Models.Book;
 using LybraryManagementSystem.Application.Models.BookInstance;
@@ -39,6 +41,8 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(bookModel);
         }
 
+        [Authorize]
+        [RoleValidator(RoleType.Admin)]
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAllBooks()
         {

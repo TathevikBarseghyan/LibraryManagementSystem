@@ -101,3 +101,5 @@ C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryM
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
 C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\obj\Debug\net6.0\LybraryManagementSystem.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\tatevik.barseghyan\source\repos\LibraryManagementSystem.Domain\LybraryManagementSystem.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll

@@ -33,11 +33,7 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task DeleteAsync(int authorBookModelId)
         {
-            var authorBook = await GetByIdAsync(authorBookModelId);
-            if (authorBook != null)
-            {
-                _authorBookRepository.DeleteAsync(authorBookModelId);
-            }
+            _authorBookRepository.DeleteAsync(authorBookModelId);
         }
 
         public async Task<List<AuthorBookModel>> GetAllAsync()

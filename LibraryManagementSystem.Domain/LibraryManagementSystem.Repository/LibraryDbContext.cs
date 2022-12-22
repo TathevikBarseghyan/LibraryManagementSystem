@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LibraryManagementSystem.Infrastructure.EntityConfigurations;
+using LibraryManagementSystem.Repository.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagementSystem.Repository
@@ -15,6 +16,8 @@ namespace LibraryManagementSystem.Repository
             modelBuilder.ApplyConfiguration(new AuthorConfig());
             modelBuilder.ApplyConfiguration(new AuthorBooksConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new UserRoleConfig());
+            modelBuilder.ApplyConfiguration(new RoleConfig());
         }
 
         public DbSet<Book> Books { get; set; }
