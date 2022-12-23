@@ -1,6 +1,7 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
 using LybraryManagementSystem.Application.Models.ResponseModel;
 using LybraryManagementSystem.Application.Models.User;
+using LybraryManagementSystem.Application.Models.UserRole;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace LybraryManagementSystem.Application.Interface
         Task<List<UserModel>> GetAllAsync();
         Task<UserModel> GetByIdAsync(int userId);
         Task<UserModel> GetByUserName(string username);
+        Task<UserRoleModel> GetRoleByUserNameAsync(string username);
         Task DeleteAsync(int userId);
         Task UpdateAsync(UserModel userModel);
         Task SaveChangesAsync();

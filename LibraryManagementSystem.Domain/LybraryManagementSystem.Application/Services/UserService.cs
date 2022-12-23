@@ -5,6 +5,7 @@ using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
 using LybraryManagementSystem.Application.Models.ResponseModel;
 using LybraryManagementSystem.Application.Models.User;
+using LybraryManagementSystem.Application.Models.UserRole;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
@@ -118,6 +119,13 @@ namespace LybraryManagementSystem.Application.Services
             return user;
         }
 
+        public async Task<UserRoleModel> GetRoleByUserNameAsync(string username)
+        {
+            var userRole = await _userRepository.GetRoleByUserNameAsync(username);
+            return UserRoleMappings.MapToModel(userRole);
+        }
+
+
         public async Task UpdateAsync(UserModel userModel)
         {
             var user = UserMappings.MapToEntity(userModel);
@@ -130,10 +138,10 @@ namespace LybraryManagementSystem.Application.Services
         }
 
         // Private methods
-        private bool ValidateUser(User userModel, LogInModel logInModel)
+        private bool ValidateUser(User user, LogInModel logInModel)
         {
-            string salt = userModel.Salt;
-            string hashedPass = userModel.Hash;
+            string salt = user.Salt;
+            string hashedPass = user.Hash;
             string checkingPass = IdentityHelper.GetHash(logInModel.Password, Convert.FromBase64String(salt));
 
             if (!hashedPass.Equals(checkingPass))

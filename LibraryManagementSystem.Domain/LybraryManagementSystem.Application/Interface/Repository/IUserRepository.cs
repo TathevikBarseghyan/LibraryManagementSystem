@@ -13,6 +13,7 @@ namespace LybraryManagementSystem.Application.Interface.Repository
         Task<List<User>> GetAllAsync();
         Task<User> GetByIdAsync(int userId);
         Task<User> GetByUserName(string username);
+        Task<UserRole> GetRoleByUserNameAsync(string username);
         Task DeleteAsync(int userId);
         Task UpdateAsync(User user);
         Task SaveChangesAsync();

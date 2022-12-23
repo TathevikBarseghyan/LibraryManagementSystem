@@ -82,5 +82,15 @@ namespace LibraryManagementSystem.Repository
         {
             await _context.SaveChangesAsync();
         }
+
+        public async Task<UserRole> GetRoleByUserNameAsync(string username)
+        {
+            var user = await GetByUserName(username);
+            return new UserRole
+            {
+                UserId = user.Id,
+                RoleId = user.UserRoles.Select(s => s.RoleId).First(),
+            };
+        }
     }
 }
