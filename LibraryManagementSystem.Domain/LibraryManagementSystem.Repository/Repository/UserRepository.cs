@@ -83,9 +83,17 @@ namespace LibraryManagementSystem.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<UserRole> GetRoleByUserNameAsync(string username)
+        public async Task<UserRole?> GetRoleByUserNameAsync(string username)
         {
-            var user = await GetByUserName(username);
+            var user = await _context.Users
+                .Include(i => i.UserRoles)
+                .FirstOrDefaultAsync(f => f.UserName == username);
+
+            if (user is null)
+            {
+                return null;
+            }
+
             return new UserRole
             {
                 UserId = user.Id,

@@ -13,6 +13,10 @@ namespace LybraryManagementSystem.Application.Mappings
     {
         public static UserRole MapToEntity(UserRoleModel userRoleModel)
         {
+            if (userRoleModel == null)
+            {
+                return null;
+            }
             return new UserRole
             {
                 UserId = userRoleModel.UserId,

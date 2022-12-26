@@ -12,6 +12,11 @@ namespace LybraryManagementSystem.Application.Mappings
     {
         public static User MapToEntity(UserModel userModel)
         {
+            if (userModel is null)
+            {
+                return null;
+            } 
+
             return new User
             {
                 Id = userModel.Id,
@@ -55,6 +60,11 @@ namespace LybraryManagementSystem.Application.Mappings
         //inverse mapper
         public static UserModel MapToModel(User user)
         {
+            if (user is null)
+            {
+                return null;
+            }
+
             var config = new MapperConfiguration(c =>
                 c.CreateMap<User, UserModel>());
             var mapper = new Mapper(config);

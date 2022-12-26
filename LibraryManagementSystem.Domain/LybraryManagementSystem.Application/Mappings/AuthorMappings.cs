@@ -12,13 +12,18 @@ namespace LybraryManagementSystem.Application.Mappings
     {
         public static Author MapToEntity(AuthorModel authorModel)
         {
-            return new Author()
+            if (authorModel != null)
             {
-                FirstName = authorModel.FirstName,
-                LastName = authorModel.LastName,
-                Description = authorModel.Description,
-                FullName = authorModel.FullName,
-            };
+                return new Author()
+                {
+                    FirstName = authorModel.FirstName,
+                    LastName = authorModel.LastName,
+                    Description = authorModel.Description,
+                    FullName = authorModel.FullName,
+                };
+            }
+
+            return null;
         }
 
         public static AuthorModel MapToModel(Author author)

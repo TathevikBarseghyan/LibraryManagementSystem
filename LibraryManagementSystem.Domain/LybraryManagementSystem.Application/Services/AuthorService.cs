@@ -28,11 +28,7 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task DeleteAsync(int authorId)
         {
-            var authors = await _authorRepository.GetByIdAsync(authorId);
-            if (authors != null)
-            {
-                await _authorRepository.DeleteAsync(authorId);
-            }
+            await _authorRepository.DeleteAsync(authorId);
         }
 
         public async Task<List<AuthorModel>> GetAllAsync()

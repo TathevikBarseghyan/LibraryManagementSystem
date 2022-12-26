@@ -20,8 +20,11 @@ namespace LibraryManagementSystem.Repository.Repository
 
         public async Task AddAsync(UserRole userRole)
         {
-            await _context.UserRoles.AddAsync(userRole);
-            await _context.SaveChangesAsync();
+            if (userRole != null)
+            {
+                await _context.UserRoles.AddAsync(userRole);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteAsync(int userRoleId)

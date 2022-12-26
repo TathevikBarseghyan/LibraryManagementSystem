@@ -38,17 +38,10 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         [HttpDelete("DeleteAuthor")]
         public async Task<IActionResult> Delete(int id)
         {
-            var author = await _authorService.GetByIdAsync(id);
+            await _authorService.DeleteAsync(id);
+            await _authorService.SaveChangesAsync();
 
-            if (author != null)
-            {
-                await _authorService.DeleteAsync(author.Id);
-                await _authorService.SaveChangesAsync();
-
-                return Ok();
-            }
-
-            return NotFound();
+            return Ok();
         }
     }
 }

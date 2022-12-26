@@ -11,6 +11,8 @@ using System.Text;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.Caching.Memory;
 using LybraryManagementSystem.Application.Helper;
+using LybraryManagementSystem.Application.Attributes;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LybraryManagementSystem.WebAPI
 {
@@ -35,8 +37,6 @@ namespace LybraryManagementSystem.WebAPI
             builder.Services.AddScoped<IAuthorBookService, AuthorBookService>();
 
             builder.Services.AddScoped<ICacheService, CacheService>();
-
-
 
             // Add services to the container.
 

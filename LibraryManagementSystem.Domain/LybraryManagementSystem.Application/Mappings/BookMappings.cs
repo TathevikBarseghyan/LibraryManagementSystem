@@ -10,6 +10,10 @@ namespace LybraryManagementSystem.Application.Mappings
     {
         public static Book MapToEntity(BookModel bookModel) 
         {
+            if (bookModel == null)
+            {
+                return null;
+            }
             var book = new Book()
             {
                 Id = bookModel.Id,
@@ -34,7 +38,10 @@ namespace LybraryManagementSystem.Application.Mappings
 
         public static Book EditModelMapToEntity(BookEditModel bookEditModel)
         {
-
+            if (bookEditModel == null)
+            {
+                return null;
+            }
             var book = new Book()
             {
                 Id = bookEditModel.Id,
@@ -58,25 +65,35 @@ namespace LybraryManagementSystem.Application.Mappings
 
         public static BookModel MapToModel(Book book)
         {
-            return new BookModel()
+            if (book != null)
             {
-                Id = book.Id,
-                Title = book.Title,
-                BookGenre = book.BookGenre,
-                Publisher = book.Publisher,
-                FixedPrice = book.FixedPrice,
-                DailyPrice = book.DailyPrice,
-                MonthlyPrice = book.MonthlyPrice,
-                WeeklyPrice = book.WeeklyPrice,
-            };
+                return new BookModel()
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    BookGenre = book.BookGenre,
+                    Publisher = book.Publisher,
+                    FixedPrice = book.FixedPrice,
+                    DailyPrice = book.DailyPrice,
+                    MonthlyPrice = book.MonthlyPrice,
+                    WeeklyPrice = book.WeeklyPrice,
+                };
+            }
+
+            return null;
         }
         public static AuthorModel AuthorMapToAuthorModel(Author authors)
         {
-            return new AuthorModel()
+            if (authors != null)
             {
-                FirstName = authors.FirstName,
-                LastName = authors.LastName,
-            };
+                return new AuthorModel()
+                {
+                    FirstName = authors.FirstName,
+                    LastName = authors.LastName,
+                };
+            }
+
+            return null;
         }
         public static List<AuthorModel> AuthorMapToAuthorModelList(List<Author> authors)
         {
@@ -99,10 +116,15 @@ namespace LybraryManagementSystem.Application.Mappings
 
         public static Author AuthorMapToEntity(BookModel bookModel)
         {
-            return new Author()
-            { 
-                Id = bookModel.Id
-            };
+            if (bookModel != null)
+            {
+                return new Author()
+                {
+                    Id = bookModel.Id
+                };
+            }
+
+            return null;
         }
 
         public static List<Author> AuthorMapToEntityList(BookModel bookModel)
@@ -122,6 +144,10 @@ namespace LybraryManagementSystem.Application.Mappings
 
         public static List<BookInstanceModel> MapToBookInstanceModel(BookModel bookModel, int count, int bookId)
         {
+            if (bookModel == null)
+            {
+                return null;
+            }
             var bookinstanceModels = new List<BookInstanceModel>();
             if (count > 1)
             {

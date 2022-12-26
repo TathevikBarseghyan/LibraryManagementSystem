@@ -18,15 +18,19 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         private readonly IAuthorService _authorService;
         private readonly IAuthorBookService _authorBookService;
         private readonly IBookInstanceService _bookInstanceService;
+        private readonly IUserService _userService;
 
-        public BookController(IBookService bookService, IAuthorService authorService, IAuthorBookService authorBookService, IBookInstanceService bookInstanceService)
+        public BookController(IBookService bookService, IAuthorService authorService, IAuthorBookService authorBookService, IBookInstanceService bookInstanceService, IUserService userService)
         {
             _bookService = bookService;
             _authorService = authorService;
             _authorBookService = authorBookService;
             _bookInstanceService = bookInstanceService;
+            _userService = userService;
         }
 
+        [Authorize]
+        [HasRole(RoleType.Admin)]
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] BookModel bookModel)
         {
@@ -42,7 +46,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [Authorize]
-        [RoleValidator(RoleType.Admin)]
+        [HasRole(RoleType.Admin, RoleType.Client)]
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAllBooks()
         {
@@ -50,6 +54,8 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(books);
         }
 
+        [Authorize]
+        [HasRole(RoleType.Admin, RoleType.Client)]
         [HttpGet]
         public async Task<IActionResult> Get(int bookId)
         {
@@ -57,6 +63,8 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(books);
         }
 
+        [Authorize]
+        [HasRole(RoleType.Admin)]
         [HttpPut("edit")]
         public async Task<IActionResult> Edit([FromBody] BookEditModel bookEditModel)
         {
@@ -70,6 +78,8 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(bookEditModel);
         }
 
+        [Authorize]
+        [HasRole(RoleType.Admin)]
         [HttpDelete]
         public async Task<IActionResult> DeleteBook(int id)
         {

@@ -28,17 +28,10 @@ namespace LybraryManagementSystem.Application.Services
 
         public async Task AddAsync(BookModel bookModel)
         {
-           // var authors = BookMappings.AuthorMapToEntityList(bookModel.AuthorNames);
-
-            
-            //var bookInstance = BookInstanceMappings.MapToModel();
-
             var existedBook = await _bookRepository.BookExists(bookModel.AuthorIds, bookModel.Title);
 
             if (existedBook != null)
             {
-                //var book = BookMappings.MapToEntity(bookModel);
-
                 var bookInstanceModel = BookMappings.MapToBookInstanceModel(bookModel, bookModel.Count, existedBook.Id);
 
                 await _bookInstanceService.AddRangeAsync(bookInstanceModel);

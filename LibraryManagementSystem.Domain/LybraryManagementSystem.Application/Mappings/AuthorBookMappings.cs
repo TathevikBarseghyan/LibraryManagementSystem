@@ -12,20 +12,30 @@ namespace LybraryManagementSystem.Application.Mappings
     {
         public static AuthorBook MapToEntity(AuthorBookModel authorBookModel)
         {
-            return new AuthorBook
+            if (authorBookModel != null)
             {
-                AuthorId = authorBookModel.AuthorId,
-                BookId = authorBookModel.BookId,
-            };
+                return new AuthorBook
+                {
+                    AuthorId = authorBookModel.AuthorId,
+                    BookId = authorBookModel.BookId,
+                };
+            }
+
+            return null;
         }
 
         public static AuthorBookModel MapToModel(AuthorBook author)
         {
-            return new AuthorBookModel
+            if (author != null)
             {
-                AuthorId = author.AuthorId,
-                BookId = author.BookId,
-            };
+                return new AuthorBookModel
+                {
+                    AuthorId = author.AuthorId,
+                    BookId = author.BookId,
+                };
+            }
+
+            return null;
         }
 
         public static List<AuthorBookModel> MapToModelList(List<AuthorBook> authorBooks)

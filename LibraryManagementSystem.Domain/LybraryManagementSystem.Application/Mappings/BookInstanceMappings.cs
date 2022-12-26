@@ -5,7 +5,7 @@ namespace LybraryManagementSystem.Application.Mappings
 {
     public class BookInstanceMappings
     {
-        internal static BookInstance MapToEntity(BookInstanceModel bookInstanceModel)
+        public static BookInstance MapToEntity(BookInstanceModel bookInstanceModel)
         {
             return new BookInstance
             {
@@ -20,6 +20,7 @@ namespace LybraryManagementSystem.Application.Mappings
 
         public static List<BookInstance> MapToEntity(int count, BookInstanceModel bookInstanceModel)
         {
+           
             var bookinstances = new List<BookInstance>();
             if (count > 1)
             {
