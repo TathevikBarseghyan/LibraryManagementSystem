@@ -13,6 +13,8 @@ using Microsoft.Extensions.Caching.Memory;
 using LybraryManagementSystem.Application.Helper;
 using LybraryManagementSystem.Application.Attributes;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using LibraryManagementSystem.Domain.Entities;
 
 namespace LybraryManagementSystem.WebAPI
 {
@@ -36,7 +38,13 @@ namespace LybraryManagementSystem.WebAPI
             builder.Services.AddScoped<IAuthorBookRepository, AuthorBookRepository>();
             builder.Services.AddScoped<IAuthorBookService, AuthorBookService>();
 
+            builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+            builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+
             builder.Services.AddScoped<ICacheService, CacheService>();
+
+            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            builder.Services.AddSingleton(emailConfig);
 
             // Add services to the container.
 
@@ -114,6 +122,9 @@ namespace LybraryManagementSystem.WebAPI
 
             var connectionString = builder.Configuration.GetConnectionString("LibraryManagementSystem");
             builder.Services.AddDbContext<LibraryDbContext>(x => x.UseSqlServer(connectionString));
+
+         
+
 
             var app = builder.Build();
 
