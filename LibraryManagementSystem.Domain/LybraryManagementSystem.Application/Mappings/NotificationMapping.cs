@@ -10,35 +10,36 @@ namespace LybraryManagementSystem.Application.Mappings
 {
     public class NotificationMapping
     {
-        public static Notification MapToEntity(NotificationModel notificationModel)
+        public static EmailNotification EmailMapToEntity(EmailNotificationModel emailNotificationModel)
         {
-            if (notificationModel != null)
+            if (emailNotificationModel != null)
             {
-                return new Notification
+                return new EmailNotification
                 {
-                    ToEmail = notificationModel.ToEmail,
-                    Body = notificationModel.Body,
-                    Subject = notificationModel.Subject,
+                    From= emailNotificationModel.From,
+                    ToEmail = emailNotificationModel.ToEmail,
+                    Body = emailNotificationModel.Body,
+                    Subject = emailNotificationModel.Subject,
                 };
             }
 
-            return null; 
-        }
-
-        public static NotificationModel MapToModel( Notification notification)
-        {
-            if (notification != null)
-            {
-
-                return new NotificationModel
-                {
-                    ToEmail = notification.ToEmail,
-                    Body = notification.Body,
-                    Subject = notification.Subject,
-                };
-            }
             return null;
         }
+
+        //public static NotificationModel MapToModel( BellNotification notification)
+        //{
+        //    if (notification != null)
+        //    {
+
+        //        return new NotificationModel
+        //        {
+        //            ToEmail = notification.ToEmail,
+        //            Body = notification.Body,
+        //            Subject = notification.Subject,
+        //        };
+        //    }
+        //    return null;
+        //}
 
     }
 }

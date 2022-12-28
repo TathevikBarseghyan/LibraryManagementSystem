@@ -10,6 +10,7 @@ namespace LibraryManagementSystem.Repository
         public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BookConfig());
@@ -18,6 +19,8 @@ namespace LibraryManagementSystem.Repository
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new UserRoleConfig());
             modelBuilder.ApplyConfiguration(new RoleConfig());
+            modelBuilder.ApplyConfiguration(new EmailNotificationConfig());
+            modelBuilder.ApplyConfiguration(new BellNotificationConfig());
         }
 
         public DbSet<Book> Books { get; set; }
@@ -27,5 +30,7 @@ namespace LibraryManagementSystem.Repository
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<EmailNotification> EmailNotifications { get; set; }
+        public DbSet<BellNotification> BellNotifications { get; set; }
     }
 }

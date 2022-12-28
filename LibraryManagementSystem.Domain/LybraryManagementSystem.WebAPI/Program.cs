@@ -39,11 +39,11 @@ namespace LybraryManagementSystem.WebAPI
             builder.Services.AddScoped<IAuthorBookService, AuthorBookService>();
 
             builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
-            builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+            builder.Services.AddScoped<INotificationService, NotificationService>();
 
             builder.Services.AddScoped<ICacheService, CacheService>();
 
-            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailNotification>();
             builder.Services.AddSingleton(emailConfig);
 
             // Add services to the container.

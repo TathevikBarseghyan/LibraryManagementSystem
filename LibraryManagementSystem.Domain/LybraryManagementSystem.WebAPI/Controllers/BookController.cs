@@ -31,7 +31,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
         [Authorize]
         [HasRole(RoleType.Admin)]
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody] BookModel bookModel)
         {
             if(!ModelState.IsValid)

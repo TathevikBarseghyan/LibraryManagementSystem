@@ -22,7 +22,7 @@ namespace LybraryManagementSystem.Application.Attributes
 {
     public class HasRoleAttribute : Attribute, IAsyncActionFilter
     {
-        private RoleType[] _roles;
+        private readonly RoleType[] _roles;
 
         public HasRoleAttribute(params RoleType[] roles)
         {
@@ -33,11 +33,10 @@ namespace LybraryManagementSystem.Application.Attributes
         {
             var userService = context.HttpContext.RequestServices.GetService<IUserService>();
             var userName = context.HttpContext.User.FindFirst("UserName").Value;
-
             var userRole = await userService.GetRoleByUserNameAsync(userName);
             // execute any code before the action executes
 
-            if (_roles.Any(a => (int)a == userRole.RoleId))
+            if (_roles.Any(a => (int) a == userRole.RoleId))
             {
                 await next();
             }

@@ -74,6 +74,30 @@ namespace LibraryManagementSystem.Repository.Migrations
                     b.ToTable("AuthorBooks");
                 });
 
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.BellNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BellType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BellNotifications");
+                });
+
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.Book", b =>
                 {
                     b.Property<int>("Id")
@@ -148,6 +172,41 @@ namespace LibraryManagementSystem.Repository.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("BookInstances");
+                });
+
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.EmailNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmailStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("From")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ToEmail")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailNotifications");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.Role", b =>

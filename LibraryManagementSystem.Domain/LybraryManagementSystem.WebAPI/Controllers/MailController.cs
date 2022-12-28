@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class MailController : Controller
     {
         private readonly INotificationService _notificationService;
@@ -14,7 +15,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMail(NotificationModel notificationModel)
+        public async Task<IActionResult> AddAsync(EmailNotificationModel notificationModel)
         {
             try
             {
@@ -23,7 +24,6 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

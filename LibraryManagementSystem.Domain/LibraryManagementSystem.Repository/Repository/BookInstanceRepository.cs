@@ -15,11 +15,8 @@ namespace LibraryManagementSystem.Repository.Repository
 
         public async Task AddRangeAsync(List<BookInstance> bookInstance)
         {
-            if (bookInstance != null)
-            {
-                await _context.AddRangeAsync(bookInstance);
-                await _context.SaveChangesAsync();
-            }
+            await _context.AddRangeAsync(bookInstance);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int bookId)

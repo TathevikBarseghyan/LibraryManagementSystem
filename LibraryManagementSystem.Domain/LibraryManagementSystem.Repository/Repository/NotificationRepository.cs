@@ -7,23 +7,27 @@ namespace LibraryManagementSystem.Repository.Repository
 {
     public class NotificationRepository : INotificationRepository
     {
-        private readonly EmailConfiguration _emailConfiduration;
+        private readonly LibraryDbContext _context;
 
-        public NotificationRepository(EmailConfiguration emailConfiduration)
+        public NotificationRepository(LibraryDbContext context)
         {
-            _emailConfiduration = emailConfiduration;
+            _context =  context;
         }
 
-        public async Task SendEmailAsync(Notification notification)
+        public async Task AddBellAsync(BellNotification bellNotification)
         {
-            var email = new MailMessage();
-            email.From = new MailAddress(_emailConfiduration.From);
-            email.To.Add(new MailAddress(notification.ToEmail));
-            email.Subject = "subject";
-            email.Body = "Body";
+           await _context.AddAsync(bellNotification);
+        }
 
-            var smtp = new SmtpClient();
-            await smtp.SendMailAsync(email);
+        
+        public async Task AddEmailAsync(EmailNotification emailNotification)
+        {
+            await _context.AddAsync(emailNotification);
+        }
+
+        public Task UpdateBellType(BellNotification bellNotification)
+        {
+            throw new NotImplementedException();
         }
     }
 }

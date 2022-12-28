@@ -18,19 +18,15 @@ namespace LibraryManagementSystem.Repository.Repository
         }
         public async Task AddAsync(AuthorBook authorBook)
         {
-            if (authorBook != null)
-            {
-                await _context.AuthorBooks.AddAsync(authorBook);
-                await SaveChangesAsync();
-            }
+            
+            await _context.AuthorBooks.AddAsync(authorBook);
+            await SaveChangesAsync();
+            
         }
 
         public async Task AddAsyncList(List<AuthorBook> authorBooks)
         {
-            if (authorBooks != null)
-            {
-                await _context.AuthorBooks.AddRangeAsync(authorBooks);
-            }
+            await _context.AuthorBooks.AddRangeAsync(authorBooks);
         }
 
         public async Task DeleteAsync(int authorBookId)

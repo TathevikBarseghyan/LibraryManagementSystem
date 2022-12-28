@@ -10,7 +10,7 @@ namespace LybraryManagementSystem.Application.Interface
 {
     public interface INotificationService
     {
-        Task SendEmailAsync(NotificationModel notificationModel);
+        Task SendEmailAsync(EmailNotificationModel notificationModel);
 
     }
 }
