@@ -5,6 +5,7 @@ using LybraryManagementSystem.Application.Models.Notification;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
+using MimeKit.Text;
 
 namespace LybraryManagementSystem.Application.Services
 {
@@ -20,14 +21,14 @@ namespace LybraryManagementSystem.Application.Services
         public async Task SendEmailAsync(EmailNotificationModel emailNotificationModel)
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("emanuel.parisian@ethereal.email"));
-            email.To.Add(MailboxAddress.Parse("emanuel.parisian@ethereal.email"));
+            email.From.Add(MailboxAddress.Parse("tathevik.barseghyan@gmail.com"));
+            email.To.Add(MailboxAddress.Parse("tathevikbarseghyan@icloud.com"));
             email.Subject = "subject";
-            email.Body = new TextPart("test body");
+            email.Body = new TextPart(TextFormat.Html) { Text = emailNotificationModel.Body };
 
             using var smtp = new SmtpClient();
-            await smtp.ConnectAsync("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-            await smtp.AuthenticateAsync("emanuel.parisian@ethereal.email", "T28v8HNJ79uW5E7Shg");
+            await smtp.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            await smtp.AuthenticateAsync("tathevik.barseghyan@gmail.com", "iumpfzcykutpkqps");
             await smtp.SendAsync(email);
             var emailNotification = NotificationMapping.EmailMapToEntity(emailNotificationModel);
             await _notificationRepository.AddEmailAsync(emailNotification);

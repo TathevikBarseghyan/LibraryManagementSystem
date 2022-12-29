@@ -22,9 +22,9 @@ namespace LybraryManagementSystem.WebAPI.Controllers
                 await _notificationService.SendEmailAsync(notificationModel);
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return BadRequest(ex.Message);
             }
         }
     }

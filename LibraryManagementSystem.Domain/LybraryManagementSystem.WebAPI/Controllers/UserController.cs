@@ -20,7 +20,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         
 
         [HttpPost("register")]
-        public async Task<IActionResult> Add([FromBody] AddUserModel addModel)
+        public async Task<IActionResult> AddAsync([FromBody] AddUserModel addModel)
         {
             if (!ModelState.IsValid)
             {
@@ -37,7 +37,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [HttpGet("getAll")]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllUsersAsync()
         {
             var users = await _userService.GetAllAsync();
             return Ok(users);
@@ -45,7 +45,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("get")]
-        public async Task<IActionResult> Get(int userId)
+        public async Task<IActionResult> GetAsync(int userId)
         {
             var users = await _userService.GetByIdAsync(userId);
             return Ok(users);
@@ -53,14 +53,14 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("getByName")]
-        public async Task<IActionResult> GetByName(string username)
+        public async Task<IActionResult> GetByNameAsync(string username)
         {
             var users = await _userService.GetByUserName(username);
             return Ok(users);
         }
         //[Authorize]
         [HttpPut("edit")]
-        public async Task<IActionResult> Edit(UserModel userModel)
+        public async Task<IActionResult> EditAsync(UserModel userModel)
         {
             if (!ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
         [Authorize]
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             var user = await _userService.GetByIdAsync(id);
 

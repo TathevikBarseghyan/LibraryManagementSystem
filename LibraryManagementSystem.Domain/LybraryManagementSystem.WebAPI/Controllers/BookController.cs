@@ -32,7 +32,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         [Authorize]
         [HasRole(RoleType.Admin)]
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] BookModel bookModel)
+        public async Task<IActionResult> AddAsync([FromBody] BookModel bookModel)
         {
             if(!ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         [Authorize]
         [HasRole(RoleType.Admin, RoleType.Client)]
         [HttpGet("get-all")]
-        public async Task<IActionResult> GetAllBooks()
+        public async Task<IActionResult> GetAllBooksAsync()
         {
             var books = await _bookService.GetAllAsync();
             return Ok(books);
@@ -66,7 +66,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         [Authorize]
         [HasRole(RoleType.Admin)]
         [HttpPut("edit")]
-        public async Task<IActionResult> Edit([FromBody] BookEditModel bookEditModel)
+        public async Task<IActionResult> EditaAsync([FromBody] BookEditModel bookEditModel)
         {
             if(!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         [Authorize]
         [HasRole(RoleType.Admin)]
         [HttpDelete]
-        public async Task<IActionResult> DeleteBook(int id)
+        public async Task<IActionResult> DeleteBookAsync(int id)
         {
             await _bookService.DeleteAsync(id);
             return Ok();

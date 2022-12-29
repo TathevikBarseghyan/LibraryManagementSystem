@@ -27,7 +27,6 @@ namespace LybraryManagementSystem.Application.Services
         {
             
             var user = _cache.Get<T>(key);
-
             return user;
         }
 

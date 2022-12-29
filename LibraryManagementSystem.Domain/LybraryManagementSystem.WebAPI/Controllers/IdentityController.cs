@@ -21,7 +21,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> LogIn(LogInModel logInModel)
+        public async Task<IActionResult> LogInAsync(LogInModel logInModel)
         {
             if (!ModelState.IsValid)
             {

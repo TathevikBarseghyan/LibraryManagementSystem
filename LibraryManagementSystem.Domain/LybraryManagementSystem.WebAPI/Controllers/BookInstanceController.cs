@@ -22,7 +22,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
        
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] List<BookInstanceModel> bookInstanceModel)
+        public async Task<IActionResult> AddAsync([FromBody] List<BookInstanceModel> bookInstanceModel)
         {
             if (!ModelState.IsValid)
             {
@@ -35,14 +35,14 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             return Ok(bookInstanceModel);
         }
         [HttpGet("get-all-instances")]
-        public async Task<IActionResult> GetAllBooks()
+        public async Task<IActionResult> GetAllBooksAsync()
         {
             var books = await _bookInctanceService.GetAllAsync();
             return Ok(books);
         }
 
         [HttpGet("get-instances")]
-        public async Task<IActionResult> GetInstances(string title)
+        public async Task<IActionResult> GetInstancesAsync(string title)
         {
             var book = await _bookService.GetByBookTitle(title); 
             var books = await _bookInctanceService.GetByBookIdAsync(book.Id);
@@ -51,14 +51,14 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [HttpDelete]        
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             await _bookInctanceService.DeleteAsync(id);
             return Ok();
         }
 
         [HttpPut("edit-instance")]
-        public async Task<IActionResult> Edit([FromBody] BookInstanceModel bookInstanceModel)
+        public async Task<IActionResult> EditAsync([FromBody] BookInstanceModel bookInstanceModel)
         {
             if (!ModelState.IsValid)
             {

@@ -18,7 +18,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [HttpPost("AddAuthor")]
-        public async Task<IActionResult> Add(AuthorModel authorModel)
+        public async Task<IActionResult> AddAsync(AuthorModel authorModel)
         {
             if (!ModelState.IsValid)
             {
@@ -36,7 +36,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [HttpDelete("DeleteAuthor")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             await _authorService.DeleteAsync(id);
             await _authorService.SaveChangesAsync();
