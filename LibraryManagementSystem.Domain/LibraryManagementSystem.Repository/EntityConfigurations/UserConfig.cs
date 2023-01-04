@@ -36,7 +36,7 @@ namespace LibraryManagementSystem.Infrastructure.EntityConfigurations
 
             builder.Property(p => p.Email)
                 .HasColumnName("Email")
-                .HasMaxLength(25);
+                .HasMaxLength(50);
         }
     }
 }

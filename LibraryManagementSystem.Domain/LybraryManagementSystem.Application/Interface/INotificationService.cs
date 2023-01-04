@@ -11,6 +11,7 @@ namespace LybraryManagementSystem.Application.Interface
     public interface INotificationService
     {
         Task SendEmailAsync(EmailNotificationModel notificationModel);
-
+        Task AddingBookEmailAsync();
+        Task<List<string>> GetClientEmailsAsync();
     }
 }

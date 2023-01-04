@@ -11,7 +11,7 @@ using System;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
-    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
+    [Route("api/[controller]")]
     public class BookController : Controller
     {
         private readonly IBookService _bookService;

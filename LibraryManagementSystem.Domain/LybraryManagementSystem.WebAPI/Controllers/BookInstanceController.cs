@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class BookInstanceController : Controller
     {
         private readonly IBookInstanceService _bookInctanceService;

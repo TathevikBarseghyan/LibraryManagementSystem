@@ -6,7 +6,7 @@ using LybraryManagementSystem.Application.Models.User;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
-    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class IdentityController : ControllerBase
     {

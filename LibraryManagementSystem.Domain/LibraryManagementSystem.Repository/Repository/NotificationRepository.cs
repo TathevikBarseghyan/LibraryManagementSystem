@@ -1,7 +1,12 @@
 ﻿using LibraryManagementSystem.Domain.Entities;
+using LibraryManagementSystem.Domain.Enumerations;
 using LybraryManagementSystem.Application.Interface.Repository;
+using LybraryManagementSystem.Application.Models.Notification;
+using Microsoft.EntityFrameworkCore;
 using MimeKit;
+using System.Linq;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 
 namespace LibraryManagementSystem.Repository.Repository
 {
@@ -20,10 +25,21 @@ namespace LibraryManagementSystem.Repository.Repository
         }
 
         
-        public async Task AddEmailAsync(EmailNotification emailNotification)
+        public async Task AddEmailNotificationsAsync(List<EmailNotification> emailNotifications)
         {
-            await _context.AddAsync(emailNotification);
+             await _context.EmailNotifications.AddRangeAsync(emailNotifications);
+             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<string>> GetClientEmailsAsync()
+        {
+            var emails = await _context.Users.Where(u => u.UserRoles.Any(w => w.RoleId == (int) RoleType.Client))
+                .Select(u => u.Email).ToListAsync();
+
+            return emails;
+        }
+            
+    
 
         public Task UpdateBellType(BellNotification bellNotification)
         {

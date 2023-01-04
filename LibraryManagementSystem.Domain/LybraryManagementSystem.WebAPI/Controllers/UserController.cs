@@ -8,6 +8,7 @@ using LybraryManagementSystem.Application.Attributes;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;

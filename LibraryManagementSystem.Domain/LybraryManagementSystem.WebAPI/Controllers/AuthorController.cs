@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LybraryManagementSystem.WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class AuthorController : Controller
     {
         private readonly IAuthorService _authorService;

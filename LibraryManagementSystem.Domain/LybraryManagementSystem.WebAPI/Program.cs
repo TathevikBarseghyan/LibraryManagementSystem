@@ -15,6 +15,8 @@ using LybraryManagementSystem.Application.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using LibraryManagementSystem.Domain.Entities;
+using LybraryManagementSystem.Application.Mappings.Interface;
+using LybraryManagementSystem.Application.Mappings;
 
 namespace LybraryManagementSystem.WebAPI
 {
@@ -40,10 +42,12 @@ namespace LybraryManagementSystem.WebAPI
 
             builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
             builder.Services.AddScoped<INotificationService, NotificationService>();
+            
+            //builder.Services.AddScoped<INotificationMapping, NotificationMapping>();
 
             builder.Services.AddScoped<ICacheService, CacheService>();
 
-            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailNotification>();
+            var emailConfig = builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection("EmailConfiguration"));
             builder.Services.AddSingleton(emailConfig);
 
             // Add services to the container.

@@ -13,17 +13,19 @@ namespace LybraryManagementSystem.Application.Services
         private readonly IAuthorService _authorService;
         private readonly IBookInstanceService _bookInstanceService;
         private readonly IAuthorBookService _authorBookService;
-
+        private readonly INotificationService _notificationService;
         public BookService(
             IBookRepository bookRepository,
             IAuthorService authorService,
             IBookInstanceService bookInstanceService,
-            IAuthorBookService authorBookService)
+            IAuthorBookService authorBookService,
+            INotificationService notificationService)
         {
             _bookRepository = bookRepository;
             _authorService = authorService;
             _bookInstanceService = bookInstanceService;
-            _authorBookService = authorBookService; 
+            _authorBookService = authorBookService;
+            _notificationService = notificationService;
         }
 
         public async Task AddAsync(BookModel bookModel)
@@ -41,6 +43,8 @@ namespace LybraryManagementSystem.Application.Services
                 var book = BookMappings.MapToEntity(bookModel);
                 
                 await _bookRepository.AddAsync(book);
+
+                await _notificationService.AddingBookEmailAsync();
             }
         }
 
