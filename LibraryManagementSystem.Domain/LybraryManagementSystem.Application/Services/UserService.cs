@@ -125,6 +125,11 @@ namespace LybraryManagementSystem.Application.Services
             return UserRoleMappings.MapToModel(userRole);
         }
 
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            return await _userRepository.GetByEmailAsync(email);
+        }
+
 
         public async Task UpdateAsync(UserModel userModel)
         {

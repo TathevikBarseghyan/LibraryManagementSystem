@@ -77,6 +77,20 @@ namespace LibraryManagementSystem.Repository
             _context.Users.Update(dbUser);
             await _context.SaveChangesAsync();
         }
+        public async Task UpdatePasswordAsync(User user)
+        {
+            var dbUser = _context.Users.First(f => f.Id == user.Id);
+            if (dbUser == null)
+            {
+                return;
+            }
+
+            dbUser.Hash = user.Hash;
+            dbUser.Salt = user.Salt;
+
+            _context.Users.Update(dbUser);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task SaveChangesAsync()
         {
@@ -99,6 +113,11 @@ namespace LibraryManagementSystem.Repository
                 UserId = user.Id,
                 RoleId = user.UserRoles.Select(s => s.RoleId).First(),
             };
+        }
+
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(f => f.Email == email);
         }
     }
 }

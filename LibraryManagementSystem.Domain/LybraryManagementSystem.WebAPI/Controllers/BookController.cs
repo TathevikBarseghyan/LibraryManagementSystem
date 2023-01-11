@@ -20,7 +20,11 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         private readonly IBookInstanceService _bookInstanceService;
         private readonly IUserService _userService;
 
-        public BookController(IBookService bookService, IAuthorService authorService, IAuthorBookService authorBookService, IBookInstanceService bookInstanceService, IUserService userService)
+        public BookController(IBookService bookService, 
+            IAuthorService authorService,
+            IAuthorBookService authorBookService,
+            IBookInstanceService bookInstanceService, 
+            IUserService userService)
         {
             _bookService = bookService;
             _authorService = authorService;

@@ -25,6 +25,7 @@ namespace LybraryManagementSystem.WebAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
 
@@ -42,7 +43,12 @@ namespace LybraryManagementSystem.WebAPI
 
             builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
             builder.Services.AddScoped<INotificationService, NotificationService>();
-            
+
+            builder.Services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
+            builder.Services.AddScoped<IPasswordResetService, PasswordResetService>();
+
+            builder.Services.AddScoped<IIdentityService, IdentityService>();
+
             //builder.Services.AddScoped<INotificationMapping, NotificationMapping>();
 
             builder.Services.AddScoped<ICacheService, CacheService>();
@@ -126,9 +132,6 @@ namespace LybraryManagementSystem.WebAPI
 
             var connectionString = builder.Configuration.GetConnectionString("LibraryManagementSystem");
             builder.Services.AddDbContext<LibraryDbContext>(x => x.UseSqlServer(connectionString));
-
-         
-
 
             var app = builder.Build();
 

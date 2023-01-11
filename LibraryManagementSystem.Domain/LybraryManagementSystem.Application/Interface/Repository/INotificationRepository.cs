@@ -10,7 +10,8 @@ namespace LybraryManagementSystem.Application.Interface.Repository
 {
     public interface INotificationRepository
     {
-        Task AddEmailNotificationsAsync(List<EmailNotification> emailNotifications);
+        Task AddEmailNotificationListAsync(List<EmailNotification> emailNotifications);
+        Task AddEmailNotificationAsync(EmailNotification emailNotification);
         //Task UpdateEmailStatus(EmailNotification emailNotification);
         Task<List<string>> GetClientEmailsAsync();
         Task AddBellAsync(BellNotification bellNotification);

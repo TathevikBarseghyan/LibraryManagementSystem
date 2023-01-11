@@ -14,6 +14,7 @@ namespace LibraryManagementSystem.Domain.Entities
         public string Salt { get; set; }
 
         public List<UserRole> UserRoles { get; set;}
+        public List<PasswordReset> PasswordReset { get; set; }
 
         //public bool IsActive { get; set; }
         //public bool IsLocked { get; set; }

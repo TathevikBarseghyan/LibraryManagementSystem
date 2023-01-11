@@ -206,7 +206,33 @@ namespace LibraryManagementSystem.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmailNotifications");
+                    b.ToTable("EmailIdentitys");
+                });
+
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.PasswordReset", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GuId")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PasswordResets");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.Role", b =>
@@ -327,6 +353,17 @@ namespace LibraryManagementSystem.Repository.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.PasswordReset", b =>
+                {
+                    b.HasOne("LibraryManagementSystem.Domain.Entities.User", "User")
+                        .WithMany("PasswordReset")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.UserRole", b =>
                 {
                     b.HasOne("LibraryManagementSystem.Domain.Entities.Role", "Role")
@@ -365,6 +402,8 @@ namespace LibraryManagementSystem.Repository.Migrations
 
             modelBuilder.Entity("LibraryManagementSystem.Domain.Entities.User", b =>
                 {
+                    b.Navigation("PasswordReset");
+
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

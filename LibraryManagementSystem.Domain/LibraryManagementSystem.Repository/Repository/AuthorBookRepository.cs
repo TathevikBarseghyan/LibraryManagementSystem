@@ -39,9 +39,9 @@ namespace LibraryManagementSystem.Repository.Repository
             }
         }
 
-        public async Task<List<AuthorBook>> GetAllAsync()
+        public  Task<List<AuthorBook>> GetAllAsync()
         {
-            return await _context.AuthorBooks.ToListAsync();
+            return  _context.AuthorBooks.ToListAsync();
         }
 
         public async Task<AuthorBook> GetByIdAsync(int authorBookId)

@@ -39,6 +39,27 @@ namespace LybraryManagementSystem.Application.Mappings
             return null;
         }
 
+        public static EmailNotification ResetPasswordMapToEntity(string toEmail, string url, string configurationMail)
+        {
+            if (toEmail != null && url != null && configurationMail != null)
+            {
+                return new EmailNotification
+                {
+                    From = configurationMail,
+                    ToEmail = toEmail,
+                    Body = "text" + url + "text",
+                    Subject = "ReserPassword",
+                };
+            }
+
+            return null;
+        }
+
+        public static List<EmailNotification> EmailMapToEntityList(List<EmailNotificationModel> emailNotificationModel, string configurationMail)
+        {
+            return emailNotificationModel.Select(s => EmailMapToEntity(s, configurationMail)).ToList();
+        }
+
         public static List<EmailNotification> AddBookEmailMapToEntity(List<string> emails, string configurationMail)
         {
             //var emails = await _notificationRepository.GetClientEmailsAsync();
@@ -58,7 +79,23 @@ namespace LybraryManagementSystem.Application.Mappings
             return EmailNotifications;
         }
 
-        //public static NotificationModel MapToModel( BellNotification notification)
+        public static EmailNotificationModel ForgotEmailMapToEntity(string toEmail, string configurationMail)
+        {
+            if (toEmail != null)
+            {
+                return new EmailNotificationModel
+                {
+                    From = configurationMail,
+                    ToEmail = toEmail,
+                    Body = "You can resset your password here",
+                    Subject = "Forgot password",
+                };
+            }
+
+            return null;
+        }
+
+        //public static IdentityModel MapToModel( BellIdentity notification)
         //{
         //    if (notification != null)
         //    {

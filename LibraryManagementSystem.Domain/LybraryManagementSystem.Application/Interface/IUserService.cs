@@ -21,5 +21,6 @@ namespace LybraryManagementSystem.Application.Interface
         Task DeleteAsync(int userId);
         Task UpdateAsync(UserModel userModel);
         Task SaveChangesAsync();
+        Task<User> GetByEmailAsync(string email);
     }
 }

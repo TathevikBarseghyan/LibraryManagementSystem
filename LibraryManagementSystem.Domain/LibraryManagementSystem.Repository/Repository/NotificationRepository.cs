@@ -25,10 +25,16 @@ namespace LibraryManagementSystem.Repository.Repository
         }
 
         
-        public async Task AddEmailNotificationsAsync(List<EmailNotification> emailNotifications)
+        public async Task AddEmailNotificationListAsync(List<EmailNotification> emailNotifications)
         {
              await _context.EmailNotifications.AddRangeAsync(emailNotifications);
              await _context.SaveChangesAsync();
+        }
+
+        public async Task AddEmailNotificationAsync(EmailNotification emailNotification)
+        {
+            await _context.EmailNotifications.AddAsync(emailNotification);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<string>> GetClientEmailsAsync()

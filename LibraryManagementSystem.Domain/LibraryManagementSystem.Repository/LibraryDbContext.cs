@@ -21,6 +21,7 @@ namespace LibraryManagementSystem.Repository
             modelBuilder.ApplyConfiguration(new RoleConfig());
             modelBuilder.ApplyConfiguration(new EmailNotificationConfig());
             modelBuilder.ApplyConfiguration(new BellNotificationConfig());
+            modelBuilder.ApplyConfiguration(new PasswordResetConfig());
         }
 
         public DbSet<Book> Books { get; set; }
@@ -32,5 +33,6 @@ namespace LibraryManagementSystem.Repository
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<EmailNotification> EmailNotifications { get; set; }
         public DbSet<BellNotification> BellNotifications { get; set; }
+        public DbSet<PasswordReset> PasswordResets { get; set; }
     }
 }

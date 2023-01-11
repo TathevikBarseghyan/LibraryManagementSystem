@@ -43,14 +43,14 @@ namespace LibraryManagementSystem.Repository.Repository
             }
         }
 
-        public async Task<List<Author>> GetAllAsync()
+        public  Task<List<Author>> GetAllAsync()
         {
-            return await _context.Authors.ToListAsync();
+            return  _context.Authors.ToListAsync();
         }
 
-        public async Task<Author> GetByAuthorName(string firstName, string lastName)
+        public Task<Author> GetByAuthorName(string firstName, string lastName)
         {
-            return await _context.Authors.FirstOrDefaultAsync(f => f.FirstName == firstName && f.LastName == lastName);
+            return _context.Authors.FirstOrDefaultAsync(f => f.FirstName == firstName && f.LastName == lastName);
         }
 
         public async Task<Author> GetByIdAsync(int authorId)

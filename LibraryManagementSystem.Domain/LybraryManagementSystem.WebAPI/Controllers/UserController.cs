@@ -18,8 +18,6 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             _userService = userService;
         }
 
-        
-
         [HttpPost("register")]
         public async Task<IActionResult> AddAsync([FromBody] AddUserModel addModel)
         {

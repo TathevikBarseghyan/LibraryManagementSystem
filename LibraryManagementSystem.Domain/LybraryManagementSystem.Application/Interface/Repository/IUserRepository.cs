@@ -16,6 +16,8 @@ namespace LybraryManagementSystem.Application.Interface.Repository
         Task<UserRole> GetRoleByUserNameAsync(string username);
         Task DeleteAsync(int userId);
         Task UpdateAsync(User user);
+        Task UpdatePasswordAsync(User user);
         Task SaveChangesAsync();
+        Task<User> GetByEmailAsync(string email);
     }
 }
