@@ -77,6 +77,7 @@ namespace LibraryManagementSystem.Repository
             _context.Users.Update(dbUser);
             await _context.SaveChangesAsync();
         }
+
         public async Task UpdatePasswordAsync(User user)
         {
             var dbUser = _context.Users.First(f => f.Id == user.Id);

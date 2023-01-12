@@ -12,7 +12,7 @@ namespace LybraryManagementSystem.Application.Interface
     public interface IPasswordResetService 
     {
         //Task AddAsync(PasswordResetModel passwordResetModel);
-        Task ResetPasswordAsync(PasswordResetModel passwordResetModel);
+        Task ResetPasswordAsync(PasswordResetModel passwordResetModel, string guId);
         Task AddAsync(int userId, string guId);
     }
 }

@@ -11,6 +11,7 @@ namespace LybraryManagementSystem.Application.Interface.Repository
     public interface IPasswordResetRepository
     {
         Task AddAsync(PasswordReset passwordReset);
+        Task<PasswordReset> GetByGuId(string id);
         Task ResetPasswordAsync(User user);
     }
 }

@@ -19,7 +19,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
 
         public IdentityController(IUserService userService,
             INotificationService notificationServicel,
-            IPasswordResetService passwordResetService, 
+            IPasswordResetService passwordResetService,
             IIdentityService identityService)
         {
             //_userManager = userManager;
@@ -39,7 +39,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
             }
 
             var operation = await _userService.LogInAsync(logInModel);
-            
+
             if (!operation.Success)
             {
                 return BadRequest(operation.Error);
@@ -69,15 +69,19 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         }
 
         [HttpPost("reset-pass")]
-        public async Task<IActionResult> RessetPassword(PasswordResetModel passwordResetModel)
+        public async Task<IActionResult> RessetPassword(PasswordResetModel passwordResetModel, [FromQuery] string guid)
         {
-            var aa = HttpContext.Request.Query["guid"].ToString();
+            //var guid = HttpContext.Request.Query["guid"].ToString();
+            //var userId = int.Parse(HttpContext.Request.Query["id"]);
+            //var guid = "cd66964a-98b1-4840-a264-0c90c391be8b";
+            //var userId = 1003;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
             //passwordResetModel.GuId = HttpContext.GetRouteValue();
-            await _passwordResetService.ResetPasswordAsync(passwordResetModel);
+            await _passwordResetService.ResetPasswordAsync(passwordResetModel, guid);
             return Ok();
         }
     }

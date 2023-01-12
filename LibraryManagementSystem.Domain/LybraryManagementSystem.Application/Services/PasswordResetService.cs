@@ -32,13 +32,15 @@ namespace LybraryManagementSystem.Application.Services
             await _passwordResetRepository.AddAsync(passwordReset);
         }
 
-        public async Task ResetPasswordAsync(PasswordResetModel passwordResetModel)
+        public async Task ResetPasswordAsync(PasswordResetModel passwordResetModel, string guId)
         {
-            //var userModel = await _userService.GetByIdAsync(passwordResetModel.UserId);
-            //var user = UserMappings.MapToEntity(userModel);
+            var userModel = await _passwordResetRepository.GetByGuId(guId);
 
-            //var userPassword = PasswordResetMappings.MapToUserEntity(passwordResetModel, passwordResetModel.UserId);
-            //await _passwordResetRepository.ResetPasswordAsync(userPassword);
+            if (userModel != null)
+            {
+                var user = PasswordResetMappings.MapToUserEntity(passwordResetModel, userModel.UserId);
+                await _passwordResetRepository.ResetPasswordAsync(user);
+            }
         }
     }
 }

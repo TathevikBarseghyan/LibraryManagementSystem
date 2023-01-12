@@ -2,6 +2,7 @@
 using LybraryManagementSystem.Application.Interface.Repository;
 using LybraryManagementSystem.Application.Mappings;
 using LybraryManagementSystem.Application.Models.User;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,13 @@ namespace LibraryManagementSystem.Repository.Repository
         {
             await _context.PasswordResets.AddAsync(passwordReset);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<PasswordReset> GetByGuId(string id)
+        {
+            return await _context.PasswordResets
+                .Include(i=>i.User)
+                .FirstOrDefaultAsync(f => f.GuId == id);
         }
 
         public async Task ResetPasswordAsync(User user)
