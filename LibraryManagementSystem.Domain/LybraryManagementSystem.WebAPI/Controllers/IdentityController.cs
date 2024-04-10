@@ -58,7 +58,7 @@ namespace LybraryManagementSystem.WebAPI.Controllers
         [HttpPost("forgot-pass")]
         public async Task<IActionResult> ForgotPassword(string email)
         {
-            if (_userService.GetByEmailAsync(email) == null)
+            if (await _userService.GetByEmailAsync(email) == null)
             {
                 return BadRequest("User dosen't seem to exist");
             }
