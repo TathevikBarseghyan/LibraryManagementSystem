@@ -19,7 +19,12 @@ namespace LybraryManagementSystem.Application.Attributes
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             ErrorMessage = ErrorMessageString;
-            string ComparisonPass = value as string;
+            string comparisonPass = string.Empty;
+
+            if(value is string convertedValue)
+            {
+                comparisonPass = convertedValue;
+            }
 
             var property = validationContext.ObjectType.GetProperty(_password);
 
@@ -28,7 +33,7 @@ namespace LybraryManagementSystem.Application.Attributes
                 throw new ArgumentException("Property with this name not found");
             }
 
-            if (!ComparisonPass.Equals(property.GetValue(validationContext.ObjectInstance))) 
+            if (!comparisonPass.Equals(property.GetValue(validationContext.ObjectInstance))) 
             {
                 return new ValidationResult(ErrorMessage);
             }
