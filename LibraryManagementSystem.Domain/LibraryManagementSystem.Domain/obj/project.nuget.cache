@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SLbpFM0mnz0PK2p/dae9kaJQgfWfult12rWYn4Eh+/Cue747zHbl4P7rXVEk2ztLzjxh5p1T5dYyQPxqfzhQ1g==",
+  "dgSpecHash": "Bf5z2IC5Z8hZPvc3eW61tSqvSadXnYuX8HyvfBXrBx3z1WlS7b1PAl9PE231fGy+BhwNf04Bnhd1H9xFLrrYOw==",
   "success": true,
   "projectFilePath": "C:\\Users\\tatevik.barseghyan\\source\\repos\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Domain\\LibraryManagementSystem.Domain.csproj",
   "expectedPackageFiles": [
@@ -80,7 +80,10 @@
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.29\\microsoft.windowsdesktop.app.ref.6.0.29.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.29\\microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
+    "C:\\Users\\tatevik.barseghyan\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.29\\microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512"
   ],
   "logs": []
 }

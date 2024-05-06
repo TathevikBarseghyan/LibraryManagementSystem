@@ -64,7 +64,7 @@ namespace LybraryManagementSystem.Application.Services
                 var guid = Guid.NewGuid();
                 var url = $"https://localhost:7204/api/Notification/reset-pass?guid={guid}"; 
 
-                await _notificationService.ForgotEmailAsync(email, url);
+                await _notificationService.ForgotEmailAsync(email, url, userInfo);
                 await _notificationService.AddEmailNotificationAsync(email, url);
                 await _passwordResetService.AddAsync(userInfo.Id, guid.ToString());
             }

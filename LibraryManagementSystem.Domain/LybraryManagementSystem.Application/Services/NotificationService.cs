@@ -17,14 +17,15 @@ namespace LybraryManagementSystem.Application.Services
         private readonly INotificationRepository _notificationRepository;
         //private readonly INotificationMapping _notificationMapping;
         private readonly IOptions<EmailConfiguration> _configuration;
+        private readonly IPasswordResetService _passwordResetService;
         public NotificationService(INotificationRepository notificationRepository, 
-            IOptions<EmailConfiguration> configuration)
-            //IPasswordResetService passwordResetService)
+            IOptions<EmailConfiguration> configuration,
+            IPasswordResetService passwordResetService)
             //INotificationMapping notificationMapping)
         {
             _notificationRepository = notificationRepository;
             _configuration = configuration;
-            //_passwordResetService = passwordResetService;
+            _passwordResetService = passwordResetService;
             //_notificationMapping = notificationMapping;
         }
 
@@ -68,13 +69,10 @@ namespace LybraryManagementSystem.Application.Services
         }
 
 
-        public async Task ForgotEmailAsync(string toEmail, string url)
+        public async Task ForgotEmailAsync(string toEmail, string url, User userInfo)
         {
-            //var guid = Guid.NewGuid();
-            //var url = $"https://localhost:7204/api/Notification/reset-pass?{guid}";
-
-            //var url = _identityService.GenerateGuId();
-
+            var guid = Guid.NewGuid();
+            
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_configuration.Value.Email));
             email.To.Add(MailboxAddress.Parse(toEmail));
@@ -87,10 +85,11 @@ namespace LybraryManagementSystem.Application.Services
                 await smtp.AuthenticateAsync(_configuration.Value.Email, _configuration.Value.Password);
                 await smtp.SendAsync(email);
             }
-            //var emailNotification = NotificationMapping.ForgotEmailMapToEntity(toEmail, _configuration.Value.Email);
-            //await _notificationRepository.AddEmailNotificationsAsync(new List<EmailNotification>() { emailNotification });
+            var emailNotification = NotificationMapping.ForgotEmailMapToEntity(toEmail, _configuration.Value.Email);
+            await _notificationRepository.AddEmailNotificationListAsync(Mappings.NotificationMapping.EmailMapToEntityList(new List<EmailNotificationModel>()
+            { emailNotification }, toEmail) );
 
-            //await _passwordResetService.AddAsync()
+            await _passwordResetService.AddAsync(userInfo.Id, url);
         }
         public async Task<List<string>> GetClientEmailsAsync()
         {
